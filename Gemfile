@@ -11,6 +11,11 @@ gem 'pg', '>= 1.2', group: :production
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 gem "image_processing", "~> 1.2"
+# Source - https://stackoverflow.com/a
+# Posted by vzamanillo
+# Retrieved 2026-01-13, License - CC BY-SA 4.0
+
+gem 'concurrent-ruby', '1.3.4'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
