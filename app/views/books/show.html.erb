@@ -1,0 +1,149 @@
+<div class="page-head">
+  <div class="container">
+    <div class="row">
+      <div class="page-head-content">
+        <h1 class="page-title">User Pre Booking Properties Cart</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Property Area -->
+<div class="content-area recent-property" style="background-color:#FFF;">
+  <div class="container">
+    <div class="row">
+      <% total_booking_money = 0 %>
+
+      <div class="col-md-9 pr-30 padding-top-40 properties-page user-properties">
+        <% @book.booking_items.each do |item| %>
+          <div class="section">
+            <div id="list-type" class="proerty-th-list">
+              <div class="col-md-4 p0">
+                <div class="box-two proerty-item">
+
+                  <!-- Property Image -->
+                  <div class="item-thumb">
+                    <%= link_to property_url(item.property) do %>
+                      <% if item.property.images.attached? %>
+                        <%= image_tag item.property.images.first.variant(resize_to_fill: [360, 240]) %>
+                      <% else %>
+                        <%= image_tag "property-1/property1.jpg" %>
+                      <% end %>
+                    <% end %>
+                  </div>
+
+                  <!-- Property Details -->
+                  <div class="item-entry overflow ">
+                    <h5>
+                      <%= link_to item.property.name, property_url(item.property) %>
+                    </h5>
+
+                    <div class="dot-hr "></div>
+
+                    <span class="pull-left">
+                      <b>Area :</b> <%= item.property.area %> sqfeet
+                    </span>
+
+                    <span class="proerty-price pull-right">
+                      $<%= item.property.price %>
+                    </span>
+                    
+
+                    <% book_price = item.property.price.to_f * 0.10 %>
+                    <% total_booking_money += book_price %>
+
+                    <span class="pull-left" style="color:red; padding-top:20px;">
+                      <b>Booking Price :</b> <%= book_price %>
+                    </span>
+                    <p><%= item.property.description %></p>
+                    <div class="property-icon">
+                      <img src="<%= asset_path('icon/bed.png') %>"> (<%= item.property.bedroom %>) |
+                      <img src="<%= asset_path('icon/shawer.png') %>"> (<%= item.property.bathroom %>) |
+                      <img src="<%= asset_path('icon/cars.png') %>"> (<%= item.property.gerage %>)
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="dealer-action pull-right" id="books_<%= item.id %>">
+                      <% if logged_in? %>
+                        <%= button_to "Delete",
+                          book_booking_item_path(@book, item),
+                          method: :delete,
+                          remote: true,
+                          data: { confirm: "Are you sure?" },
+                          class: "button delete_user_car" %>
+                      <% end %>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+         <!-- Total & Pay -->
+    <div class="row pull-right padding-top-40">
+      <span style="color:green; font-size:16px; display:block">
+        <b>Total Booking Money:</b> <%= total_booking_money %>
+      </span>
+      <button class="totalmoney">Pay Now</button>
+    </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-md-3">
+
+        <!-- Similar Properties -->
+        <div class="panel panel-default sidebar-menu similar-property-wdg padding-top-40 " >
+  <div class="panel-heading">
+    <h3 class="panel-title">Similar Properties</h3>
+  </div>
+  <div class="panel-body recent-property-widget">
+    <ul>
+      <% @recommended_properties.each do |property| %>
+        <li>
+          <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0 psett">
+            <%= link_to property_path(property) do %>
+              <% if property.images.attached? && property.images.first.variable? %>
+                <%= image_tag property.images.first.variant(resize_to_fill: [80, 80]).processed %>
+              <% else %>
+                <%= image_tag "default-property", size: "80x80", alt: "No image" %>
+              <% end %>
+            <% end %>
+
+            <span class="property-seeker">
+              <b class="b-1">A</b>
+              <b class="b-2">S</b>
+            </span>
+          </div>
+
+          <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+            <h6>
+              <%= link_to property.name, property_path(property) %>
+            </h6>
+            <span class="property-price">
+              <%= number_to_currency(property.price) %>
+            </span>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+        <!-- Ads -->
+        <div class="panel panel-default sidebar-menu">
+          <div class="panel-heading">
+            <h3 class="panel-title">Ads here</h3>
+          </div>
+          <div class="panel-body recent-property-widget">
+            <%= image_tag "ads.jpg", alt: "Advertisement" %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+   
+
+  </div>
+</div>

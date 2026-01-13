@@ -1,0 +1,42 @@
+// Place all the styles related to the Pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+@import "icon-7-stroke/css/pe-icon-7-stroke";
+a{
+    text-decoration: none;
+}
+.navbar-default {
+    background-image: none !important;
+    background-color: white !important;
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 0px   #e7e7e7;
+    box-shadow:none !important;
+    // margin-bottom: 3px !important;
+}
+body{
+  color: #777;
+}
+.btnlog{
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+.slider-area{
+    padding-top: 5px !important;
+
+}
+.indprop{
+    margin-bottom: 20px !important;
+  }
+@media screen and (max-width:448px){
+ 
+  .row{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  
+  .indprop{
+    margin-bottom: 20px !important;
+  }
+}

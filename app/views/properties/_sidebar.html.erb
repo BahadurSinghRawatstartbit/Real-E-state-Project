@@ -1,0 +1,138 @@
+<div class="properties-area recent-property" style="background-color: #FFF;">
+  <div class="container">
+    <div class="row">
+
+      <!-- SIDEBAR SEARCH -->
+      <div class="col-md-3 p0 padding-top-40">
+        <div class="panel panel-default sidebar-menu">
+          <div class="panel-heading">
+            <h3 class="panel-title">Smart search</h3>
+          </div>
+
+          <div class="panel-body search-widget">
+            <%= form_with url: properties_path, method: :get, local: true, class: "form-inline" do |f| %>
+
+              <!-- Keyword -->
+              <fieldset>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <%= text_field_tag :keyword, params[:keyword], 
+                          class: "form-control", placeholder: "Key word" %>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Status -->
+              <fieldset>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <%= select_tag :status,
+                          options_for_select(["Rent", "Buy", "Used"], params[:status]),
+                          include_blank: "- Status -",
+                          class: "form-control" %>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Min Baths / Beds -->
+              <fieldset class="padding-5">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <label>Min baths :</label>
+                    <%= number_field_tag :min_baths, params[:min_baths], class: "form-control" %>
+                  </div>
+
+                  <div class="col-xs-6">
+                    <label>Min bed :</label>
+                    <%= number_field_tag :min_bed, params[:min_bed], class: "form-control" %>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Features -->
+              <fieldset class="padding-5">
+                <div class="checkbox">
+                  <label><%= check_box_tag :fireplace %> Fire Place</label>
+                </div>
+                <div class="checkbox">
+                  <label><%= check_box_tag :dualsinks %> Dual Sinks</label>
+                </div>
+                <div class="checkbox">
+                  <label><%= check_box_tag :swimmingpool %> Swimming Pool</label>
+                </div>
+                <div class="checkbox">
+                  <label><%= check_box_tag :twostories %> 2 Stories</label>
+                </div>
+                <div class="checkbox">
+                  <label><%= check_box_tag :laundryroom %> Laundry Room</label>
+                </div>
+                <div class="checkbox">
+                  <label><%= check_box_tag :energencyexit %> Emergency Exit</label>
+                </div>
+                <div class="checkbox">
+                  <label><%= check_box_tag :jogpath %> Jog Path</label>
+                </div>
+                <div class="checkbox">
+                  <label><%= check_box_tag :ceilings %> 26' Ceilings</label>
+                </div>
+              </fieldset>
+
+              <!-- Submit -->
+              <fieldset>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <%= submit_tag "Search", class: "button btn largesearch-btn" %>
+                  </div>
+                </div>
+              </fieldset>
+
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROPERTY LIST -->
+      <div class="col-md-9 padding-top-40">
+        <div class="row">
+
+          <% @properties.each do |property| %>
+            <div class="col-sm-6 col-md-4 p0">
+              <div class="box-two proerty-item">
+
+                <div class="item-thumb">
+                  <%= image_tag "demo/property-1.jpg", alt: property.name %>
+                </div>
+
+                <div class="item-entry overflow">
+                  <h5><%= property.name %></h5>
+                  <div class="dot-hr"></div>
+
+                  <span class="pull-left">
+                    <b>Area :</b> <%= property.area %>
+                  </span>
+
+                  <span class="proerty-price pull-right">
+                    $ <%= property.price %>
+                  </span>
+
+                  <p style="display:none;">
+                    <%= truncate(property.description, length: 120) %>
+                  </p>
+
+                  <div class="property-icon">
+                    <img src="/assets/icon/bed.png"> (<%= property.bedroom %>) |
+                    <img src="/assets/icon/shawer.png"> (<%= property.bathroom %>) |
+                    <img src="/assets/icon/cars.png"> (<%= property.gerage %>)
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

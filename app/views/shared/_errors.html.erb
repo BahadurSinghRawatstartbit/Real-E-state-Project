@@ -1,0 +1,18 @@
+<% if obj.errors.any? %>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <% obj.errors.full_messages.each do |msg| %>
+                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>                        
+                        
+                        <strong>Error:</strong><%= msg %>
+                    </div>                
+                    
+                    <% end %>
+            </div>
+        </div>
+    </div>
+<% end %>

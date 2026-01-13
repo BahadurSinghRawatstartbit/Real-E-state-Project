@@ -1,0 +1,295 @@
+<div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title">Submit new property</h1>               
+                    </div>
+                </div>
+            </div>
+</div>
+
+
+
+
+
+ <!-- property area -->
+<div class="content-area submit-property" style="background-color: #FCFCFC;">&nbsp;
+  <div class="container">
+    <div class="clearfix">
+      <div class="wizard-container">
+
+        <div class="wizard-card ct-wizard-orange" id="wizardProperty">
+
+          <%= form_with model: @property, remote: true, html: { multipart: true } do |f| %>
+
+            <div class="wizard-header">
+              <h3>
+                <b>Submit</b> YOUR PROPERTY <br>
+                <small>Lorem ipsum dolor sit amet, consectetur adipisicing.</small>
+              </h3>
+            </div>
+
+            <ul>
+              <li><a href="#step1" data-toggle="tab">Step 1</a></li>
+              <li><a href="#step2" data-toggle="tab">Step 2</a></li>
+              <li><a href="#step3" data-toggle="tab">Step 3</a></li>
+              <li><a href="#step4" data-toggle="tab">Finished</a></li>
+            </ul>
+
+            <div class="tab-content">
+
+              <!-- STEP 1 -->
+              <div class="tab-pane" id="step1">
+                <div class="row p-b-15">
+                  <h4 class="info-text"> Let's start with the basic information (with validation)</h4>
+
+                  <div class="col-sm-4 col-sm-offset-1">
+                    <div class="picture-container">
+                      <div class="picture">
+                        <%= image_tag "default-property.jpg",
+                            class: "picture-src",
+                            id: "wizardPicturePreview" %>
+
+                        <!-- Image upload (ActiveStorage recommended) -->
+                        <%= f.file_field :images, multiple: true, id: "wizard-picture",  class: "form-control" %>
+                      </div>
+                    </div>
+
+                    
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <%= f.label :name, "Property name" %>
+                      <%= f.text_field :name, class: "form-control", placeholder: "Super villa ..." %>
+                    </div>
+
+                    <div class="form-group">
+                      <%= f.label :price, "Property price" %>
+                      <%= f.text_field :price, class: "form-control", placeholder: "3330000" %>
+                    </div>
+
+                    <div class="form-group">
+                      <%= f.label :phonenumber, "Telephone" %>
+                      <%= f.text_field :phonenumber,
+                          class: "form-control",
+                          placeholder: "+1 473 843 7436" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- END STEP 1 -->
+
+              <!-- STEP 2 -->
+              <div class="tab-pane" id="step2">
+                <h4 class="info-text"> How much your Property is Beautiful ? </h4>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <%= f.label :description, "Property Description :" %>
+                      <%= f.text_area :description, class: "form-control" %>
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <%= f.label :address, "Property address :" %>
+                      <%= f.text_area :address, class: "form-control" %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12">
+
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <%= f.label :state, "Property State :" %>
+                        <%= f.select :state,
+                            ["Rajasthan", "Delhi", "UP", "MP", "Bihar", "HP , Panjab"],
+                            {}, class: "selectpicker", data: { live_search: true } %>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <%= f.label :city, "Property City :" %>
+                        <%= f.select :city,
+                            ["Jaipur", "Udaipur", "Beawar", "Jodhpur", "Pali", "Ajmer", "Sagar" , "Indore"],
+                            {}, class: "selectpicker", data: { live_search: true } %>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <%= f.label :status, "Property Status :" %>
+                        <%= f.select :status,
+                            ["Rent", "Available", "sold"],
+                            {}, class: "selectpicker show-tick form-control" %>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                      
+                      <div class="form-group">
+                        <%= f.label :completiondate, "Completion Date :" %>
+                        <%= f.date_field :completiondate, class: 'form-control' %>
+                        
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="col-sm-12 padding-top-15 mb-3">
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <%= f.label :bedroom, "Bedrooms :" %>
+                        <%= f.text_field :bedroom, class: "form-control" %>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <%= f.label :bathroom, "Baths rooms :" %>
+                        <%= f.text_field :bathroom, class: "form-control" %>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <%= f.label :area, "Property area (sqfeet) :" %>
+                        <%= f.text_field :area, class: "form-control" %>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <%= f.label :gerage, "Gerage :" %>
+                        <%= f.text_field :gerage, class: "form-control" %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 padding-top-15 mb-3">
+                    <div class="col-sm-3">
+                      <%= f.check_box :swimmingpool %> Swimming Pool
+                    </div>
+                    <div class="col-sm-3">
+                      <%= f.check_box :twostories %> 2 Stories
+                    </div>
+                    <div class="col-sm-3">
+                      <%= f.check_box :energencyexit %> Emergency Exit
+                    </div>
+                    <div class="col-sm-3">
+                      <%= f.check_box :fireplace %> Fire Place
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 padding-top-15">
+                    <div class="col-sm-3">
+                      <%= f.check_box :laundryroom %> Laundry Room
+                    </div>
+                    <div class="col-sm-3">
+                      <%= f.check_box :jogpath %> Jog Path
+                    </div>
+                    <div class="col-sm-3">
+                      <%= f.check_box :ceilings %> Ceilings
+                    </div>
+                    <div class="col-sm-3">
+                      <%= f.check_box :dualsinks %> Dual Sinks
+                    </div>
+                  </div>
+                  <div class="col-sm-12 padding-top-15">
+                    <div class="col-sm-3">
+                      <%= f.check_box :is_featured_product %>  Featured Property
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <%= f.label :discounts, "Discounts :" %>
+                        <%= f.number_field :discounts, min: 0, step: 1, class: "form-control" %>
+                    
+                      </div>
+                    
+                      
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                      <%= f.label :rating, "Rating :" %>
+                      <%= f.number_field :rating, min: 0, step: 1 ,class: "form-control"%>
+                      </div>
+                    </div>
+                    
+                  </div>
+
+                </div>
+              </div>
+              <!-- END STEP 2 -->
+
+              <!-- STEP 3 -->
+              <div class="tab-pane" id="step3">
+                <h4 class="info-text">Give us some images and videos ?</h4>
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <label>Choose Images :</label>
+                    <%= f.file_field :images, multiple: true, class: "form-control" %>
+                    <p class="help-block">Select multiple images for your property.</p>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <%= f.label :videoone, "Property video :" %>
+                      <%= f.text_field :videoone, class: "form-control",
+                          placeholder: "http://www.youtube.com, http://vimeo.com" %>
+                    </div>
+
+                    <div class="form-group">
+                      <%= f.text_field :videotwo, class: "form-control",
+                          placeholder: "http://www.youtube.com, http://vimeo.com" %>
+                    </div>
+
+                    <div class="form-group">
+                      <%= f.text_field :videothree, class: "form-control",
+                          placeholder: "http://www.youtube.com, http://vimeo.com" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- END STEP 3 -->
+
+              <!-- STEP 4 -->
+              <div class="tab-pane" id="step4">
+                <h4 class="info-text"> Finished and submit </h4>
+
+                <p>
+                  <strong>Terms and Conditions</strong><br>
+                  By accessing or using services you agree to the collection and use of your personal information.
+                </p>
+
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" required>
+                    <strong>Accept terms and conditions.</strong>
+                  </label>
+                </div>
+              </div>
+              <!-- END STEP 4 -->
+
+            </div>
+
+            <div class="wizard-footer">
+              <div class="pull-right">
+                <input type="button" class="btn btn-next btn-primary" value="Next" />
+                <%= f.submit "Finish", class: "btn btn-finish btn-primary" %>
+              </div>
+
+              <div class="pull-left">
+                <input type="button" class="btn btn-previous btn-default" value="Previous" />
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

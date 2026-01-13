@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  status: MyString
+  description: MyText
+  address: MyString
+  phonenumber: MyString
+  soldate: 2025-12-22
+  completiondate: 2025-12-22
+  is_featureptoduct: false
+
+two:
+  name: MyString
+  status: MyString
+  description: MyText
+  address: MyString
+  phonenumber: MyString
+  soldate: 2025-12-22
+  completiondate: 2025-12-22
+  is_featureptoduct: false

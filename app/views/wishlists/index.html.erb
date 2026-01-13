@@ -1,0 +1,95 @@
+<div class="page-head">
+  <div class="container">
+    <div class="row">
+      <div class="page-head-content">
+        <h1 class="page-title" style="display:flex;justify-content:center;align-item:center;">My WishList </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-area recent-property" style="background-color: #FFF;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 p0 padding-top-40">
+        <% if @wishlists.any? %>
+          <table class="table table-striped">
+            <thead>
+              <tr >
+                <th>Property Name</th>
+                <th>Price</th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <% @wishlists.each do |wishlist| %>
+              <% property = wishlist.property %>
+            <tr id="wishlist_<%= property.id %>"> 
+              <td><%= property.name %></td>                  
+              <td><%= property.price %></td>                  
+              <td style="display: flex;  justify-content: space-evenly">
+                   <%= link_to property_path(property) do %><i class="fa fa-eye"></i>
+                     <% end %>
+                    <%= link_to property_wishlist_path(property), method: :delete,remote: true, data: { confirm: "Remove from wishlist?" } do %> 
+                    <i class="fa fa-remove text-danger"></i>
+                    <% end %>
+
+                <%= link_to "Book Now",
+                    property_path(property),
+                    class: "btn btn-primary btn-sm" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="text-center fs-6">Your wishlist is empty.</p>
+    <% end %>
+
+  </div>
+
+  <div class="col-md-3 p0 padding-top-40">
+
+    <div class="panel panel-default sidebar-menu">
+      <div class="panel-heading">
+        <h3 class="panel-title">Recommended</h3>
+      </div>
+      <div class="panel-body recent-property-widget">
+        <ul>
+          <% @recommended_properties.each do |property| %>
+            <li>
+              <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0 psett">
+                <%= link_to property_path(property) do %>
+                  <% if property.images.attached? && property.images.first.variable? %>
+                    <%= image_tag property.images.first.variant(resize_to_fill: [80, 80]).processed %>
+                  <% else %>
+                    <%= image_tag "default-property", size: "80x80", alt: "No image" %>
+                  <% end %>
+                <% end %>
+
+                <span class="property-seeker">
+                  <b class="b-1">A</b>
+                  <b class="b-2">S</b>
+                </span>
+              </div>
+
+              <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                <h6>
+                  <%= link_to property.name, property_path(property) %>
+                </h6>
+                <span class="property-price">
+                  <%= number_to_currency(property.price) %>
+                </span>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>

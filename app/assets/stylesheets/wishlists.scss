@@ -1,0 +1,37 @@
+// // Place all the styles related to the Wishlists controller here.
+// // They will automatically be included in application.css.
+// // You can use Sass (SCSS) here: https://sass-lang.com/
+// .wishlist-toggle i {
+//   font-size: 20px;
+//   cursor: pointer;
+//   transition: color 0.2s ease, transform 0.2s ease;
+// }
+body{
+  color: #777;
+}
+a{
+    text-decoration: none;
+}
+.wishlist-toggle i.wishlisted {
+  color: red;
+}
+.wishlisted i {
+  background-color: red;
+  color: red;
+}
+.slider-area{
+    padding-top: 5px !important;
+
+}
+// .wishlist-toggle i:hover {
+//   transform: scale(1.1);
+// }
+@media screen and (max-width:448px){
+ 
+  .row{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  
+  
+}

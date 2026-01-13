@@ -1,0 +1,100 @@
+// Place all the styles related to the Properties controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+body{
+  color: #777;
+}
+a{
+    text-decoration: none;
+}
+.logoutbtn{
+display: inline-block;
+margin-right:10px;
+}
+.slider-area{
+    padding-top: 5px !important;
+
+}
+.totalmoney{
+  margin-right: 5px;
+  margin-top: 8px;
+    margin-bottom: 8px;
+  background-color: #FDC600;
+      border: medium none;
+    color: #fff;
+    font-size: 16px;
+    padding: 8px 20px;
+    border-radius: 2px;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: bounceInRight;
+    animation-name: bounceInRight;
+}
+input[value="Login"]{
+  background-image: none !important;
+  color:black;
+}
+input[value="Register"]{
+  background-image: none !important;
+  color:black;
+}
+input[type="submit"] {
+  margin-right: 5px;
+  margin-top: 8px;
+    margin-bottom: 8px;
+  background-color: #FDC600;
+      border: medium none;
+    color: #fff;
+    font-size: 16px;
+    padding: 8px 20px;
+    border-radius: 2px;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: bounceInRight;
+    animation-name: bounceInRight;
+}
+.sortdate{
+  line-height: 28px;
+}
+@media screen and (max-width:448px){
+  .serchmobile{
+    margin:0px !important;
+  }
+  .mobilecol{
+    padding-left:0px !important;
+    padding-right:0px !important;
+  }
+  .mobilerow{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .indprop{
+    margin-bottom: 20px !important;
+  }
+  .forflexcenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+  }
+  
+}
+
+@media screen and (min-width: 991px) {
+  .gallery li{
+    height:420px !important;
+  }
+}

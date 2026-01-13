@@ -1,0 +1,54 @@
+<div class="row mobilerow">
+  <% @properties.each do |property| %>
+    <div class="col-sm-6 col-md-4 p0 indprop proerty-th">
+      <div class="box-two proerty-item">
+        <div class="item-thumb">
+          <%= link_to property_path(property) do %>
+            <% if property.images.attached? %>
+              <%= image_tag property.images.first.variant(resize_to_fill: [360, 240]) %>
+            <% else %>
+              <%= image_tag "property-1/property1.jpg" %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="item-entry overflow">
+          <h5><%= link_to property.name, property_path(property) %></h5>
+          <div class="dot-hr"></div>
+
+          <span class="pull-left"><b>Area:</b> <%= property.area %></span>
+          <span class="proerty-price pull-right">$<%= number_with_delimiter(property.price) %></span>
+          <br>
+
+          <span class="pull-left">
+            <% property.rating.to_i.times do %>
+              <i class="fa fa-star" style="color:#FDC600;"></i>
+            <% end %>
+          </span>
+
+          <span class="pull-right" style="color:green;font-weight:500;">
+            <%= number_with_delimiter(property.discounts) %>% off
+          </span>
+
+          <p style="display:none;"><%= property.description %></p>
+
+          <div class="property-icon">
+            <img src="<%= asset_path('icon/bed.png') %>">(<%= property.bedroom %>) |
+            <img src="<%= asset_path('icon/shawer.png') %>">(<%= property.bathroom %>) |
+            <img src="<%= asset_path('icon/cars.png') %>">(<%= property.gerage %>)
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="col-md-12">
+  <div class="pull-right">
+    <div class="pagination">
+      <ul>
+        <%= will_paginate @properties, params: request.query_parameters %>
+      </ul>
+    </div>
+  </div>
+</div>
