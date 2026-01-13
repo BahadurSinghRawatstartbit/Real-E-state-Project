@@ -33,7 +33,9 @@ default: &default
  
 development:
   <<: *default
-  database: myapp_development
+  database: realdb_kc3l
+  
+  
  
 test:
   <<: *default

@@ -119,7 +119,7 @@ GEM
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
-    minitest (5.26.1)
+    minitest (5.27.0)
     msgpack (1.8.0)
     net-imap (0.4.23)
       date
@@ -274,7 +274,7 @@ DEPENDENCIES
   will_paginate-bootstrap
 
 RUBY VERSION
-   ruby 3.0.7p220
+   ruby 3.1.2p20
 
 BUNDLED WITH
    2.5.23
