@@ -11,7 +11,14 @@
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800', rel: 'stylesheet' %>
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %><%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>    <%# Modernizr loaded via CDN (traditional script tag) to access DOM immediately %><script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script><%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %></head>  <body><%= render "shared/top_header" %>    <%= render "shared/navbar" %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'css/bootstrap-select.min', media: 'all' %>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <%# Modernizr loaded via CDN (traditional script tag) to access DOM immediately %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
 
     <% if flash[:notice] %>
       <div class="alert alert-success alert-dismissible fade in container" role="alert">
