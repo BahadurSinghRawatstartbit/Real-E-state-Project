@@ -1,0 +1,9 @@
+<div class="col-md-12">
+  <div class="pull-right">
+    <div class="pagination">
+      <ul>
+        <%= will_paginate @properties, params: request.query_parameters %>
+      </ul>
+    </div>
+  </div>
+</div>

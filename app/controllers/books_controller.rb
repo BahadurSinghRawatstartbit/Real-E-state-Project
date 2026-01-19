@@ -10,7 +10,7 @@ class BooksController < ApplicationController
   def destroy
     @book = BookingItem.find(params[:id])
     @book.destroy
-    flash[:notice] = "movie deleted!"
+    flash[:notice] = "Property deleted!"
     respond_to do |format|
       format.js   
     end

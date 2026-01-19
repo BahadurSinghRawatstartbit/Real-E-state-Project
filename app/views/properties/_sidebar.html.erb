@@ -1,138 +1,214 @@
-<div class="properties-area recent-property" style="background-color: #FFF;">
-  <div class="container">
-    <div class="row">
 
-      <!-- SIDEBAR SEARCH -->
-      <div class="col-md-3 p0 padding-top-40">
-        <div class="panel panel-default sidebar-menu">
-          <div class="panel-heading">
-            <h3 class="panel-title">Smart search</h3>
-          </div>
-
-          <div class="panel-body search-widget">
-            <%= form_with url: properties_path, method: :get, local: true, class: "form-inline" do |f| %>
-
-              <!-- Keyword -->
-              <fieldset>
-                <div class="row">
-                  <div class="col-xs-12">
-                    <%= text_field_tag :keyword, params[:keyword], 
-                          class: "form-control", placeholder: "Key word" %>
-                  </div>
-                </div>
-              </fieldset>
-
-              <!-- Status -->
-              <fieldset>
-                <div class="row">
-                  <div class="col-xs-12">
-                    <%= select_tag :status,
-                          options_for_select(["Rent", "Buy", "Used"], params[:status]),
-                          include_blank: "- Status -",
-                          class: "form-control" %>
-                  </div>
-                </div>
-              </fieldset>
-
-              <!-- Min Baths / Beds -->
-              <fieldset class="padding-5">
-                <div class="row">
-                  <div class="col-xs-6">
-                    <label>Min baths :</label>
-                    <%= number_field_tag :min_baths, params[:min_baths], class: "form-control" %>
-                  </div>
-
-                  <div class="col-xs-6">
-                    <label>Min bed :</label>
-                    <%= number_field_tag :min_bed, params[:min_bed], class: "form-control" %>
-                  </div>
-                </div>
-              </fieldset>
-
-              <!-- Features -->
-              <fieldset class="padding-5">
-                <div class="checkbox">
-                  <label><%= check_box_tag :fireplace %> Fire Place</label>
-                </div>
-                <div class="checkbox">
-                  <label><%= check_box_tag :dualsinks %> Dual Sinks</label>
-                </div>
-                <div class="checkbox">
-                  <label><%= check_box_tag :swimmingpool %> Swimming Pool</label>
-                </div>
-                <div class="checkbox">
-                  <label><%= check_box_tag :twostories %> 2 Stories</label>
-                </div>
-                <div class="checkbox">
-                  <label><%= check_box_tag :laundryroom %> Laundry Room</label>
-                </div>
-                <div class="checkbox">
-                  <label><%= check_box_tag :energencyexit %> Emergency Exit</label>
-                </div>
-                <div class="checkbox">
-                  <label><%= check_box_tag :jogpath %> Jog Path</label>
-                </div>
-                <div class="checkbox">
-                  <label><%= check_box_tag :ceilings %> 26' Ceilings</label>
-                </div>
-              </fieldset>
-
-              <!-- Submit -->
-              <fieldset>
-                <div class="row">
-                  <div class="col-xs-12">
-                    <%= submit_tag "Search", class: "button btn largesearch-btn" %>
-                  </div>
-                </div>
-              </fieldset>
-
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-      <!-- PROPERTY LIST -->
-      <div class="col-md-9 padding-top-40">
-        <div class="row">
-
-          <% @properties.each do |property| %>
-            <div class="col-sm-6 col-md-4 p0">
-              <div class="box-two proerty-item">
-
-                <div class="item-thumb">
-                  <%= image_tag "demo/property-1.jpg", alt: property.name %>
-                </div>
-
-                <div class="item-entry overflow">
-                  <h5><%= property.name %></h5>
-                  <div class="dot-hr"></div>
-
-                  <span class="pull-left">
-                    <b>Area :</b> <%= property.area %>
-                  </span>
-
-                  <span class="proerty-price pull-right">
-                    $ <%= property.price %>
-                  </span>
-
-                  <p style="display:none;">
-                    <%= truncate(property.description, length: 120) %>
-                  </p>
-
-                  <div class="property-icon">
-                    <img src="/assets/icon/bed.png"> (<%= property.bedroom %>) |
-                    <img src="/assets/icon/shawer.png"> (<%= property.bathroom %>) |
-                    <img src="/assets/icon/cars.png"> (<%= property.gerage %>)
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          <% end %>
-
-        </div>
-      </div>
-
+  <fieldset>
+    <div class="row mobilerow">
+      <div class="col-xs-12 serchmobile" >
+<%= f.text_field :name_or_description_cont, class: "form-control", placeholder: "Key word" %>      </div>
     </div>
-  </div>
-</div>
+  </fieldset>
+
+  <fieldset>
+    <div class="row mobilerow forflexcenter">
+      <div class="col-xs-6 mobilecol">
+        <%= f.select :city_eq, Property.distinct.pluck(:city).compact, { include_blank: "City" }, class: "selectpicker" %>
+
+        <%# <%= f.select :city,
+            Property.distinct.pluck(:city).compact,
+            { include_blank: "Select Your City" },
+            class: "selectpicker",
+            data: {
+            live_search: "true",
+            live_search_style: "begins"
+            } %> 
+      </div>
+      <div class="col-xs-6 mobilecol">
+        <%= f.select :status_eq, Property.distinct.pluck(:status).compact, { include_blank: "Status" }, class: "selectpicker show-tick form-control" %>
+
+        <%# <%= f.select :status,
+            Property.distinct.pluck(:status).compact,
+            { include_blank: "-Status-" },
+            class: "selectpicker show-tick form-control" %> 
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="padding-5">
+    <div class="row mobilerow forflexcenter">
+      <div class="col-xs-6 mobilecol">
+        <label for="price-range" >Price range ($):</label>
+        <%= f.text_field :price_gteq, id: "price-range",class: "span2",value: "",
+            data: {
+            slider_min: "10000",
+            slider_max: "1000000",
+            slider_step: "5",
+            slider_value: "[0,450]"
+            } %> 
+        <%# <%= f.text_field :price,
+            class: "span2",
+            value: "",
+            data: {
+            slider_min: "10000",
+            slider_max: "1000000",
+            slider_step: "5",
+            slider_value: "[0,450]"
+            },
+            id: "price-range" %> 
+        <br />
+        <b class="pull-left color">2000$</b>
+        <b class="pull-right color">100000$</b>
+      </div>
+      <div class="col-xs-6 mobilecol" >
+        <label  for="property-geo" >Property area (sq) :</label>
+        
+        <%= f.text_field :area_gteq,
+            class: "span2",
+            value: "",
+            data: {
+            slider_min: "100",
+            slider_max: "60000",
+            slider_step: "5",
+            slider_value: "[50,450]"
+            },
+            id: "property-geo" %>
+        <br />
+        <b class="pull-left color">40 m</b>
+        <b class="pull-right color">12000m</b>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="padding-5">
+    <div class="row mobilerow forflexcenter">
+      <div class="col-xs-6 mobilecol" >
+
+
+
+        <label for="min-baths" >Min baths :</label>
+        <%= f.number_field :bedroom_gteq,
+            class: "span2",
+            value: "",
+            data: {
+            slider_min: "0",
+            slider_max: "600",
+            slider_step: "5",
+            slider_value: "[250,450]"
+            },
+            id: "min-baths" %>
+        <br />
+        <b class="pull-left color">1</b>
+        <b class="pull-right color">120</b>
+      </div>
+
+      <div class="col-xs-6 mobilecol">
+        <label for="min-bed" >Min bed :</label>
+        <%= f.number_field :bedroom_gteq,
+            class: "span2",
+            value: "",
+            data: {
+            slider_min: "0",
+            slider_max: "600",
+            slider_step: "5",
+            slider_value: "[250,450]"
+            },
+            id: "min-bed" %>
+        <br />
+        <b class="pull-left color">1</b>
+        <b class="pull-right color">120</b>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="padding-5">
+    <div class="row mobilerow">
+      <div class="col-xs-6 " >
+        <div class="checkbox" >
+          <label class="lb">
+            <%= f.check_box :fireplace_true, { include_hidden: false }, checked: true %>
+              Fire Place
+          </label>
+        </div>
+      </div>
+
+      <div class="col-xs-6 ">
+        <div class="checkbox">
+          <label class="lb">
+            <%= f.check_box :dualsinks_true, { include_hidden: false } %>
+              Dual Sinks
+          </label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="padding-5">
+    <div class="row mobilerow">
+      <div class="col-xs-6">
+        <div class="checkbox">
+          <label class="lb">
+            <%= f.check_box :swimmingpool_true, { include_hidden: false }, checked: true %>
+              Swimming Pool
+          </label>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="checkbox">
+          <label class="lb">
+            <%= f.check_box :twostories_true, { include_hidden: false }, checked: true %>
+              2 Stories
+          </label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="padding-5">
+    <div class="row mobilerow">
+      <div class="col-xs-6">
+        <div class="checkbox">
+          <label class="lb">
+            <%= f.check_box :laundryroom_true, { include_hidden: false } %>
+              Laundry Room
+          </label>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="checkbox">
+          <label class="lb">
+            <%= f.check_box :emergencyexit_true, { include_hidden: false } %>
+              Emergency Exit
+          </label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="padding-5">
+    <div class="row mobilerow">
+      <div class="col-xs-6">
+        <div class="checkbox">
+          <label class="lb">
+            <%= f.check_box :jogpath_true, { include_hidden: false }, checked: true %>
+              Jog Path
+          </label>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="checkbox">
+          <label class="lb">
+            <%= f.check_box :ceilings_true, { include_hidden: false } %>
+              26' Ceilings
+          </label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  
+
+  <fieldset>
+    <div class="row mobilerow">
+      <div class="col-xs-12 ">
+        <%= f.submit "Search", class: "button btn largesearch-btn" %>
+      </div>
+    </div>
+  </fieldset>
+

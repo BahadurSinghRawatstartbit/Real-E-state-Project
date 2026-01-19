@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   root "pages#home"
-  get  "contact" , to:'pages#contact'
+  get  "pages/contact", to: "pages#contact", as: "pages_contact"
+  post 'pages/contact', to: 'pages#contact_submit'
+  post 'subscribe', to: 'pages#subscribe'
 
   # Authentication
   get    'signup', to: 'users#new'
@@ -16,6 +18,9 @@ Rails.application.routes.draw do
   resources :properties do
     resource :wishlist, only: [:create, :destroy]
   end
+  
+
+  
 
   # Booking cart (Book)
   resources :books, only: [:show, :destroy] do

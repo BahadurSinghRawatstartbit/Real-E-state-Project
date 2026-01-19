@@ -17,15 +17,33 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    
-    if @user.save
-      session[:user_id] = @user.id
-      flash[:notice] = "Welcome  #{@user.name}, you have successfully signed up"
-      redirect_to root_path
-    else
-      render 'new'
+
+    respond_to do |format|
+      if @user.save
+        # Tell the UserMailer to send a welcome email after save
+        UserMailer.with(user: @user).welcome_email.deliver_later
+
+        format.html { redirect_to user_url(@user), notice: "Welcome  #{@user.name}, you have successfully signed up" }
+        format.json { render :show, status: :created, location: @user }
+        redirect_to root_path
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+        render 'new'
+      end
     end
   end
+  # def create
+  #   @user = User.new(user_params)
+    
+  #   if @user.save
+  #     session[:user_id] = @user.id
+  #     flash[:notice] = "Welcome  #{@user.name}, you have successfully signed up"
+  #     redirect_to root_path
+  #   else
+  #     render 'new'
+  #   end
+  # end
 
   def edit
     @user = User.find(params[:id])

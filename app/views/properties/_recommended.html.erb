@@ -1,0 +1,34 @@
+<div class="panel panel-default sidebar-menu">
+  <div class="panel-heading forflexcenter">
+    <h3 class="panel-title">Recommended</h3>
+  </div>
+  <div class="panel-body recent-property-widget forflexcenter">
+    <ul>
+      <% (recommended_properties || []).each do |property| %>
+        <li>
+          <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0 psett">
+            <%= link_to property_path(property) do %>
+              <% if property.images.attached? && property.images.first.variable? %>
+                <%= image_tag property.images.first.variant(resize_to_fill: [80, 80]).processed %>
+              <% else %>
+                <%= image_tag "default-property", size: "80x80", alt: "No image" %>
+              <% end %>
+            <% end %>
+            <span class="property-seeker">
+              <b class="b-1">A</b>
+              <b class="b-2">S</b>
+            </span>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+            <h6>
+              <%= link_to property.name, property_path(property) %>
+            </h6>
+            <span class="property-price">
+              <%= number_to_currency(property.price) %>
+            </span>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

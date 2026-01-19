@@ -36,9 +36,10 @@
                     <i class="fa fa-remove text-danger"></i>
                     <% end %>
 
-                <%= link_to "Book Now",
-                    property_path(property),
-                    class: "btn btn-primary btn-sm" %>
+                <%= button_to "Book Now",
+                  book_now_path(property_id: property.id, name: property.name, price: property.price),
+                  method: :post,
+                  class: "btn btn-primary btn-sm" %>
               </td>
             </tr>
           <% end %>

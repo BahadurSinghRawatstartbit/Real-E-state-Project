@@ -1,47 +1,126 @@
-<div class="row mobilerow">
-  <% @properties.each do |property| %>
-    <div class="col-sm-6 col-md-4 p0 indprop proerty-th">
-      <div class="box-two proerty-item">
-        <div class="item-thumb">
-          <%= link_to property_path(property) do %>
-            <% if property.images.attached? %>
-              <%= image_tag property.images.first.variant(resize_to_fill: [360, 240]) %>
-            <% else %>
-              <%= image_tag "property-1/property1.jpg" %>
+
+<div class="col-md-12 clear">
+  <div class="col-xs-10 page-subheader sorting pl0">
+    <ul class="sort-by-list">
+      <li class="active">
+        <%= link_to properties_path(sort: "property_date", order: "ASC"),
+                    class: "order_by_date sortdate" do %>
+          Property Date <i class="fa fa-sort-amount-asc"></i>
+        <% end %>
+        <%# <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date" data-order="ASC"> %>
+        <%# Property Date <i class="fa fa-sort-amount-asc"></i> %>
+        <%# </a> %>
+      </li>
+
+      <li>
+        <%= link_to properties_path(sort: "property_price", order: "DESC"),
+                    class: "order_by_price sortdate" do %>
+          Property Price <i class="fa fa-sort-numeric-desc"></i>
+        <% end %>
+        <%# <a href="javascript:void(0);" class="order_by_price" data-orderby="property_price" data-order="DESC"> %>
+        <%# Property Price <i class="fa fa-sort-numeric-desc"></i> %>
+        <%# </a> %>
+      </li>
+    </ul>
+
+    <div class="items-per-page">
+      <label for="items_per_page" style="color:#777;">
+        <b>Property per page :</b>
+      </label>
+
+      <div class="sel">
+        <form method="get"
+              action="<%= properties_path %>"
+              class="items-per-page"
+              style="color:#777;">
+
+          <select id="items_per_page"
+                  name="per_page"
+                  onchange="this.form.submit()">
+            <% [3, 6, 9, 12, 15, 30, 45, 60].each do |n| %>
+              <option value="<%= n %>"
+                <%= "selected" if params[:per_page].to_i == n %>>
+                <%= n %>
+              </option>
             <% end %>
+          </select>
+
+          <%= hidden_field_tag :sort, params[:sort] %>
+          <%= hidden_field_tag :order, params[:order] %>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-2 layout-switcher">
+    <a class="layout-list" href="javascript:void(0);">
+      <i class="fa fa-th-list"></i>
+    </a>
+    <a class="layout-grid active" href="javascript:void(0);">
+      <i class="fa fa-th"></i>
+    </a>
+  </div>
+</div>
+
+<% @properties.each do |property| %>
+  <div class="col-sm-6 col-md-4 p0 indprop proerty-th">
+    <div class="box-two proerty-item">
+      <div class="item-thumb">
+        <%= link_to property_path(property) do %>
+          <% if property.images.attached? %>
+            <%= image_tag property.images.first.variant(
+                  resize_to_fill: [360, 240]
+                ) %>
+          <% else %>
+            <%= image_tag "property-1/property1.jpg" %>
           <% end %>
-        </div>
+        <% end %>
+      </div>
 
-        <div class="item-entry overflow">
-          <h5><%= link_to property.name, property_path(property) %></h5>
-          <div class="dot-hr"></div>
+      <div class="item-entry overflow">
+        <h5>
+          <%= link_to property.name, property_path(property) %>
+        </h5>
 
-          <span class="pull-left"><b>Area:</b> <%= property.area %></span>
-          <span class="proerty-price pull-right">$<%= number_with_delimiter(property.price) %></span>
-          <br>
+        <div class="dot-hr"></div>
 
-          <span class="pull-left">
-            <% property.rating.to_i.times do %>
-              <i class="fa fa-star" style="color:#FDC600;"></i>
-            <% end %>
-          </span>
+        <%# <span><%= number_with_delimiter(property.rating) %>
 
-          <span class="pull-right" style="color:green;font-weight:500;">
-            <%= number_with_delimiter(property.discounts) %>% off
-          </span>
+        <span class="pull-left">
+          <b>Area:</b><%= property.area %>
+        </span>
 
-          <p style="display:none;"><%= property.description %></p>
+        <span class="proerty-price pull-right">
+          $<%= number_with_delimiter(property.price) %>
+        </span>
+        <br>
 
-          <div class="property-icon">
-            <img src="<%= asset_path('icon/bed.png') %>">(<%= property.bedroom %>) |
-            <img src="<%= asset_path('icon/shawer.png') %>">(<%= property.bathroom %>) |
-            <img src="<%= asset_path('icon/cars.png') %>">(<%= property.gerage %>)
-          </div>
+        <span class-="pull-left">
+          <% property.rating.to_i.times do %>
+            <i class="fa fa-star" style="color: #FDC600 !important;"></i>
+          <% end %>
+        </span>
+
+        <span class="pull-right" style="color:green;font-weight:500;">
+          <%= number_with_delimiter(property.discounts) %>% off
+        </span>
+
+        <p style="display: none;">
+          <%= property.description %>
+        </p>
+
+        <div class="property-icon">
+          <img src="<%= asset_path('icon/bed.png') %>">
+          (<%= property.bedroom %>)|
+          <img src="<%= asset_path('icon/shawer.png') %>">
+          (<%= property.bathroom %>)|
+          <img src="<%= asset_path('icon/cars.png') %>">
+          (<%= property.gerage %>)
         </div>
       </div>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
 
 <div class="col-md-12">
   <div class="pull-right">
@@ -51,4 +130,5 @@
       </ul>
     </div>
   </div>
+</div>
 </div>

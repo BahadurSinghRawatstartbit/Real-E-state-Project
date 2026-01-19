@@ -4,6 +4,10 @@
 body{
   color: #777;
 }
+.main-nav .myli.active a{
+    background: none !important;
+    box-shadow: none !important;
+}
 a{
     text-decoration: none;
 }

@@ -4,8 +4,16 @@
 body{
   color: #777;
 }
+.lb{
+  
+  padding-left: 0px !important;
+}
 a{
     text-decoration: none;
+}
+.main-nav .myli.active a{
+    background: none !important;
+    box-shadow: none !important;
 }
 .logoutbtn{
 display: inline-block;

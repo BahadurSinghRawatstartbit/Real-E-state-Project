@@ -1,0 +1,15 @@
+.main-nav .myli.active {
+  position: relative;
+}
+
+.main-nav .myli.active::after {
+  background-color: #FDC600;
+  bottom: -24px;
+  content: "";
+  height: 5px;
+  left: 0;
+  position: absolute;
+  transition: all 0.2s ease 0s;
+  width: 100%;
+  display: block;
+}

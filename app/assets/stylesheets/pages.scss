@@ -6,6 +6,9 @@
 a{
     text-decoration: none;
 }
+.lb{
+  padding-left: 0px !important;
+}
 .navbar-default {
     background-image: none !important;
     background-color: white !important;
@@ -13,6 +16,10 @@ a{
     border-bottom: 0px   #e7e7e7;
     box-shadow:none !important;
     // margin-bottom: 3px !important;
+}
+.main-nav .myli.active a{
+    background: none !important;
+    box-shadow: none !important;
 }
 body{
   color: #777;

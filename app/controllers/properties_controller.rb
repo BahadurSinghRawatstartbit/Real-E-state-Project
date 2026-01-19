@@ -1,73 +1,38 @@
 class PropertiesController < ApplicationController
-  #  def index
-  #    @properties = Property.order(created_at: :desc)
-  #   @recommended_properties = Property.where(is_featured_product: true).limit(4)
-  #  byebug
-  #  end
     before_action :set_property , only: [:show,:edit,:update, :destroy]
     before_action :require_user, except: [:index,:show]
    
   def index
-    @properties = Property.all
-    
-    
-    # Add search filtering logic here based on params
-    if params[:keyword].present?
-      @properties = @properties.where("name LIKE ? OR description LIKE ?", 
-                                    "%#{params[:keyword]}%", 
-                                    "%#{params[:keyword]}%")
-    end
-    
-    if params[:status].present?
-      @properties = @properties.where(status: params[:status])
-    end
-    
-    # Filter by address/city
-    if params[:city].present?
-      @properties = @properties.where("address LIKE ?", "%#{params[:city]}%")
-    end
-    if params[:state].present?
-      @properties = @properties.where("address LIKE ?", "%#{params[:state]}%")
-    end
-    
-    # Filter by boolean attributes
-    if params[:fireplace] == "1"
-      @properties = @properties.where(fireplace: true)
-    end
-    
-    if params[:swimmingpool] == "1"
-      @properties = @properties.where(swimmingpool: true)
-    end
+  @q = Property.ransack(params[:q])
+  
 
-    sort_column = case params[:sort]
-                    when "property_date"  then "completiondate"
-                    when "property_price" then "price"
-                    else "completiondate"
-                  end
+  @properties = @q.result(distinct: true)
 
-  sort_order = %w[ASC DESC].include?(params[:order]) ? params[:order] : "DESC"
 
-  if sort_column == "price"
-    @properties = @properties.order(
-      Arel.sql("CAST(price AS INTEGER) #{sort_order}")
-    )
+  if params[:sort].present?
+    sort_column = params[:sort] == "property_price" ? "price" : "completiondate"
+    sort_order = %w[ASC DESC].include?(params[:order]) ? params[:order] : "DESC"
+    
+    if sort_column == "price"
+      @properties = @properties.order(Arel.sql("CAST(price AS INTEGER) #{sort_order}"))
+    else
+      @properties = @properties.order("#{sort_column} #{sort_order}")
+    end
   else
-    @properties = @properties.order("#{sort_column} #{sort_order}")
+   
+    @properties = @properties.order(created_at: :desc)
   end
 
-
-  per_page = params[:per_page].presence || 3
-
-  @properties = @properties.paginate(
-    page: params[:page],
-    per_page: per_page)
+ 
+  @properties = @properties.paginate(page: params[:page], per_page: params[:per_page] || 3)
+  
   @recommended_properties = Property.where(is_featured_product: true).limit(4)
 
   respond_to do |format|
-    format.html # Renders the default HTML view
-    format.js   # Renders the `index.js.erb` file
+    format.html
+    format.js
   end
-  end
+end
 
   def new
     
@@ -100,18 +65,18 @@ class PropertiesController < ApplicationController
   #   end
   # end
   def create
-  @property = Property.new(property_params)
+    @property = Property.new(property_params)
 
-  respond_to do |format|
-    if @property.save
-      format.html { redirect_to root_path, notice: "Property created successfully" }
-      format.js
-    else
-      format.html { render :new }
-      format.js
+    respond_to do |format|
+      if @property.save
+        format.html { redirect_to root_path, notice: "Property created successfully" }
+        format.js
+      else
+        format.html { render :new }
+        format.js
+      end
     end
   end
-end
 
   def show
     

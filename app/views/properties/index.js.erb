@@ -1,1 +1,3 @@
 // Removed the changes made to dynamically render the `property_list` partial.
+
+$("#list-type").html("<%= j(render partial: 'properties_list', locals: { properties: @properties }) %>");

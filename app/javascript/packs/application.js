@@ -24,6 +24,7 @@ import "./jsfolder/modernizr-2.6.2.min.js"
 // import "./jsfolder/jquery-1.10.2.min.js"
 import "./jsfolder/lightslider.min.js"
 import "./wishlist.js"
+import "./activenavbarclass.js"
 import Rails from "@rails/ujs"
 import $ from 'jquery';
 window.$ = $;
