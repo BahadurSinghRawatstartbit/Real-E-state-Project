@@ -26,16 +26,13 @@ body{
 }
 .btnlog{
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start
+    justify-content: center;
+    align-items: center
 }
 .slider-area{
     padding-top: 5px !important;
 
 }
-.actionbtn{
-        margin-bottom:10px !important;
-    }
 .indprop{
     margin-bottom: 20px !important;
   }
@@ -49,87 +46,4 @@ body{
   .indprop{
     margin-bottom: 20px !important;
   }
-  .barhome{
-    margin-bottom: 10px;
-  }
-  .slpick{
-    width:100% !important;
-  }
-  .main-nav .myli.active::after{
-    bottom:0px !important;
-  }
-}
-
-
-.chat-panel {
-  height: 85vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.chat-header {
-  background: #fff;
-  border-bottom: 1px solid #ddd;
-}
-
-.chat-avatar {
-  width: 36px;
-  height: 36px;
-  background: #337ab7;
-  color: #fff;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 36px;
-  font-weight: bold;
-}
-
-.chat-body {
-  flex: 1;
-  overflow-y: auto;
-  background: #f7f7f7;
-}
-
-.chat-bubble {
-  display: inline-block;
-  padding: 8px 12px;
-  border-radius: 18px;
-  margin-bottom: 6px;
-  max-width: 75%;
-  word-wrap: break-word;
-}
-
-.bubble-me {
-  background: #337ab7;
-  color: #fff;
-  border-bottom-right-radius: 4px;
-}
-
-.bubble-them {
-  background: #e4e6eb;
-  color: #000;
-  border-bottom-left-radius: 4px;
-}
-
-.chat-footer {
-  background: #fff;
-  border-top: 1px solid #ddd;
-}
-
-.chat-form {
-  display: flex;
-  width: 100%;
-}
-
-.chat-input-group {
-  flex: 1;
-}
-
-.chat-input {
-  width: 100%;
-  border-radius: 20px;
-}
-
-.chat-send {
-  font-weight: bold;
-  color: #337ab7;
 }

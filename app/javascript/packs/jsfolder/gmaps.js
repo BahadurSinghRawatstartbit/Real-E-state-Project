@@ -2130,16 +2130,3 @@ if (!Array.prototype.indexOf) {
   
 return GMaps;
 }));
-
-GMaps.prototype.removePolyline = function(polyline) {
-  for (var i = 0; i < this.polylines.length; i++) {
-    if (this.polylines[i] === polyline) {
-      this.polylines[i].setMap(null);
-      this.polylines.splice(i, 1);
-
-      GMaps.fire('polyline_removed', polyline, this);
-
-      break;
-    }
-  }
-};

@@ -1,145 +1,92 @@
-<nav class="navbar navbar-default">
-  <div class="container">
+<nav class="navbar navbar-default ">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
-    <!-- Brand and toggle -->
-    <div class="navbar-header">
-      <button type="button"
-              class="navbar-toggle collapsed"
-              data-toggle="collapse"
-              data-target="#navigation">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+            <%# <%= link_to image_tag("image_name")+"your text", root_path, :class=>"icon-puzzle-piece icon-2x" %>
 
-      <%= link_to image_tag("logo.png", alt: "Logo"),
-                  root_path,
-                  class: "navbar-brand" %>
+            <%= link_to image_tag("logo.png"), root_path, class: "navbar-brand" %>            <%# <a class="navbar-brand" href="index.html"><%= image_tag "logo.png", alt: "Logo" %>        </a>
     </div>
 
-    <!-- Navigation -->
+    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse yamm" id="navigation">
+        <div class="button navbar-right btnlog">
+            <% if logged_in? %>
+                <%# <%= link_to 'Logout', logout_path, class: "nav-link navbar-btn nav-button wow bounceInRight login ", method: :delete %>
+                <div class="logoutbtn">
+                    <%= button_to "Logout", logout_path, method: :delete, data: { confirm: "Are you sure?", class: "nav-link navbar-btn nav-button wow bounceInRight login " } %>
+                    </div>
 
-      <!-- Right buttons -->
-      <div class="button navbar-right btnlog">
-        <% if logged_in? %>
-          <div class="logoutbtn">
-            <%= button_to "Logout",
-                          logout_path,
-                          method: :delete,
-                          data: { confirm: "Are you sure?" },
-                          class: "nav-link navbar-btn nav-button wow bounceInRight login" %>
-          </div>
+                    <%# <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('register.html')" data-wow-delay="0.45s">Logout</button> %>
+                    <button class="navbar-btn nav-button wow fadeInRight" onclick=" javascript:window.print()" data-wow-delay="0.48s">Submit</button>
 
-          <%# <button class="navbar-btn nav-button wow fadeInRight"
-                  onclick="window.print()"
-                  data-wow-delay="0.48s"> Submit
-          </button> %>
-          <%= link_to "Submit",
-                      login_agent_path,
-                      class: "navbar-btn nav-button wow fadeInRight" %>
-            
-        <% else %>
-          <%= link_to "Log in",
-                      login_path,
-                      class: "navbar-btn nav-button wow bounceInRight login" %>
+                <% else %>
+                    <%= link_to 'Log in', login_path, class: "navbar-btn nav-button wow bounceInRight login " %>
+                    <%# <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('register.html')" data-wow-delay="0.45s">Login</button> %>
+                    <%= link_to 'signup', signup_path, class: "navbar-btn nav-button wow fadeInRight" %>
+                    <%# <button class="navbar-btn nav-button wow fadeInRight" onclick=" window.open('submit-property.html')" data-wow-delay="0.48s">Submit</button> %>
+                <% end %>
+            </div>
+            <ul class="main-nav nav navbar-nav navbar-right" id="myDIV">
+                <li class="dropdown ymm-sw myli<%= 'active' if current_page?(root_path) %>                " data-wow-delay="0.1s"><%= link_to "Home ", root_path, class: "dropdown-toggle" %>                <%# <b class="caret"></b></a> %>
 
-          <%= link_to "Signup",
-                      signup_path,
-                      class: "navbar-btn nav-button wow fadeInRight" %>
-        <% end %>
-      </div>
-
-      <!-- Menu -->
-      <ul class="main-nav nav navbar-nav navbar-right" id="myDIV">
-
-        <li class="myli <%= 'active' if current_page?(root_path) %>">
-          <%= link_to "Home", root_path %>
-        </li>
-
-        <li class="myli <%= 'active' if current_page?(properties_path) %>">
-          <%= link_to "Properties", properties_path %>
-        </li>
-
-        <li class="myli <%= 'active' if current_page?(your_property_index_path) %>">
-          <%= link_to "Wishlist", your_property_index_path %>
-        </li>
-
-        <!-- Mega dropdown -->
-        <li class="dropdown yamm-fw">
-          <a href="#"
-             class="dropdown-toggle"
-             data-toggle="dropdown"
-             data-hover="dropdown">
-            Template <b class="caret"></b>
-          </a>
-
-          <ul class="dropdown-menu">
-            <li>
-              <div class="yamm-content">
-                <div class="row">
-
-                  <div class="col-sm-3">
-                    <h5>Home pages</h5>
-                    <ul>
-                      <li><%= link_to "Home Style 1", root_path %></li>
-                      <li><%= link_to "Home Style 2", root_path %></li>
-                      <li><%= link_to "Home Style 3", root_path %></li>
-                      <li><%= link_to "Home Style 4", root_path %></li>
-                      <li><%= link_to "Home Style 5", root_path %></li>
-                    </ul>
-                  </div>
-
-                  <div class="col-sm-3">
-                    <h5>Pages & Blog</h5>
-                    <ul>
-                      <li><%= link_to "Blog listing", root_path %></li>
-                      <li><%= link_to "Blog Post (full)", root_path %></li>
-                      <li><%= link_to "Contact", pages_contact_path %></li>
-                      <li><%= link_to "FAQ", root_path %></li>
-                      <li><%= link_to "404 page", root_path %></li>
-                    </ul>
-                  </div>
-
-                  <div class="col-sm-3">
-                    <h5>Property</h5>
-                    <ul>
-                      <li><%= link_to "Property Style 1", root_path %></li>
-                      <li><%= link_to "Property Style 2", root_path %></li>
-                      <li><%= link_to "Property Style 3", root_path %></li>
-                    </ul>
-
-                    <h5>Wishlist</h5>
-                    <ul>
-                      <li><%= link_to "My Wishlist", your_property_index_path %></li>
-                    </ul>
-                  </div>
-
-                  <div class="col-sm-3">
-                    <h5>User account</h5>
-                    <ul>
-                      <li><%= link_to "Register / Login", login_path %></li>
-                      <li><%= link_to "Your profile", root_path %></li>
-                      <li><%= link_to "Submit property", root_path %></li>
-                    </ul>
-                  </div>
-
-                </div>
-              </div>
             </li>
-          </ul>
-        </li>
 
-        <li class="myli <%= 'active' if current_page?(pages_contact_path) %>">
-          <%= link_to "Contact", pages_contact_path %>
+            <li class="wow fadeInDown myli<%= 'active' if current_page?(properties_path) %>            " data-wow-delay="0.2s">
+            <%= link_to "Properties ", properties_path, class: "" %>
+            <%# <a class="" href="properties.html">Properties</a></li> %>
+            <li class="wow fadeInDown myli<%= 'active' if current_page?(your_property_index_path) %>            " data-wow-delay="0.3s">
+            <%= link_to "Property ", your_property_index_path, class: "nav-link" %>
         </li>
+        <li class="dropdown yamm-fw" data-wow-delay="0.4s">
+            <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="200">Template <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>
+                    <div class="yamm-content">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h5>Home pages</h5>
+                                <ul>                                    <li><%= link_to "Home Style 1", root_path %></li>                                    <li><%= link_to "Home Style 2", root_path %></li>                                    <li><%= link_to "Home Style 3", root_path %></li>                                    <li><%= link_to "Home Style 4", root_path %></li>                                    <li><%= link_to "Home Style 5", root_path %></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3">
+                                <h5>Pages and blog</h5>
+                                <ul>                                    <li><%= link_to "Blog listing", root_path %></li>                                    <li><%= link_to "Blog Post (full)", root_path %></li>                                    <li><%= link_to "Blog Post (Right)", root_path %></li>                                    <li><%= link_to "Blog Post (left)", root_path %></li>                                    <li><%= link_to "Contact style (1)", root_path %></li>                                    <li><%= link_to "Contact style (2)", root_path %></li>                                    <li><%= link_to "Contact style (3)", root_path %></li>                                    <li><%= link_to "FAQ page", root_path %></li>                                    <li><%= link_to "404 page", root_path %></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3">
+                                <h5 class>Property</h5>
+                                <ul>                                    <li><%= link_to "Property pages style (1)", root_path %></li>                                    <li><%= link_to "Property pages style (2)", root_path %></li>                                    <li><%= link_to "Property pages style (3)", root_path %></li>
+                                </ul>
 
-        <li class="myli <%= 'active' if current_page?(messages_path) %>">
-          <%= link_to "Chat", messages_path %>
-        </li>
+                                <h5>Properties list</h5>
+                                <ul>                                    <li><%= link_to "Properties list style (1)", root_path %></li>                                    <li><%= link_to "Properties list style (2)", root_path %></li>                                    <li><%= link_to "Properties list style (3)", root_path %></li>
+                                    </ul>                                            <h5>WishList list</h5>                                            <ul>                                                <li><%= link_to "My Wishlist", your_property_index_path, class: "nav-link" %>                                    </li>                                            </li>                                        </ul>
+                                </div>
+                                <div class="col-sm-3">
+                                    <h5>Property process</h5>
+                                    <ul>                                        <li><%= link_to "Submit - step 1", root_path %></li>                                        <li><%= link_to "Submit - step 2", root_path %></li>                                        <li><%= link_to "Submit - step 3", root_path %></li>
+                                    </ul>
+                                    <h5>User account</h5>
+                                    <ul>                                        <li><%= link_to "Register / login", root_path %></li>                                        <li><%= link_to "Your properties", root_path %></li>                                        <li><%= link_to "Submit property", root_path %></li>                                        <li><%= link_to "Change password", root_path %></li>                                        <li><%= link_to "Your profile", root_path %></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.yamm-content -->
+                    </li>
+                </ul>
+            </li>
 
-      </ul>
-    </div>
-  </div>
-</nav>
+            <li class="wow fadeInDown myli<%= 'active' if current_page?(pages_contact_path) %>            " data-wow-delay="0.5s">
+            <%= link_to "Contact", pages_contact_path %>
+        </ul>
+        </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>

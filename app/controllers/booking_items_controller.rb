@@ -1,8 +1,7 @@
 class BookingItemsController < ApplicationController
   before_action :require_user, except: [:destroy]
- 
 
-  
+
 
   def create
     @property = Property.find(params[:property_id])

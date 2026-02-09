@@ -1,13 +1,4 @@
-<div class="row">
-  <div class="container-fluid">
-      <span class="pull-right" style="margin:20px;">
-        <% if logged_in?  && current_user.admin? %>
-            <%= link_to "Create Property", new_property_path, class: "btn btn-warning mb-5" %>
-            <%= link_to "Back to Dashboard", admin_dashboard_path, class: "btn btn-primary mb-5" %>
-          <%end%> 
-      </span>
-  </div>
-</div>
+
 <div class="col-md-12 clear">
   <div class="col-xs-10 page-subheader sorting pl0">
     <ul class="sort-by-list">
@@ -71,76 +62,65 @@
   </div>
 </div>
 
-  <% @properties.each do |property| %>
-    <div class="col-sm-6 col-md-4 p0 indprop proerty-th" id="property_<%= property.id %>">
-      <div class="box-two proerty-item">
-        <div class="item-thumb">
-          <%= link_to property_path(property) do %>
-            <% if property.images.attached? %>
-              <%= image_tag property.images.first.variant(
-                    resize_to_fill: [360, 240]
-                  ) ,class:"propimg" %>
-            <% else %>
-              <%= image_tag "property-1/property1.jpg" %>
-            <% end %>
+<% @properties.each do |property| %>
+  <div class="col-sm-6 col-md-4 p0 indprop proerty-th">
+    <div class="box-two proerty-item">
+      <div class="item-thumb">
+        <%= link_to property_path(property) do %>
+          <% if property.images.attached? %>
+            <%= image_tag property.images.first.variant(
+                  resize_to_fill: [360, 240]
+                ) %>
+          <% else %>
+            <%= image_tag "property-1/property1.jpg" %>
           <% end %>
-        </div>
+        <% end %>
+      </div>
 
-        <div class="item-entry overflow">
-          <h5>
-            <%= link_to property.name, property_path(property) %>
-          </h5>
+      <div class="item-entry overflow">
+        <h5>
+          <%= link_to property.name, property_path(property) %>
+        </h5>
 
-          <div class="dot-hr"></div>
+        <div class="dot-hr"></div>
 
-          <%# <span><%= number_with_delimiter(property.rating) %>
+        <%# <span><%= number_with_delimiter(property.rating) %>
 
-          <span class="pull-left">
-            <b>Area:</b><%= property.area %>
-          </span>
+        <span class="pull-left">
+          <b>Area:</b><%= property.area %>
+        </span>
 
-          <span class="proerty-price pull-right">
-            $<%= number_with_delimiter(property.price) %>
-          </span>
-          <br>
+        <span class="proerty-price pull-right">
+          $<%= number_with_delimiter(property.price) %>
+        </span>
+        <br>
 
-          <span class-="pull-left">
-            <% property.rating.to_i.times do %>
-              <i class="fa fa-star" style="color: #FDC600 !important;"></i>
-            <% end %>
-          </span>
+        <span class-="pull-left">
+          <% property.rating.to_i.times do %>
+            <i class="fa fa-star" style="color: #FDC600 !important;"></i>
+          <% end %>
+        </span>
 
-          <span class="pull-right" style="color:green;font-weight:500;">
-            <%= number_with_delimiter(property.discounts) %>% off
-          </span>
+        <span class="pull-right" style="color:green;font-weight:500;">
+          <%= number_with_delimiter(property.discounts) %>% off
+        </span>
 
-          <p style="display: none;">
-            <%= property.description %>
-          </p>
+        <p style="display: none;">
+          <%= property.description %>
+        </p>
 
-          <div class="property-icon">
-            <img src="<%= asset_path('icon/bed.png') %>">
-            (<%= property.bedroom %>)|
-            <img src="<%= asset_path('icon/shawer.png') %>">
-            (<%= property.bathroom %>)|
-            <img src="<%= asset_path('icon/cars.png') %>">
-            (<%= property.gerage %>)
-            <% if logged_in? && current_user.admin? %>
-                <%= link_to  property_path(property),
-                            method: :delete,
-                            remote:true,
-                            data: { confirm: "Are you sure?" } do %>
-                    <i class="fa fa-trash-o" style="font-size:28px;color:#a09a9a;padding-top:5px;"></i>           
-                <% end %>
-                <%= link_to  edit_property_path(property) do %> 
-                <i class="fa fa-edit" style="font-size:28px;color:#a09a9a;padding-top:5px;"></i>
-                <%end%>
-            <%end%>
-          </div>
+        <div class="property-icon">
+          <img src="<%= asset_path('icon/bed.png') %>">
+          (<%= property.bedroom %>)|
+          <img src="<%= asset_path('icon/shawer.png') %>">
+          (<%= property.bathroom %>)|
+          <img src="<%= asset_path('icon/cars.png') %>">
+          (<%= property.gerage %>)
         </div>
       </div>
     </div>
-  <% end %>
+  </div>
+<% end %>
 
 <div class="col-md-12">
   <div class="pull-right">

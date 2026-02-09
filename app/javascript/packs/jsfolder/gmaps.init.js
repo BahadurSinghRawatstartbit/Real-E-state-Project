@@ -39,11 +39,3 @@ function map() {
 	 }*/
     });
 }
-
-document.addEventListener('turbolinks:load', () => {
-  // Reinitialize Google Maps
-  map();
-});
-
-
-

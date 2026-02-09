@@ -1,12 +1,11 @@
 class Property < ApplicationRecord
-
+    
   has_many_attached :images
   validates :name, :status, :address, presence: true
+  has_many :wishlisted_by_users, through: :wishlists, source: :user
+  validates :images, presence: true
   has_many :wishlists, dependent: :destroy
-  has_many :wishlisted_by_users, through: :wishlists, source: :user , dependent: :destroy
-
-  belongs_to :user
- 
+  validate :images_presence
   has_many :booking_items, dependent: :destroy
   
   def self.ransackable_associations(auth_object = nil)
