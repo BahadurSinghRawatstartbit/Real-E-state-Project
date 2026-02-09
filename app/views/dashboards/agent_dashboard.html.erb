@@ -1,0 +1,138 @@
+<div class="row" style="background:#2c3e50; color:white; padding:15px;">
+<div class="container-fluid">
+    <div class="col-md-6">
+<h3 class="header-connect">🏠 RealEstate Agent Panel</h3>
+</div>
+
+<h3 class="pull-right header-connect " >Welcome Agent, <%= current_user.name %></h3>
+</div>
+
+</div>
+
+
+<br>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center">Customers</div>
+                    <div class="panel-body text-center">
+                        <h2><%= @total_customers %></h2>
+                        <p>Total Customer</p>
+                    
+                </div>
+            </div>
+       </div>
+
+
+        <div class="col-md-3">
+            <div class="panel panel-success">
+                <div class="panel-heading text-center">My Properties</div>
+                    <div class="panel-body text-center">
+                        <h2><%=  @total_properties %></h2>
+                        <p>Total Property</p>
+                    
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-3">
+            <div class="panel panel-info">
+                <div class="panel-heading text-center">Booked Property</div>
+                    <div class="panel-body text-center">
+                        <h2><%= @total_booked_properties %></h2>
+                        <p>Total Booked Property</p>
+                    
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-3">
+            <div class="panel panel-warning">
+                <div class="panel-heading text-center">Revenue</div>
+                    <div class="panel-body text-center">
+                        <h2><%= @total_revenue %></h2>
+
+                        Total Revenue
+                        
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+    <!-- Quick Actions -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Quick Actions</strong></div>
+                    <div class="panel-body text-center">
+                        <%=link_to  "👤 Manage Profile",edit_user_path(current_user),class:"btn btn-warning actionbtn" %>
+                        <%=link_to   "🏘 Manage Properties",agent_dashboard_property_list_path,class:"btn btn-primary actionbtn" %>
+                        <%=link_to   "👤 View Customer",agent_dashboard_customer_list_path,class:"btn btn-info actionbtn" %>
+                        <%=link_to   "📦 View Booked Property",agent_dashboard_booked_property_list_path,class:"btn btn-success actionbtn" %>
+                        <%=link_to   "➕ Create Property",new_property_path,class:"btn btn-danger" %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Recent Customers</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        
+                        </tr>
+                        
+                        <% @recent_customers.each do |u| %>
+                        <tr>
+                            <td><%= u.name %></td>
+                            <td><%= u.email %></td>
+                            
+                        </tr>
+                        <% end %>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-success">
+                <div class="panel-heading">Recent Properties</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        </tr>
+                        <% @recent_properties.each do |p| %>
+                        <tr>
+                            <td><%= p.name %></td>
+                            <td>₹ <%= p.price %></td>
+                            <td><span class="label label-success"><%= p.status %></td></span></td>
+                        </tr>
+                        <% end %>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>

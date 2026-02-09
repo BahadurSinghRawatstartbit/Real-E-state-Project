@@ -1,3 +1,6 @@
 // Removed the changes made to dynamically render the `property_list` partial.
 
 $("#list-type").html("<%= j(render partial: 'properties_list', locals: { properties: @properties }) %>");
+<%# $("#sidebar").html("<%= j(render partial: 'sidebar', locals: { keyword: @q }) %>
+<%# document.getElementById("pagination").innerHTML =
+  "<%= j will_paginate(@properties) %>

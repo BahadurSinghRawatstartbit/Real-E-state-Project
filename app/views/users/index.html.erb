@@ -1,0 +1,43 @@
+<div class="container">
+  <% if logged_in?  && current_user.admin? %>
+  <%= link_to "Dashboard", admin_dashboard_path, class: "btn btn-warning mb-5" %>
+  <%end%>
+<h1>All moviess</h1>
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      
+      <th scope="col">Users</th>
+      <th scope="col">Email</th>
+      <th scope="col">Role</th>
+       <% if logged_in? && current_user.admin? %>
+      <th scope="col">Actions</th>
+      <%end%>
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+        <% @users.each do |u| %>
+    
+        <tr id="users_<%= current_user.id %>">
+            <td><%= u.name %></td>
+            <td><%= u.email %></td>
+            <td><%= u.roles.pluck(:name).join(', ') %></td>
+             <% if logged_in? && current_user.admin? %>
+            <td><%= button_to "Delete", user_path(u), method: :delete,remote: true, data: { confirm: "Are you sure?" } ,class:"card-link btn btn-danger" %></div></td>
+            <%end%>
+        </tr>   
+        <% end %>
+      
+</td>
+      
+    </tr>
+    
+  </tbody>
+
+
+</table>
+  
+
+</div>

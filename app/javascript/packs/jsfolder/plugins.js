@@ -22,3 +22,8 @@
 }());
 
 // Place any jQuery/helper plugins in here.
+
+// document.addEventListener('turbolinks:load', () => {
+//   // Reinitialize any plugin-specific logic here
+//   console.log('Plugins reinitialized after Turbolinks load');
+// });

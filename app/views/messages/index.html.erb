@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 col-sm-12">
+
+      <div class="panel panel-default">
+        <div class="panel-heading text-center" style="background:#FDC600;">
+           <% if logged_in? && current_user.admin? %>
+          <strong>Chat with Customer</strong>
+          <% else %>
+          <strong>Chat with Admin</strong>
+          <% end %>
+        </div>
+
+        <!-- CHAT AREA -->
+        
+        <div class="panel-body"
+             id="messages" data-conversation-id="<%= @conversation.id %>"
+             style="height:400px; overflow-y:auto; background:#f5f5f5;">
+
+          <% @messages.each do |m| %>
+            <% if m.sender == current_user %>
+              <div class="clearfix">
+                <div class="pull-right text-right"
+                     style="max-width:70%; margin-bottom:10px;">
+                  <span class="label label-primary">You</span>
+                  <div class="well well-sm"
+                       style="background:#FDC600; font-size:15px; color:white; margin-top:5px;">
+                    <%= m.content %>
+                  </div>
+                </div>
+              </div>
+            <% else %>
+              <div class="clearfix">
+                <div class="pull-left"
+                     style="max-width:70%; margin-bottom:10px;">
+                  <span class="label label-default"><%= m.sender.name %></span>
+                  <div class="well well-sm"
+                       style="background:white; margin-top:5px;">
+                    <%= m.content %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+
+        </div>
+        
+  
+
+        <!-- INPUT -->
+        <div class="panel-footer">
+          <%= form_with model: @message,id:"message-form", url: messages_path, local: false do |f| %>
+
+            <%= hidden_field_tag :conversation_id, @conversation.id %>
+
+            
+              <div class="row">
+                
+                <div class="col-lg-10 col-md-10 col-sm-10">
+                  <%= f.text_field :content,
+                    id:"message-input",
+                    class: "form-control",
+                    placeholder: "Type a message...",
+                    autocomplete: "off" %>
+                </div>
+                <div class="col-lg-2 col-sm-2 col-md-2  ">
+                 
+                    <%= f.submit "Send" ,class: "navbar-btn nav-button wow bounceInRight sbquery"%>
+                 
+                </div>
+                
+              
+              </div>
+
+          <% end %>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

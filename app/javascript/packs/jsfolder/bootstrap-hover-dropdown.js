@@ -103,7 +103,7 @@
 	    }
 	});
     };
-    $(document).ready(function() {
+    $(document).on('turbolinks:load', function() {
 	// apply dropdownHover to all elements with the data-hover="dropdown" attribute
 	$('[data-hover="dropdown"]').dropdownHover();
     });

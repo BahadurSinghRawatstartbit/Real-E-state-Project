@@ -1,0 +1,28 @@
+
+
+
+
+
+<div class="container-fluid">
+  <h2 class="text-center">Agent Customer List</h2>
+
+  
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th>CustomerName</th><th>Email</th><th>Property</th>
+    </tr>
+    <% @customers.each do |prop| %>
+      <tr>
+        <td><%= prop.name %></td>
+        <td>₹ <%= prop.email %></td>
+        <td><%= prop.property.name %></td>
+        
+        
+      </tr>
+    <% end %>
+  </table>
+
+</div>
+
+
+  

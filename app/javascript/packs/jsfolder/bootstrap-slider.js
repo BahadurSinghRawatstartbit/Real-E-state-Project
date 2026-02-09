@@ -1165,3 +1165,8 @@
 	})( $ );
 
 })( window.jQuery );
+
+// document.addEventListener('turbolinks:load', () => {
+//   // Reinitialize bootstrap-slider functionality
+//   console.log('Bootstrap slider reinitialized after Turbolinks load');
+// });

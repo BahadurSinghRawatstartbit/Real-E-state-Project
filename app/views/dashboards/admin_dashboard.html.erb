@@ -1,0 +1,137 @@
+<!-- Header -->
+<div class="row" style="background:#2c3e50; color:white; padding:15px;">
+<div class="container-fluid">
+    <div class="col-md-6">
+<h3>🏠 RealEstate Admin Panel</h3>
+</div>
+
+<h3 class="pull-right " >Welcome Admin, <%= current_user.name %></h3>
+</div>
+
+</div>
+
+
+<br>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center">Users</div>
+                    <div class="panel-body text-center">
+                        <h2><%= User.count %></h2>
+                        <p>Total Users</p>
+                    
+                </div>
+            </div>
+       </div>
+
+
+        <div class="col-md-3">
+            <div class="panel panel-success">
+                <div class="panel-heading text-center">Properties</div>
+                    <div class="panel-body text-center">
+                        <h2><%= Property.count %></h2>
+                        <p>Total Listings</p>
+                    
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-3">
+            <div class="panel panel-info">
+                <div class="panel-heading text-center">Bookings</div>
+                    <div class="panel-body text-center">
+                        <h2><%= BookingItem.count %></h2>
+                        <p>Total Bookings</p>
+                    
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-3">
+            <div class="panel panel-warning">
+                <div class="panel-heading text-center">Agents</div>
+                    <div class="panel-body text-center">
+                        <h2><%= User.with_role(:agent).count %></h2>
+                        <p>Total Agents</p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+    <!-- Quick Actions -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Quick Actions</strong></div>
+                    <div class="panel-body text-center">
+                    <a href="<%= users_path %>" class="actionbtn btn btn-warning">👤 Manage Users</a>
+                    <a href="<%= properties_path %>" class="actionbtn btn btn-success">🏘 Manage Properties</a>
+                    <a href="<%= admin_agentlist_path %>" class="actionbtn btn btn-danger">👤 Manage Agents</a>
+                    <a href="<%= payments_path%>" class="actionbtn btn btn-info">📦 View Bookings</a>
+                    <%# <a href="/signup/agent" class="btn btn-primary">➕ Create Agent</a>
+                    <a href="/signup" class="btn btn-danger">➕ Create User</a> %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Recent Users</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        </tr>
+                        <% User.order(created_at: :desc).limit(5).each do |u| %>
+                        <tr>
+                            <td><%= u.name %></td>
+                            <td><%= u.email %></td>
+                            <td><%= u.roles.pluck(:name).join(', ') %></td>
+                        </tr>
+                        <% end %>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-success">
+                <div class="panel-heading">Recent Properties</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        </tr>
+                        <% Property.order(created_at: :desc).limit(5).each do |p| %>
+                        <tr>
+                            <td><%= p.name %></td>
+                            <td>₹ <%= p.price %></td>
+                            <td><span class="label label-success"><%= p.status %></td></span></td>
+                        </tr>
+                        <% end %>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>

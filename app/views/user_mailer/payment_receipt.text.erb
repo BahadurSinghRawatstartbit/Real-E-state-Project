@@ -1,0 +1,23 @@
+Payment Receipt
+========================
+
+Hello <%= @book.user.name %>,
+
+Thank you for your payment!
+
+Order ID: <%= @payment_intent_id %>
+Payment Date: <%= @book.created_at.strftime("%d %b %Y") %>
+Status: <%= @book.status.capitalize %>
+
+Order Details:
+------------------------
+<% @book.booking_items.each do |item| %>
+- <%= item.property.name %> : $<%= item.property.price.to_f * 0.10 %>
+<% end %>
+
+------------------------
+Total Paid: $<%= @book.total_amount %>
+
+If you have any questions, please contact our support team.
+
+Thank you Real E-State !
