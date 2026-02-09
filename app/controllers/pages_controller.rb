@@ -13,7 +13,7 @@ class PagesController < ApplicationController
     message = params[:message]
     
     if name.present? && email.present? && message.present?
-      UserMailer.contact_form_submission(name, email, subject, message).deliver_now
+      # UserMailer.contact_form_submission(name, email, subject, message).deliver_now
       flash[:notice] = "Thank you #{name}! Your message has been sent successfully."
     else
       flash[:alert] = "Please fill in all required fields"
@@ -22,20 +22,20 @@ class PagesController < ApplicationController
     redirect_to pages_contact_path
     
   end
-  def subscribe
-    # Handle newsletter subscription
-    email = params[:email]
+  # def subscribe
+  #   # Handle newsletter subscription
+  #   email = params[:email]
     
-    if email.present? && email.match?(URI::MailTo::EMAIL_REGEXP)
-      # Send subscription confirmation email
-      UserMailer.subscription_confirmation(email).deliver_now
-      flash[:notice] = "Thank you for subscribing! Check your email for confirmation."
-    else
-      flash[:alert] = "Please enter a valid email address"
-    end
+  #   if email.present? && email.match?(URI::MailTo::EMAIL_REGEXP)
+  #     # Send subscription confirmation email
+  #     # UserMailer.subscription_confirmation(email).deliver_now
+  #     flash[:notice] = "Thank you for subscribing! Check your email for confirmation."
+  #   else
+  #     flash[:alert] = "Please enter a valid email address"
+  #   end
     
-    redirect_back(fallback_location: root_path)
-  end
+  #   redirect_back(fallback_location: root_path)
+  # end
 
   def chat_query_list
     
