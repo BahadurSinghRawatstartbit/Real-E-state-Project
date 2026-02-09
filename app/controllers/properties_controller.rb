@@ -88,7 +88,7 @@ end
         if @property.save
           
           # byebug
-          format.html { redirect_to agent_dashboard_path_path, notice: "Property created successfully" }
+          format.html { redirect_to agent_dashboard_path, notice: "Property created successfully" }
           format.js
         else
           format.html { render :new }
