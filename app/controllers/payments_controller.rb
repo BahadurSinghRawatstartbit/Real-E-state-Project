@@ -80,7 +80,7 @@ def success
 
   @book.update!(status: 'sold')
  
-  UserMailer.payment_receipt(@email,@book,@payment_intent_id).deliver_now
+  # UserMailer.payment_receipt(@email,@book,@payment_intent_id).deliver_now
 end
 
 
