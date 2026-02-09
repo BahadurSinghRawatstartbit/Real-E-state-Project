@@ -64,7 +64,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.assign_role(:admin)
-      redirect_to admin_dashboard_path
+      redirect_to root_path
     else
       render :admin_new
     end
