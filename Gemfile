@@ -28,13 +28,22 @@ gem 'jbuilder', '~> 2.7'
 gem 'will_paginate', '~> 3.3'
 gem 'will_paginate-bootstrap'
 gem 'jquery-rails'
-# Gemfile
+
 gem "ransack", "~> 4.0"
 
+gem 'stripe'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
+gem "redis"
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+gem 'cloudinary'
+gem "rolify"
+
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'dotenv-rails' # Optional, but recommended for security
+gem 'omniauth-rails_csrf_protection' # Recommended for CSRF protection
 
 # Use Active Storage variant
 #  gem 'image_processing', '~> 1.2'

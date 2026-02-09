@@ -455,4 +455,16 @@
 
 }).call(window);
 
+document.addEventListener('turbolinks:load', () => {
+  // Initialize WOW.js for animations
+  const wow = new WOW({
+    boxClass: 'wow',
+    animateClass: 'animated',
+    offset: 0,
+    mobile: true,
+    live: true
+  });
+  wow.init();
+});
+
 export default window.WOW;

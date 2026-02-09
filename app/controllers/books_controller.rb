@@ -1,10 +1,16 @@
 class BooksController < ApplicationController
-  before_action :require_user, except: [:show]
+  before_action :require_user, only: [:show]
 
   def show
-    # @book=Book.find(params[:id])
-    @recommended_properties = Property.where(is_featured_product: true).limit(4)
+    
+    # @recommended_properties = Property.where(is_featured_product: true).limit(4)
+    # @book = current_user.books.find(params[:id])
+
     @book = current_user.books.find(params[:id])
+    # @property = @book.property
+
+    @recommended_properties =
+      Property.where(is_featured_product: true).limit(4)
   end
   
   def destroy

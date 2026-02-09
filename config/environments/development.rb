@@ -7,12 +7,15 @@ Rails.application.configure do
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
-  config.active_storage.service = :local
+  config.active_storage.service = :cloudinary
+  
 
   # Do not eager load code on boot.
   config.eager_load = false
   # config.hosts << "interfulgent-unabnegating-kynlee.ngrok-free.dev"
-  config.hosts << "donnette-gamogenetical-dimly.ngrok-free.dev"
+  # config.hosts << "donnette-gamogenetical-dimly.ngrok-free.dev"
+  config.hosts << "unpridefully-noncritical-lenore.ngrok-free.dev"  
+  
   #  config.hosts << ".ngrok-free.app"
 
   # Show full error reports.
@@ -35,7 +38,7 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  # config.active_storage.service = :local
   config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
@@ -86,8 +89,7 @@ Rails.application.configure do
   config.assets.debug = true
 
   # Suppress logger output for asset requests.
-  config.assets.quiet = true
-
+  
 
 
 
@@ -101,7 +103,13 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  
+  config.assets.quiet = true
 
+  config.action_cable.url = "ws://localhost:3000/chat"
+  config.action_cable.allowed_request_origins = [
+    "http://localhost:3000"
+  ]
   # Uncomment if you wish to allow Action Cable access from any origin.
-  # config.action_cable.disable_request_forgery_protection = true
+  config.action_cable.disable_request_forgery_protection = true
 end

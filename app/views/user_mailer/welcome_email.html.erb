@@ -44,31 +44,26 @@
   </head>
   <body>
     <div class="header">
-      <h1>Welcome! 🎉</h1>
+      <h1>Welcome to Bahadur's Real E-state! 🏡</h1>
     </div>
     <div class="content">
-      <p>Hi <%= @user.email %>,</p>
-      
-      <p>Welcome to our Real E-state Store! We're thrilled to have you join our community.</p>
-      
-      <p>Here's what you can do now:</p>
+      <p>Hi <strong><%= @user.email %></strong>,</p>
+      <p>Thank you for signing up with <strong>Bahadur's Real E-state</strong>! We're excited to help you find your dream property and make your real estate journey smooth and enjoyable.</p>
+      <p>As a member, you can now:</p>
       <ul>
-        <li>Browse our latest products</li>
-        <li>Add items to your wishlist</li>
-        <li>Get exclusive deals and offers</li>
-        <li>Track your orders easily</li>
+        <li>Search and filter properties tailored to your needs</li>
+        <li>Save your favorite listings and compare options</li>
+        <li>Book property visits and connect with agents</li>
+        <li>Receive the latest updates and exclusive offers</li>
       </ul>
-      
       <center>
-        <a href="<%= ENV['MAILER_HOST'] %>" class="button">Start Shopping</a>
+        <a href="<%= ENV['MAILER_HOST'] %>" class="button">Explore Properties</a>
       </center>
-      
-      <p>If you have any questions, feel free to reach out to our support team.</p>
-      
-      <p>Happy Shopping!<br>The Bahadur's Real E-state Team</p>
+      <p>If you have any questions or need assistance, our support team is here to help. Just reply to this email or contact us through our website.</p>
+      <p>We wish you a wonderful experience!<br><br>Best regards,<br><strong>The Bahadur's Real E-state Team</strong></p>
     </div>
     <div class="footer">
-      <p>This is an automated email, please do not reply.</p>
+      <p>&copy; <%= Time.current.year %> Bahadur's Real E-state. All rights reserved.<br>This is an automated email, please do not reply.</p>
     </div>
   </body>
 </html>

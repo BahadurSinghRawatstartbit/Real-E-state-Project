@@ -1,0 +1,116 @@
+<div class="container-fluid">
+  <h2 class="text-center">Transactions Dashboard</h2>
+
+  <h3>Payments (PaymentIntents)</h3>
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th>ID</th><th>Amount</th><th>Status</th><th>Currency</th><th>Date</th>
+    </tr>
+    <% @payment_intents.data.each do |p| %>
+      <tr>
+        <td><%= p.id %></td>
+        <td>₹ <%= p.amount / 100.0 %></td>
+        <td><%= p.status %></td>
+        <td><%= p.currency.upcase %></td>
+        <td><%= Time.at(p.created) %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <hr>
+
+  <h3>Charges</h3>
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th>ID</th><th>Amount</th><th>Status</th><th>Paid</th><th>Date</th>
+    </tr>
+    <% @charges.data.each do |c| %>
+      <tr>
+        <td><%= c.id %></td>
+        <td>₹ <%= c.amount / 100.0 %></td>
+        <td><%= c.status %></td>
+        <td><%= c.paid %></td>
+        <td><%= Time.at(c.created) %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <hr>
+
+  <h3>Refunds</h3>
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th>ID</th><th>Amount</th><th>Status</th><th>Date</th>
+    </tr>
+    <% @refunds.data.each do |r| %>
+      <tr>
+        <td><%= r.id %></td>
+        <td>₹ <%= r.amount / 100.0 %></td>
+        <td><%= r.status %></td>
+        <td><%= Time.at(r.created) %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <hr>
+
+  <h3>Customers</h3>
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th>ID</th><th>Email</th><th>Name</th><th>Created</th>
+    </tr>
+    <% @customers.data.each do |c| %>
+      <tr>
+        <td><%= c.id %></td>
+        <td><%= c.email %></td>
+        <td><%= c.name %></td>
+        <td><%= Time.at(c.created) %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <hr>
+
+  <h3>Invoices</h3>
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th>ID</th><th>Amount</th><th>Status</th><th>Date</th>
+    </tr>
+    <% @invoices.data.each do |i| %>
+      <tr>
+        <td><%= i.id %></td>
+        <td>₹ <%= i.amount_paid / 100.0 %></td>
+        <td><%= i.status %></td>
+        <td><%= Time.at(i.created) %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <hr>
+
+  <h3>Subscriptions</h3>
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th>ID</th><th>Status</th><th>Customer</th><th>Start</th>
+    </tr>
+    <% @subscriptions.data.each do |s| %>
+      <tr>
+        <td><%= s.id %></td>
+        <td><%= s.status %></td>
+        <td><%= s.customer %></td>
+        <td><%= Time.at(s.created) %></td>
+      </tr>
+    <% end %>
+  </table>
+
+</div>
+<div class="row">
+  <div class="container-fluid">
+      <span class="pull-right" style="margin:20px;">
+        <% if logged_in?  && current_user.admin? %>
+            
+            <%= link_to "Back to Dashboard", admin_dashboard_path, class: "btn btn-primary mb-5" %>
+          <%end%> 
+      </span>
+  </div>
+</div>

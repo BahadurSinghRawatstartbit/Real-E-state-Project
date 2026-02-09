@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2026_01_06_135224) do
+ActiveRecord::Schema.define(version: 2026_02_05_123431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,7 +62,27 @@ ActiveRecord::Schema.define(version: 2026_01_06_135224) do
     t.integer "total_amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "stripe_session_id"
     t.index ["user_id"], name: "index_books_on_user_id"
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "admin_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_id"], name: "index_conversations_on_admin_id"
+    t.index ["user_id"], name: "index_conversations_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "conversation_id"
+    t.bigint "sender_id"
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -97,6 +117,33 @@ ActiveRecord::Schema.define(version: 2026_01_06_135224) do
     t.integer "rating"
     t.string "city"
     t.string "state"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_properties_on_user_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
+
+  create_table "user_accounts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "auth_protocol", default: "oauth2"
+    t.string "provider"
+    t.string "provider_account_id"
+    t.string "access_token"
+    t.string "token_type", default: "Bearer"
+    t.string "scope"
+    t.string "refresh_token"
+    t.datetime "expires_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_accounts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -106,6 +153,14 @@ ActiveRecord::Schema.define(version: 2026_01_06_135224) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
+  end
+
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_users_roles_on_role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+    t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
   create_table "variants", force: :cascade do |t|
@@ -135,6 +190,12 @@ ActiveRecord::Schema.define(version: 2026_01_06_135224) do
   add_foreign_key "booking_items", "properties"
   add_foreign_key "booking_items", "variants"
   add_foreign_key "books", "users"
+  add_foreign_key "conversations", "users"
+  add_foreign_key "conversations", "users", column: "admin_id"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users", column: "sender_id"
+  add_foreign_key "properties", "users"
+  add_foreign_key "user_accounts", "users"
   add_foreign_key "variants", "properties"
   add_foreign_key "wishlists", "properties"
   add_foreign_key "wishlists", "users"

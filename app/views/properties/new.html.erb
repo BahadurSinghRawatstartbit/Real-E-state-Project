@@ -30,10 +30,10 @@
             </div>
 
             <ul>
-              <li><a href="#step1" data-toggle="tab">Step 1</a></li>
-              <li><a href="#step2" data-toggle="tab">Step 2</a></li>
-              <li><a href="#step3" data-toggle="tab">Step 3</a></li>
-              <li><a href="#step4" data-toggle="tab">Finished</a></li>
+              <li style="width:25%"><a href="#step1" data-toggle="tab">Step 1</a></li>
+              <li style="width:25%"><a href="#step2" data-toggle="tab">Step 2</a></li>
+              <li style="width:25%"><a href="#step3" data-toggle="tab">Step 3</a></li>
+              <li style="width:25%"><a href="#step4" data-toggle="tab">Finished</a></li>
             </ul>
 
             <div class="tab-content">
@@ -41,7 +41,7 @@
               <!-- STEP 1 -->
               <div class="tab-pane" id="step1">
                 <div class="row p-b-15">
-                  <h4 class="info-text"> Let's start with the basic information (with validation)</h4>
+                  <h4 class="info-text"> Let's start with the basic information </h4>
 
                   <div class="col-sm-4 col-sm-offset-1">
                     <div class="picture-container">
@@ -51,7 +51,21 @@
                             id: "wizardPicturePreview" %>
 
                         <!-- Image upload (ActiveStorage recommended) -->
-                        <%= f.file_field :images, multiple: true, id: "wizard-picture",  class: "form-control" %>
+                        <%# <%= f.file_field :images, multiple: true, id: "wizard-picture",  class: "form-control" ,direct_upload: true ,:cloud_name ="drxehsod8" %> 
+                     <%= f.file_field :images,
+                                multiple: true,
+                                id: "wizard-picture",
+                                class: "form-control",
+                                direct_upload: true 
+                              %>
+
+                              <%# <%= cl_upload_tag(:images,
+                                multiple: true,
+                                id: "wizard-picture",
+                                class: "form-control",
+                                resource_type: :image,
+                                folder: "real-estate_property") %> 
+
                       </div>
                     </div>
 
@@ -229,7 +243,20 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <label>Choose Images :</label>
-                    <%= f.file_field :images, multiple: true, class: "form-control" %>
+                    <%# <%= f.file_field :images, multiple: true, class: "form-control", direct_upload: true,cloud_name: "drxehsod8" %> 
+                    <%= f.file_field :images,
+                                      multiple: true,
+                                      class: "form-control",
+                                      direct_upload: true 
+                                    %>
+ 
+                    
+                    <%# <%= cl_upload_tag(:images,
+                              multiple: true,
+                              id: "wizard-picture",
+                              resource_type: :image,
+                              folder: "real-estate_property") %> 
+
                     <p class="help-block">Select multiple images for your property.</p>
                   </div>
 

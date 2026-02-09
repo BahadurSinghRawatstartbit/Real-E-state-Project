@@ -3,7 +3,7 @@ class Book < ApplicationRecord
   has_many :booking_items, dependent: :destroy
 
   validates :status, presence: true
-  validates :total_amount, numericality: { greater_than: 0 },if: :confirmed?
+  validates :total_amount, numericality: { greater_than: -1 },if: :confirmed?
   
   def confirmed?
     status != "cart"
@@ -28,10 +28,7 @@ class Book < ApplicationRecord
    end
 
 
-  def total_amount
-    booking_items.includes(:property).sum do |item|
-      item.property.price * item.quantity
-    end
-  end
+  
+  
 
 end

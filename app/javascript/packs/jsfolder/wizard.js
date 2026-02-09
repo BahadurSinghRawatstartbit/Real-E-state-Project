@@ -84,6 +84,39 @@ $(document).ready(function () {
 
 });
 
+document.addEventListener('turbolinks:load', () => {
+    // Reinitialize wizard functionality
+    $('.wizard-card').bootstrapWizard({
+        tabClass: 'nav nav-pills',
+        nextSelector: '.btn-next',
+        previousSelector: '.btn-previous',
+        onInit: function (tab, navigation, index) {
+            // Custom initialization logic
+        },
+        onTabClick: function (tab, navigation, index) {
+            return false; // Disable tab click
+        },
+        onTabShow: function (tab, navigation, index) {
+            var wizard = navigation.closest('.wizard-card');
+            if (index + 1 >= navigation.find('li').length) {
+                $(wizard).find('.btn-next').hide();
+                $(wizard).find('.btn-finish').show();
+            } else {
+                $(wizard).find('.btn-next').show();
+                $(wizard).find('.btn-finish').hide();
+            }
+        }
+    });
+
+    $('#wizard-picture').change(function () {
+        // Handle file input change
+    });
+
+    $('[data-toggle="wizard-radio"]').click(function () {
+        // Handle wizard radio toggle
+    });
+});
+
 function validateFirstStep() {
 
     $(".wizard-card form").validate({

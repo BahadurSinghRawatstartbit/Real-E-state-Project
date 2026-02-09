@@ -7,30 +7,34 @@
     <%= csp_meta_tag %>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
-    <%# <%= favicon_link_tag 'favicon.ico' %>
+    <link rel="icon" type="image/png" href="/property.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easy-pie-chart/2.1.7/jquery.easypiechart.min.js"></script>
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800', rel: 'stylesheet' %>
-    <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%# <%= stylesheet_link_tag 'bootstrap-select.min', media: 'all' %> %>
-    <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <%# Modernizr loaded via CDN (traditional script tag) to access DOM immediately %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <%= stylesheet_link_tag 'bootstrap-select.min', media: 'all' , 'data-turbolinks-track': 'reload' %> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"  data-turbolinks-track= 'reload'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" data-turbolinks-track="reload"></script>
+    <script src="https://js.stripe.com/clover/stripe.js"></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-    <%= render "shared/top_header" %>
-    <%= render "shared/navbar" %>
-    <% if flash[:notice] %>
-      <div class="alert alert-success alert-dismissible fade in container" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>                        
-        <%= flash[:notice] %>
-      </div>                 
-    <% end %>
 
-      <%= yield %>
-      <%= render "shared/footer" %>
+  </head>
+    <body data-current-user-id="<%= current_user.id if current_user %>">
+
+
+      <%= render "shared/top_header" %>
+      <%= render "shared/navbar" %>
+      <% if flash[:notice] %>
+        <div class="alert alert-success alert-dismissible fade in container" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>                        
+          <%= flash[:notice] %>
+        </div>                 
+      <% end %>
+
+        <%= yield %>
+        <%= render "shared/footer" %>
     </body>
   </html>
