@@ -36,3 +36,69 @@
 
     .badge-sold{background:#28a745;}
     .badge-booked{background:#f0ad4e;}
+    .extrabtn{
+
+      float:right;
+    }
+
+  @media (max-width: 767px) {
+    .table-responsive {
+      border: 0px solid black;
+    }
+    .table-responsive table,
+    .table-responsive thead,
+    .table-responsive tbody,
+    .table-responsive th,
+    .table-responsive td,
+    .table-responsive tr {
+      display: block;
+    }
+
+    .table-responsive thead {
+      display: none;
+    }
+
+    .table-responsive tr {
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 10px;
+      background: #fff;
+    }
+
+    .table-responsive td {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border: none;
+    }
+
+    .table-responsive td::before {
+      content: attr(data-label);
+      font-weight: 600;
+      color: #555;
+    }
+    
+
+    // .table-responsive td:last-child {
+    //   justify-content: flex-end;
+    // }
+}
+
+@media screen and (max-width:448px){
+.email{
+    max-width: 110px;      /* adjust as needed */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+.extrabtn{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap :10px;
+}
+}

@@ -19,10 +19,13 @@ import "./jsfolder/jquery.validate.min"
 import "./jsfolder/jquery.ba-cond.min"
 import "./jsfolder/jquery.slitslider"
 import "./jsfolder/bootstrap.min.js"
-import "./jsfolder/jquery.easypiechart.min"
+// import "./jsfolder/easypiechart.min"
+import EasyPieChart from "./jsfolder/easypiechart.min"
+window.EasyPieChart = EasyPieChart
+
 import "./jsfolder/owl.carousel.min"
 import "./jsfolder/price-range"
-import "./jsfolder/easypiechart.min"
+
 import "./jsfolder/jquery.bootstrap.wizard"
 import "./jsfolder/lightslider.min"
 import "./jsfolder/modernizr-2.6.2.min"
@@ -86,6 +89,24 @@ document.addEventListener("turbolinks:load", function() {
   new WOW().init();
 
   // Add other plugin initializations here if needed
+
+  //  document.querySelectorAll(".chart").forEach((el) => {
+  //   if (el._easyPieChart) return
+
+  //   const chart = new EasyPieChart(el, {
+  //     barColor: "#ef1e25",
+  //     trackColor: "#f9f9f9",
+  //     scaleColor: "#dfe0e0",
+  //     scaleLength: 5,
+  //     lineCap: "round",
+  //     lineWidth: 3,
+  //     size: 110,
+  //     animate: { duration: 1000, enabled: true }
+  //   })
+
+  //   chart.update(el.dataset.percent || 0)
+  //   el._easyPieChart = chart
+  // })
 });
 document.addEventListener("turbolinks:load", () => {
   const form  = document.getElementById("message-form")

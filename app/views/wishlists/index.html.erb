@@ -29,7 +29,7 @@
             <tr id="wishlist_<%= property.id %>"> 
               <td><%= property.name %></td>                  
               <td><%= property.price %></td>                  
-              <td style="display: flex;  justify-content: space-evenly">
+              <td style="display: flex;  justify-content: space-evenly;gap:10px;">
                    <%= link_to property_path(property) do %><i class="fa fa-eye"></i>
                      <% end %>
                     <%= link_to property_wishlist_path(property), method: :delete,remote: true, data: { confirm: "Remove from wishlist?" } do %> 
@@ -39,7 +39,7 @@
                 <%= button_to "Book Now",
                   book_now_path(property_id: property.id, name: property.name, price: property.price),
                   method: :post,
-                  class: "btn btn-primary btn-sm" %>
+                  class: "btn btn-primary btn-sm booknowbtn" %>
               </td>
             </tr>
           <% end %>

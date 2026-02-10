@@ -15,6 +15,7 @@
 .newbtn{
   padding-left: 0px !important;
   padding-right: 0px !important;
+  width: auto !important;
 }
 a{
     text-decoration: none;
@@ -22,6 +23,12 @@ a{
 body{
   color: #777;
 }
+@media screen and (max-width:448px) and (max-width:767px){
+    input[type="submit"] {
+      padding:10px !important;
+    }
+}
+
 @media screen and (max-width:448px){
  
   .row{

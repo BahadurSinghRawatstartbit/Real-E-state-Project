@@ -38,7 +38,19 @@ body{
     }
 .indprop{
     margin-bottom: 20px !important;
+
   }
+  
+  
+@media screen and  (max-width: 769px) {
+  .main-nav .myli.active::after{
+    max-width: 100%;
+    width: 100px;
+    bottom: 0px;
+  }
+}
+
+
 @media screen and (max-width:448px){
  
   .row{
@@ -58,6 +70,12 @@ body{
   .main-nav .myli.active::after{
     bottom:0px !important;
   }
+ 
+    .nav-button {
+        font-size: 16px;
+        padding: 8px 13px;
+    }
+
 }
 
 
