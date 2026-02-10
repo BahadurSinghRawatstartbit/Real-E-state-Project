@@ -40,6 +40,10 @@
 
       float:right;
     }
+    @media (min-width: 768px) {
+    .adminhead h3{
+      text-align: right;
+    }}
 
   @media (max-width: 767px) {
     .table-responsive {

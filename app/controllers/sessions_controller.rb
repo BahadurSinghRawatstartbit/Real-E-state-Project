@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
     if user&.authenticate(params[:session][:password]) && user.has_role?(:admin)
       session[:user_id] = user.id
-      redirect_to admin_dashboard_path, notice: "Admin logged in"
+      redirect_to admin_dashboard_path, notice: "Admin : #{user.name} logged in"
     else
       flash.now[:alert] = "Invalid admin credentials"
       render :admin_login
@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
 
     if user&.authenticate(params[:session][:password]) && user.has_role?(:agent)
       session[:user_id] = user.id
-      redirect_to agent_dashboard_path, notice: "Agent logged in"
+      redirect_to agent_dashboard_path, notice: "Agent #{user.name} logged in"
     else
       flash.now[:alert] = "Invalid agent credentials"
       render :agent_login
@@ -49,11 +49,11 @@ class SessionsController < ApplicationController
 
       # role-based redirect
       if user.has_role?(:admin)
-        redirect_to admin_dashboard_path
+        redirect_to admin_dashboard_path ,notice: "#{user.name} an Admin logged in"
       elsif user.has_role?(:agent)
-        redirect_to agent_dashboard_path
+        redirect_to agent_dashboard_path ,notice: "#{user.name} an Agent logged in"
       else
-        redirect_to root_path
+        redirect_to root_path ,notice: "#{user.name} logged in"
       end
     else
       flash.now[:alert] = "Invalid email or password"

@@ -120,7 +120,10 @@
                     <h5>User account</h5>
                     <ul>
                       <li><%= link_to "Register / Login", login_path %></li>
-                      <li><%= link_to "Your profile", root_path %></li>
+                      <% if current_user %>
+                      <li><%= link_to "Your profile", edit_user_path(current_user.id) %></li>
+                      <% end %>
+                      
                       <li><%= link_to "Submit property", root_path %></li>
                     </ul>
                   </div>

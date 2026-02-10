@@ -12,23 +12,25 @@
 <%# </ul> %>
 
 <%# <a href="/" class="btn btn-primary">Return to Home</a> %>
+
+
 <div class="container-fluid py-5">
   <div class="row justify-content-center" style="display:flex;justify-content:center;text-align:center;">
     <div class="col-lg-8 col-md-10">
 
-      <!-- Success Card -->
+      
       <div class="card shadow-lg border-0 rounded-4">
         <div class="card-body p-5 text-center">
 
-          <!-- Success Icon -->
+         
           <div class="mb-4">
-            <div class="rounded-circle bg-success text-white d-inline-flex align-items-center justify-content-center"
+            <%# <div class="rounded-circle bg-success text-white d-inline-flex align-items-center justify-content-center"
                  style="width:80px;height:80px;">
               <i class="bi bi-check-lg fs-1"></i>
-            </div>
+            </div> %>
           </div>
 
-          <!-- Title -->
+     
           <h2 class="fw-bold text-success mb-2">
             Payment Successful!
           </h2>
@@ -37,7 +39,7 @@
             Thank you for your payment. Your transaction has been completed successfully.
           </p>
 
-          <!-- Transaction Info -->
+         
           <div class="alert alert-light border text-start mb-4">
             <p class="mb-1"><strong>Transaction ID:</strong></p>
             <p class="mb-0 text-break text-muted">
@@ -45,7 +47,7 @@
             </p>
           </div>
 
-          <!-- Purchased Properties -->
+         
           <h5 class="fw-semibold mb-3 text-start">
             Properties Purchased
           </h5>
@@ -61,7 +63,7 @@
             <% end %>
           </ul>
 
-          <!-- Actions -->
+      
           <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
             <%= link_to "Go to Home", root_path, class: "btn btn-success px-4" %>
             <%= link_to "View Properties", properties_path, class: "btn btn-outline-secondary px-4" %>
