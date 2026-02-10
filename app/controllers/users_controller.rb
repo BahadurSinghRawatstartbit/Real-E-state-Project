@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [ :show,:edit, :update]
   before_action :redirect_if_logged_in, only: [:new, :create, :agent_new, :agent_create, :admin_new, :admin_create]
   # before_action :require_super_admin, only: [:admin_new, :admin_create,:index]
-  before_action :block_login_routes
+  # before_action :block_login_routes
 
   def new
     @user = User.new
@@ -22,6 +22,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        session[:user_id] = @user.id
         # UserMailer.with(user: @user).welcome_email(@user).deliver_now
         format.html { redirect_to root_path, notice: "Welcome  #{@user.name}, you have successfully signed up" }
         format.json { render :show, status: :created, location: @user }
@@ -31,11 +32,13 @@ class UsersController < ApplicationController
       end
     end
   end
-  def block_login_routes
-    if logged_in? && request.path.in?([login_path, login_admin_path, login_agent_path])
-      redirect_if_logged_in
-    end
-  end
+
+ 
+  # def block_login_routes
+  #   if logged_in? && request.path.in?([login_path, login_admin_path, login_agent_path])
+  #     redirect_if_logged_in
+  #   end
+  # end
 
   def agent_new
     @user = User.new
@@ -47,7 +50,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.assign_role(:agent)
       session[:user_id] = @user.id
-      redirect_to agent_dashboard_path
+      redirect_to agent_dashboard_path, notice: "Agent Created"
     else
       render :agent_new
     end
@@ -64,13 +67,14 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.assign_role(:admin)
-      redirect_to root_path
+      session[:user_id] = @user.id
+      redirect_to root_path, notice: "New Admin Created."
     else
       render :admin_new
     end
   end
 
-
+  
   def edit
     
   end

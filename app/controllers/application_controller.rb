@@ -14,10 +14,10 @@ class ApplicationController < ActionController::Base
 
 
   def logged_in?
-      !!current_user
+      current_user.present?
   end
 
- 
+
   def propertyPermissions
     current_user if current_user.admin? && current_user.agent?
   end
