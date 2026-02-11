@@ -63,6 +63,7 @@ class MessagesController < ApplicationController
         time: @message.created_at.strftime("%H:%M")
       }
     )
+    
     head :no_content
   end
   

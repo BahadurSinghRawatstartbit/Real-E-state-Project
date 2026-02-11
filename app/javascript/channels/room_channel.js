@@ -56,33 +56,63 @@ document.addEventListener("turbolinks:load", () => {
         console.log("Disconnected from RoomChannel")
       },
 
-      received(data) {
-        const isMe = String(data.sender_id) === String(currentUserId)
+      // received(data) {
+      //   const isMe = String(data.sender_id) === String(currentUserId)
 
+
+      //   const html = `
+      //     <div class="clearfix">
+      //       <div class="${isMe ? 'pull-right text-right' : 'pull-left'}"
+      //            style="max-width:70%; margin-bottom:10px;">
+      //         <span class="label ${isMe ? 'label-primary' : 'label-default'}">
+      //           ${isMe ? 'You' : data.sender_name}
+      //         </span>
+              
+      //         <div class="well well-sm "
+      //              style="margin-top:5px; ${isMe ? 'background:#FDC600;color:white;' : ''}">
+      //           ${data.content}
+      //         </div>
+      //       </div>
+      //     </div>
+      //   `
+
+      //   messagesDiv.insertAdjacentHTML("beforeend", html)
+      //   // messagesDiv.scrollTop = messagesDiv.scrollHeight
+
+      //   requestAnimationFrame(() => {
+      //     messagesDiv.scrollTop = messagesDiv.scrollHeight
+      //   })
+      // }
+      received(data) {
+        const isMe = String(data.sender_id) === String(currentUserId);
+        console.log(currentUserId);
+        // Use a temporary element to escape the content
+        const div = document.createElement('div');
+        div.textContent = data.content;
+        const safeContent = div.innerHTML;
 
         const html = `
           <div class="clearfix">
-            <div class="${isMe ? 'pull-right text-right' : 'pull-left'}"
-                 style="max-width:70%; margin-bottom:10px;">
-              <span class="label ${isMe ? 'label-primary' : 'label-default'}">
-                ${isMe ? 'You' : data.sender_name}
-              </span>
-              
-              <div class="well well-sm "
-                   style="margin-top:5px; ${isMe ? 'background:#FDC600;color:white;' : ''}">
-                ${data.content}
+            <div class="${isMe ? 'pull-right text-right' : 'pull-left'}" style="max-width:70%; margin-bottom:10px;">
+              <span class="label ${isMe ? 'label-primary' : 'label-default'}">${isMe ? 'You' : data.sender_name}</span>
+              <div class="well well-sm" style="margin-top:5px; ${isMe ? 'background:#FDC600;color:white;' : ''}">
+                ${safeContent}
               </div>
             </div>
-          </div>
-        `
-
-        messagesDiv.insertAdjacentHTML("beforeend", html)
-        // messagesDiv.scrollTop = messagesDiv.scrollHeight
-
+          </div>`;
+        
+        messagesDiv.insertAdjacentHTML("beforeend", html);
         requestAnimationFrame(() => {
           messagesDiv.scrollTop = messagesDiv.scrollHeight
         })
       }
     }
   )
+})
+
+document.addEventListener("turbolinks:before-cache", () => {
+  if (roomSubscription) {
+    consumer.subscriptions.remove(roomSubscription)
+    roomSubscription = null
+  }
 })
