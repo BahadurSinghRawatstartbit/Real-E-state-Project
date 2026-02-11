@@ -26,23 +26,23 @@
 class MessagesController < ApplicationController
   before_action :require_user
   
-def index
-  admin = User.with_role(:admin).first
+  def index
+    admin = User.with_role(:admin).first
 
-  if current_user.has_role?(:admin)
-    # admin MUST receive conversation_id from params
-    @conversation = Conversation.find(params[:conversation_id])
-  else
-    # user always has one conversation with admin
-    @conversation = Conversation.find_or_create_by!(
-      user: current_user,
-      admin: admin
-    )
+    if current_user.has_role?(:admin)
+      # admin MUST receive conversation_id from params
+      @conversation = Conversation.find(params[:conversation_id])
+    else
+      # user always has one conversation with admin
+      @conversation = Conversation.find_or_create_by!(
+        user: current_user,
+        admin: admin
+      )
+    end
+
+    @messages = @conversation.messages.includes(:sender)
+    @message  = Message.new
   end
-
-  @messages = @conversation.messages.includes(:sender)
-  @message  = Message.new
-end
 
  
 
@@ -63,5 +63,24 @@ end
         time: @message.created_at.strftime("%H:%M")
       }
     )
+    head :no_content
   end
+  
 end
+# def create
+#   @message = Message.create!(
+#     content: params[:content],
+#     conversation_id: params[:conversation_id],
+#     sender: current_user
+#   )
+
+#   RoomChannel.broadcast_to(
+#     @message.conversation,
+#     content: @message.content,
+#     sender_name: @message.sender.name,
+#     sender_id: @message.sender.id,
+#     time: @message.created_at.strftime("%H:%M")
+#   )
+
+#   head :no_content
+# end
