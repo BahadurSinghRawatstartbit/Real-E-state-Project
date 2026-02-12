@@ -41,6 +41,13 @@ class PagesController < ApplicationController
     
   end
 
+  def user_booked_property
+    @books = current_user.books
+    .includes(booking_items: { property: :user })
+    .where(status: "sold")
+    
+  end
+
   def msgpage
     @conversation = Conversation.where(
       "user_id = :id OR admin_id = :id",

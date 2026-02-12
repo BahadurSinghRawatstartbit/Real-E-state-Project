@@ -16,7 +16,7 @@ class Book < ApplicationRecord
   current_item = booking_items.find_by(property_id: property_id)
 
   if current_item
-    current_item.quantity += 1
+    current_item.quantity = 1
   else
     current_item = booking_items.build(
       property_id: property_id,

@@ -1,8 +1,13 @@
 <div class="page-head">
     <div class="container">
         <div class="row">
-            <div class="page-head-content" style="display:flex;align-item:center;justify-content:center;">
-                <h1 class="page-title">Edited Your Profile </h1>
+            <div class="page-head-content" >
+                <%if current_user&.admin?%>
+                    <h1 class="page-title text-center">Edited by admin</h1>
+                <%else%>
+                    <h1 class="page-title text-center">Edit Your Profile </h1>
+                <%end%>
+                
             </div>
         </div>
     </div>
@@ -46,4 +51,4 @@
 
                                     <div class="col-md-4 col-xs-4"></div>
 
-                                    <div class="col-md-4 col-xs-4"><%= f.submit "Register", class: "btn btn-default" %></div>                                    <div class="col-md-4 col-xs-4"></div>                                        <div>                                    </div>                                    <% end %></div>                                <p>  you already have an existing account<%= link_to "login", login_path %></p>                        </div>                                </div>                                </div>                                </div>                                </div>
+                                    <div class="col-md-4 col-xs-4"><%= f.submit "Register", class: "btn btn-default" %></div>                                    <div class="col-md-4 col-xs-4"></div>                                        <div>                                    </div>                                    <% end %></div>                                                       </div>                                </div>                                </div>                                </div>                                </div>

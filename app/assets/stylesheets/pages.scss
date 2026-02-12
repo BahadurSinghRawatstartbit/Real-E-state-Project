@@ -24,6 +24,9 @@ a{
 body{
   color: #777;
 }
+.tooltip.top {
+  display: none;
+}
 .btnlog{
     display: flex;
     justify-content: flex-start;

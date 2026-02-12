@@ -28,6 +28,8 @@ mount ActionCable.server => '/cable'
   post 'pages/contact', to: 'pages#contact_submit'
   post 'subscribe', to: 'pages#subscribe'
 
+  get '/order' ,to: 'pages#user_booked_property'
+
   # Role-based login routes
   get  'login/admin',  to: 'sessions#admin_login',  as: :admin_login
   get  'login/agent',  to: 'sessions#agent_login',  as: :agent_login
@@ -46,6 +48,7 @@ mount ActionCable.server => '/cable'
   get 'agent/dashboard/property-list' , to:'dashboards#agentpropertylst'
   get 'agent/dashboard/booked-property-list' , to:'dashboards#agentbookedpropertylst'
   get 'agent/dashboard/customer-list' , to:'dashboards#agentcustomerlst'
+  get 'admin/dashboard/booked-properties', to: 'dashboards#booked_property_lst'
 
 
   # Agent signup

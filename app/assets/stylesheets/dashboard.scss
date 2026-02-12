@@ -23,6 +23,20 @@
       margin-bottom:25px;
       box-shadow:0 4px 12px rgba(0,0,0,0.06);
     }
+    .adminaction{
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      
+    
+
+    }
+    .adminaction a{
+      background: darkgray;
+      padding: 8px 20px;
+      color: white;
+      font-size: 16px;
+    }
 
     .card h4{
       font-weight:700;
@@ -41,9 +55,11 @@
       float:right;
     }
     @media (min-width: 768px) {
-    .adminhead h3{
-      text-align: right;
-    }}
+      .adminhead h1{
+        text-align: right;
+        font-size: 20px !important;
+      }
+    }
 
   @media (max-width: 767px) {
     .table-responsive {
@@ -60,6 +76,11 @@
 
     .table-responsive thead {
       display: none;
+    }
+    .adminaction{
+      
+    flex-direction: column;
+
     }
 
     .table-responsive tr {
@@ -105,4 +126,13 @@
   align-items: center;
   gap :10px;
 }
+.adminaction{
+      
+  flex-direction: column;
+
+}
+.adminhead h1{
+       
+        font-size: 18px !important;
+      }
 }

@@ -122,6 +122,8 @@
                       <li><%= link_to "Register / Login", login_path %></li>
                       <% if current_user %>
                       <li><%= link_to "Your profile", edit_user_path(current_user.id) %></li>
+                      <li><%= link_to "Your order", order_path %></li>
+                      
                       <% end %>
                       
                       <li><%= link_to "Submit property", root_path %></li>

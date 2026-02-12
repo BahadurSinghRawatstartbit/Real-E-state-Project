@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [ :show,:edit, :update]
-  before_action :redirect_if_logged_in, only: [:new, :create, :agent_new, :agent_create, :admin_new, :admin_create]
+  before_action :require_admin, only: [:admin_new, :admin_create]
   # before_action :require_super_admin, only: [:admin_new, :admin_create,:index]
   # before_action :block_login_routes
 
@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  
   def show
     
   end

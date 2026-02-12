@@ -18,6 +18,18 @@ class DashboardsController < ApplicationController
   
   end
 
+  def booked_property_lst
+    # @booked_properties = Property.where(status: "sold").distinct
+    @sold_items = BookingItem
+      .joins(book: :user)          # customer
+      .joins(property: :user)      # agent
+      .where(books: { status: "sold" })
+      .includes(
+        book: :user,
+        property: :user
+    )
+  end
+
   def agentcustomerlst
   
   end
@@ -32,7 +44,7 @@ class DashboardsController < ApplicationController
 
   def commonqueries
     @agent = current_user
-    # byebug
+
     @agentproperty=@agent.properties
 
     @total_properties = @agent.properties.count
@@ -46,13 +58,13 @@ class DashboardsController < ApplicationController
     @agent_properties=@agent.properties
       .where(status: "Sold")
       .order(created_at: :desc)
-      
+    
     @booked_properties = Property.joins(:booking_items)
       .where(user_id: @agent.id)
       .distinct
 
     @total_booked_properties = @booked_properties.count
-
+  
     @total_revenue = @agent.properties
       .where(status: "Sold")
       .sum("price::integer")

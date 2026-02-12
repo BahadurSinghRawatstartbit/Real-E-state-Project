@@ -2,7 +2,7 @@
   <% if logged_in?  && current_user.admin? %>
   <%= link_to "Dashboard", admin_dashboard_path, class: "btn btn-warning mb-5" %>
   <%end%>
-<h1>All moviess</h1>
+<h1 class="text-center">All Customers</h1>
   <table class="table table-striped">
   <thead>
     <tr>
@@ -24,9 +24,14 @@
             <td><%= u.name %></td>
             <td><%= u.email %></td>
             <td><%= u.roles.pluck(:name).join(', ') %></td>
+            <td>
              <% if logged_in? && current_user.admin? %>
-            <td><%= button_to "Delete", user_path(u), method: :delete,remote: true, data: { confirm: "Are you sure?" } ,class:"card-link btn btn-danger" %></div></td>
-            <%end%>
+              <div class="adminaction">
+                <%= link_to "Edit" ,edit_user_path(u.id)%>
+                <%= button_to "Delete", user_path(u), method: :delete,remote: true, data: { confirm: "Are you sure?" } ,class:"card-link btn btn-danger" %>
+              </div>
+             <%end%>
+            </td>
         </tr>   
         <% end %>
       

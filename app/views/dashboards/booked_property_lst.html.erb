@@ -1,0 +1,48 @@
+<div class="page-head"> 
+    <div class="container">
+      <div class="row">
+        <div class="page-head-content">
+          <h1 class="text-center page-title">All Booked Properties</h1>
+                         
+        </div>
+      </div>
+
+    </div>
+    
+</div>
+
+
+<div class="container" style="margin-top:50px;">
+  
+
+  <div class="table-responsive ">
+    <table class="table table-striped align-middle">
+      <thead class="table-bordered">
+        <tr>
+          <th>Property</th>
+          <th>Agent Name</th>
+          <th>Agent Email</th>
+          <th>Customer Name</th>
+          <th>Customer Email</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @sold_items.each do |item| %>
+          <tr class="table-bordered">
+            <td data-label="Property Name"><%= item.property.name %></td>
+
+            <td data-label="Agent Name"><%= item.property.user.name %></td>
+            <td data-label="Agent Email"><%= item.property.user.email %></td>
+
+            <td data-label="Customer Name"><%= item.book.user.name %></td>
+            <td data-label="Customer Email"><%= item.book.user.email %></td>
+
+            <td data-label="Price">₹<%= item.property.price %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

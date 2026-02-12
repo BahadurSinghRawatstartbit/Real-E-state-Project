@@ -1,0 +1,57 @@
+
+<div class="container" style="margin-bottom:20px;">
+    <div class="page-head" style="margin-bottom:20px;"> 
+        <div class="container">
+            <div class="row">
+                <div class="page-head-content ">
+                    <h1 class="page-title text-center">My Purchased Properties</h1>               
+                </div>
+            </div>
+        </div>
+    </div>
+  
+
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead>
+        <tr>
+          <th>Property Name</th>
+          <th>Price</th>
+          <th>Agent</th>
+          <th>Agent Email</th>
+          
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @books.each do |book| %>
+    <% book.booking_items.each do |item| %>
+
+    <tr>
+        <td data-label="Property Name"><%= item.property.name %></td>
+
+              <td  data-label="Price" >
+                 ₹<%= item.property.price %>
+              </td>
+
+              <td data-label="Agent Name">
+                <%= item.property.user&.name || "Agent not assigned" %>
+              </td>
+              <td data-label="Agent Email" class="email-cell">
+          <%= item.property.user&.email || "—" %></td>
+              
+    </tr>
+      
+    <% end %>
+  <% end %>
+        
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+          
+        

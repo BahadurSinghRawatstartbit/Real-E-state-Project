@@ -6,8 +6,12 @@ class Property < ApplicationRecord
   has_many :wishlisted_by_users, through: :wishlists, source: :user , dependent: :destroy
 
   belongs_to :user
- 
+  belongs_to :agent, class_name: "User", foreign_key: "user_id"
   has_many :booking_items, dependent: :destroy
+  has_many :books, through: :booking_items
+  has_many :customers, through: :books, source: :user
+
+
   
   def self.ransackable_associations(auth_object = nil)
     %w[wishlists booking_items]

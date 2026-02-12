@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>All Agents</h1>
+  <h1 class="text-center">All Agents</h1>
 
   <div class="table-responsive">
     <table class="table table-striped align-middle">
@@ -23,13 +23,18 @@
               </td>
 
               <% if logged_in? %>
+              
                 <td data-label="Action">
-                  <%= button_to "Remove",
-                    users_path(user),
-                    method: :delete,
-                    data: { confirm: "Are you sure?" },
-                    class: "btn btn-danger btn-sm"
-                  %>
+                  <div class="adminaction">
+                    <%= link_to "Edit" ,edit_user_path(user.id)%>
+                    <%= button_to "Remove",
+                      users_path(user),
+                      method: :delete,
+                      data: { confirm: "Are you sure?" },
+                      class: "btn btn-danger btn-sm"
+                    %>
+                  </div>
+                  
                 </td>
               <% end %>
             </tr>

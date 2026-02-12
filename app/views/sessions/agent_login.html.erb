@@ -43,10 +43,15 @@
                                                 </div>                               
                                                 <div class="col-md-4 col-xs-4"></div>  
                                              </div>                           
-                                             <p class="text-center mt-3">
+                                             
+                                    <% if current_user&.admin? %>                              
+                    
+                                    <%else%>
+                                    <p class="text-center mt-3">You don't have an Agent Account <%= link_to " Signup As Agent", signup_agent_path %></p>
+                                    <p class="text-center mt-3">You don't have an User Account <%= link_to " Signup As User", signup_path %></p>
 
-                                        you don't have an account 
-                                    <%= link_to "signup", signup_agent_path %>
+                                  
+                                    <%end%>
 
                                 </p>
                             </div>
