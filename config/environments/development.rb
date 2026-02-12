@@ -14,7 +14,8 @@ Rails.application.configure do
   config.eager_load = false
   # config.hosts << "interfulgent-unabnegating-kynlee.ngrok-free.dev"
   # config.hosts << "donnette-gamogenetical-dimly.ngrok-free.dev"
-  # config.hosts << "unpridefully-noncritical-lenore.ngrok-free.dev"  
+  
+  config.hosts << "unpridefully-noncritical-lenore.ngrok-free.dev"  
   
  
 
