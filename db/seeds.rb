@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+# db/seeds.rb
+puts "Seeding admin user..."
+AdminUser.find_or_create_by!(email: ENV['ADMIN_EMAIL']) do |admin|
+  admin.password = ENV['ADMIN_PASSWORD']
+  admin.password_confirmation = ENV['ADMIN_PASSWORD']
+  # Add other mandatory fields if necessary
+end
+puts "Admin user created/verified: #{ENV['ADMIN_EMAIL']}"
