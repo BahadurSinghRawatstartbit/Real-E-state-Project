@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [ :show,:edit, :update]
-  before_action :require_admin, only: [:admin_new, :admin_create]
+  # before_action :require_admin, only: [:admin_new, :admin_create]
   # before_action :require_super_admin, only: [:admin_new, :admin_create,:index]
   # before_action :block_login_routes
 
