@@ -7,7 +7,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
           #  Rails.application.credentials.dig(:google,:google_client_id),
           #  Rails.application.credentials.dig(:google,:google_client_sk_id),
           ENV["GOOGLE_CLIENT_ID"],
-          ENV["GOOGLE_CLIENT_SECRET"],
+          ENV["GOOGLE_CLIENT_SK_ID"],
            {
             include_granted_scopes:true,
             scope: 'email,profile,offline',
