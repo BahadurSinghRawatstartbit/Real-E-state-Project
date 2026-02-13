@@ -16,3 +16,16 @@ end
 admin.add_role(:admin) unless admin.has_role?(:admin)
 
 puts "Admin user created/verified: #{admin.email}"
+
+puts "Seeding admin user..."
+
+admin = User.find_or_initialize_by(email: ENV['ADMIN_EMAIL'])
+
+admin.name = "Admin"
+admin.password = ENV['ADMIN_PASSWORD']
+admin.password_confirmation = ENV['ADMIN_PASSWORD']
+admin.add_role(:admin) if admin.respond_to?(:add_role?)
+
+admin.save!
+
+puts "Admin user created/verified: #{admin.email}"

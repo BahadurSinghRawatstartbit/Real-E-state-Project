@@ -41,6 +41,9 @@ document.addEventListener("turbolinks:load", () => {
     consumer.subscriptions.remove(roomSubscription)
     roomSubscription = null
   }
+  if (roomSubscription?.identifier?.includes(conversationId)) {
+    return
+  }
 
   roomSubscription = consumer.subscriptions.create(
     {
@@ -50,6 +53,7 @@ document.addEventListener("turbolinks:load", () => {
     {
       connected() {
         console.log(" Connected to RoomChannel:", conversationId)
+        console.log("Connected:", this.identifier)
       },
 
       disconnected() {
@@ -114,5 +118,13 @@ document.addEventListener("turbolinks:before-cache", () => {
   if (roomSubscription) {
     consumer.subscriptions.remove(roomSubscription)
     roomSubscription = null
+
+    console.log(roomSubscription);
+  }
+  const messagesDiv = document.getElementById("messages")
+  if (!messagesDiv && roomSubscription) {
+    consumer.subscriptions.remove(roomSubscription)
+    roomSubscription = null
   }
 })
+
