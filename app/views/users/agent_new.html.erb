@@ -59,11 +59,7 @@
                         <p>  You already have an existing Agent Account<%= link_to " login", login_agent_path %></p>  
                         <p>  You already have an existing User Account<%= link_to " login", login_path %></p>  
                     <%end%>
-                    <%= button_to "Login with Google",
-                                    "/oauth/google_oauth2",
-                                    method: :post,
-                                    data: { turbo: false },
-                                    class: "login-social" %>               
+                                  
                 </div>                                
             </div>                               
         </div>                              
