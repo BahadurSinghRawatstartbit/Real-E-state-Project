@@ -34,7 +34,7 @@ gem "ransack", "~> 4.0"
 gem 'stripe'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
-gem "redis"
+
 gem "redis", "~> 5.0"
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
