@@ -28,7 +28,10 @@
     <% book.booking_items.each do |item| %>
 
     <tr>
-        <td data-label="Property Name"><%= item.property.name %></td>
+        <td data-label="Property Name">
+          <%= link_to item.property.name, property_url(item.property) %>
+          <%# <%= item.property.name %>
+          </td> 
 
               <td  data-label="Price" >
                  ₹<%= item.property.price %>
