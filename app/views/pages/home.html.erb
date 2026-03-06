@@ -262,61 +262,64 @@
 
 
                     <div id="testimonial-slider">
-                        
-                        <% testimonialss = (@testimonials.content || {})["testimonials"] || [] %>
-                        <% testimonialss.each_with_index do |(key, t), i| %>
-                                <%if @testimonials.content %>
-                                <div class="item">
-                                
-                                <div class="client-text">
-                                    <p><%= t["text"] %></p>
-                                    <h4><strong><%= t["name"] %>, </strong><i><%= t["designation"] %></i></h4>
-                                </div>
-                                <div class="client-face wow fadeInRight" data-wow-delay=".9s">
-                                    <% if @testimonials.images.attached? && @testimonials.images[i] %>
-                                        <%= image_tag @testimonials.images[i] %>
-                                            
-                                        <%else%>
-                                            <%= image_tag "client-face2.png" %>
-                                        
-                                        <%end%>
 
-                                </div>
-                            </div>
-                                <%else%>
-                                <div class="client-text">
-                                    <p>Nulla quis dapibus nisl. Suspendisse llam sed arcu ultried arcu ultricies !</p>
-                                    <h4><strong>Ohidul Islam, </strong><i>Web Designer</i></h4>
-                                </div>
-                                <div class="client-face wow fadeInRight" data-wow-delay=".9s">
-                                    <%= image_tag("client-face1.png") %>
+<% testimonialss = (@testimonials&.content || {})["testimonials"] || {} %>
 
-                                </div>
-                                 <div class="item">
-                            <div class="client-text">
-                                <p>Nulla quis dapibus nisl. Suspendisse llam sed arcu ultried arcu ultricies !</p>
-                                <h4><strong>Ohidul Islam, </strong><i>Web Designer</i></h4>
-                            </div>
-                            <div class="client-face">
-                                <%= image_tag("client-face1.png") %>
+<% if testimonialss.present? %>
 
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="client-text">
-                                <p>Nulla quis dapibus nisl. Suspendisse llam sed arcu ultried arcu ultricies !</p>
-                                <h4><strong>Ohidul Islam, </strong><i>Web Designer</i></h4>
-                            </div>
-                            <div class="client-face">
-                                <%= image_tag("client-face2.png") %>
+  <% testimonialss.each_with_index do |(key, t), i| %>
 
-                            </div>
-                        </div>
-                                <%end%>
-                            
-                        <%end%>
-                        
-                    </div>
+    <div class="item">
+
+      <div class="client-text">
+        <p><%= t["text"] %></p>
+        <h4>
+          <strong><%= t["name"] %></strong>,
+          <i><%= t["designation"] %></i>
+        </h4>
+      </div>
+
+      <div class="client-face wow fadeInRight" data-wow-delay=".9s">
+
+        <% if @testimonials&.images&.attached? && @testimonials.images[i] %>
+          <%= image_tag @testimonials.images[i] %>
+        <% else %>
+          <%= image_tag "client-face2.png" %>
+        <% end %>
+
+      </div>
+
+    </div>
+
+  <% end %>
+
+<% else %>
+
+  <!-- Default Testimonials -->
+
+  <div class="item">
+    <div class="client-text">
+      <p>Nulla quis dapibus nisl. Suspendisse ullam sed arcu ultricies!</p>
+      <h4><strong>Ohidul Islam</strong>, <i>Web Designer</i></h4>
+    </div>
+    <div class="client-face">
+      <%= image_tag "client-face1.png" %>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="client-text">
+      <p>Nulla quis dapibus nisl. Suspendisse ullam sed arcu ultricies!</p>
+      <h4><strong>John Doe</strong>, <i>UI Designer</i></h4>
+    </div>
+    <div class="client-face">
+      <%= image_tag "client-face2.png" %>
+    </div>
+  </div>
+
+<% end %>
+
+</div>
                 </div>
             </div>
 
