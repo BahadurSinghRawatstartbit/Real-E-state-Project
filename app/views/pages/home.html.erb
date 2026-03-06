@@ -1,5 +1,5 @@
 <div class="slider-area">
-    <% if @banner.present? %>
+    
         <div class="slider">
             <div id="bg-slider" class="owl-carousel owl-theme">
                 
@@ -46,7 +46,7 @@
         </div>
 
         
-    <%end%>
+   
 </div>
 
 <div id="quick-properties">
@@ -57,7 +57,7 @@
 
 <!-- property area -->
 <div class="content-area home-area-1 recent-property" style="background-color: #FCFCFC; padding-bottom: 55px;">
-     <% if @featured_properties.present? %>
+    
             <div class="container">
 
                 <div class="row">
@@ -134,7 +134,7 @@
             </div>
 
         </div>
-    <%end%>
+    
 </div>
 
 <!--Welcome area -->
@@ -147,7 +147,7 @@
 <div class="Welcome-area" style="background:#F3F3F3 url('<%= bg_image %>') no-repeat left top;">
 <%# <div class="Welcome-area" style="background:#F3F3F3 url('<%= @welcome.images.attached? ? url_for(@welcome.images.first) : 'welcome-bg.png' %> 
 <%# ') no-repeat left top;"> %>
-    <% if @welcome.present? %>
+    
     <div class="container">
         <div class="row">
             <div class="col-md-12 Welcome-entry  col-sm-12">
@@ -238,7 +238,7 @@
             </div>
         </div>
     </div>
-    <%end%>
+   
 </div>
 
 <!--TESTIMONIALS testimonials -->
