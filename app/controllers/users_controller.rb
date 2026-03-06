@@ -89,13 +89,13 @@ def update_password
     if @user.update(password: params[:user][:password], password_confirmation: params[:user][:password_confirmation])
       reset_session
       redirect_to login_path, notice: "Password updated successfully. Please log in again."
-   byebug
+  #  byebug
      else
       
       render :change_password, status: :unprocessable_entity
     end
   else
-byebug
+# byebug
     @user.errors.add(:current_password, "is incorrect")
     render :change_password, status: :unprocessable_entity
   end

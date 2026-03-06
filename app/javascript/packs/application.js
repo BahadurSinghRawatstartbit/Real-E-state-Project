@@ -47,7 +47,7 @@ import "./jsfolder/bootstrap-hover-dropdown"
 import "./jsfolder/bootstrap-select.min"
 import "./jsfolder/icheck.min"
 import "./tabswitching.js"
-// import "./basic_validation_propsubmit.js"
+import "./basic_validation_propsubmit.js"
 // document.addEventListener("turbolinks:load", function() {
   
 

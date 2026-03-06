@@ -6,18 +6,18 @@ class ContactsController < ApplicationController
 
 
   def create
-  @contact = Contact.new(contact_parms)
-  @contact.user = current_user
-  byebug
-  if @contact.save
-    # UserMailer.contact_form_submission(@contact).deliver_now
-    flash[:notice] = "Message sent!"
-    redirect_to pages_contact_path
-  else
-    flash.now[:alert] = "Could not send message"
-    redirect_to pages_contact_path
+    @contact = Contact.new(contact_parms)
+    @contact.user = current_user
+    # byebug
+    if @contact.save
+      # UserMailer.contact_form_submission(@contact).deliver_now
+      flash[:notice] = "Message sent!"
+      redirect_to pages_contact_path
+    else
+      flash.now[:alert] = "Could not send message"
+      redirect_to pages_contact_path
+    end
   end
-end
 
 #   def contact_submit
 #   name = "#{params[:firstname]} #{params[:lastname]}"
