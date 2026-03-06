@@ -333,7 +333,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
                 <!-- /.feature title -->
-                <% if @cta.title.present?%>
+                <% if @cta&.title.present?%>
                     <h2><%= @cta.title %></h2>
                 <%else%>
                     <h2>You can trust Us </h2>
@@ -343,7 +343,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 col-xs-12 percent-blocks m-main" data-waypoint-scroll="true">
-                <% countarea = (@cta.content || {})["counters"] || {} %> 
+                <% countarea = (@cta&.content || {})["counters"] || {} %> 
                 
                 <div class="row">
                     <%if countarea.present? %>
@@ -431,39 +431,46 @@
 <div class="boy-sale-area">
     <div class="container">
         <div class="row">
-            <% sales = (@bs.content || {})["blocks"] || {} %>
-            <%if sales.present? %>
-                <% sales.each_value.with_index do |sale, index| %>
+            <% sales = (@bs&.content || {})["blocks"] || {} %>
+            
+
+            <% if sales.present? %>
+
+            <% sales.each_value.with_index do |sale, index| %>
+
                 <div class="col-md-6 col-sm-10 col-sm-offset-1 col-md-offset-0 col-xs-12">
-                    <div class="asks-first">
-                        <div class="asks-first-circle">
-                            <span class="<%=sale['icon1']%>"></span>
-                        </div>
-                        <div class="asks-first-info">
-                            <h2><%=sale['title']%>..</h2>
-                            <p> <%=sale['description']%></p>
-                        </div>
-                        <div class="asks-first-arrow">
-                            <a href="<%=sale['link']%>"><span class="<%=sale['icon2']%>"></span></a>
-                        </div>
+                <div class="asks-first">
+
+                    <div class="asks-first-circle">
+                    <span class="<%= sale['icon1'] || 'fa fa-search' %>"></span>
                     </div>
+
+                    <div class="asks-first-info">
+                    <h2><%= sale['title'] %></h2>
+                    <p><%= sale['description'] %></p>
+                    </div>
+
+                    <div class="asks-first-arrow">
+                    <a href="<%= sale['link'] %>">
+                        <span class="<%= sale['icon2'] || 'fa fa-angle-right' %>"></span>
+                    </a>
+                    </div>
+
                 </div>
-               
-                <%end%>
-                 <%# <div class="col-xs-12">
-                    <p class="asks-call"> %>
-                        <%# <%= (@bs.content || {})["query"] %> 
-                        <%# <span class="strong"><%= (@bs.content || {})["phone"] %>
-                    <%# </p>
-                    </div> %>
-                    <div class="col-xs-12">
-                    <p class="asks-call">
-                        <%= @bs.content&.dig("query") || "QUESTIONS? CALL US :" %>
-                        <span class="strong">
-                        <%= @bs.content&.dig("phone") || "+3-123-424-5700" %>
-                        </span>
-                    </p>
-                    </div>
+                </div>
+
+            <% end %>
+
+            <div class="col-xs-12">
+                <p class="asks-call">
+                <%= @bs&.content&.dig("query") || "QUESTIONS? CALL US :" %>
+                <span class="strong">
+                    <%= @bs&.content&.dig("phone") || "+3-123-424-5700" %>
+                </span>
+                </p>
+            </div>
+
+
 
             <%else%>
             <div class="col-md-6 col-sm-10 col-sm-offset-1 col-md-offset-0 col-xs-12">
