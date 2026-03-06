@@ -31,9 +31,19 @@
         <div class="slider-content">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
-                    <h2><%=@banner.title%></h2>
+                    <% if @banner&.title.present?%>
+                        <h2><%= @banner.title %></h2>
+                    <%else%>
+                        <h2>You can trust Us </h2>
+                    <%end%>
+                    <%# <h2><%=@banner.title%>
+                        <% if @banner&.subtitle.present?%>
+                            <p><%=@banner.subtitle%></p>
+                        <%else%>
+                            <h2>You can trust Us </h2>
+                        <%end%>
                     
-                    <p><%=@banner.subtitle%></p>
+                    
                     <div class="search-form wow pulse" data-wow-delay="0.8s">
                         <%= search_form_for @q, url: root_path, method: :get, remote: true,html: { data: { turbo: false,type: :script },class: "form-inline" } do |f|  %>
                 
@@ -87,7 +97,7 @@
                                         <div class="item-thumb">
                                             <%= link_to property_path(property) do %>
 
-                                                <% if property.images.attached? %>
+                                                <% if property&.images.attached? %>
                                                     <%= image_tag property.images.first.variant(resize_to_fill: [260, 180]),
                                                         class: "img-responsive",
                                                         alt: property.name %>
@@ -156,7 +166,12 @@
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
                                 <!-- /.feature title -->
-                                <h2><%=@welcome.title%> </h2>
+                                <%# <h2><%=@welcome.title%> 
+                                <% if @welcome&.title.present?%>
+                                    <h2><%= @welcome.title %></h2>
+                                <%else%>
+                                    <h2>You can trust Us </h2>
+                                <%end%>
                             </div>
                         </div>
                     </div>
@@ -164,7 +179,7 @@
                 <div class="col-md-5 col-sm-6 col-xs-12">
                     <div  class="welcome_services wow fadeInRight" data-wow-delay="0.3s" data-wow-offset="100">
                         <div class="row">
-                                <% services = (@welcome.content || {})["services"] || {} %> 
+                                <% services = (@welcome?.content || {})["services"] || {} %> 
                                <%if @welcome.content %> 
 
                                 
@@ -179,6 +194,7 @@
                                             <i class="<%= service['icon'] %> pe-4x"></i>
                                             </div>
                                             <h3><%= service["title"] %></h3>
+                                            
                                         </div>
                                         <% end %>
 

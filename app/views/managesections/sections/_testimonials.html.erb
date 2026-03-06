@@ -15,6 +15,7 @@
 <div class="form-group">
             <%= f.label :subtitle, "Image" %>
             <%= f.file_field :images,
+                                multiple:true,
                                 id: "wizard-picture",
                                 class: "form-control",
                                 direct_upload: true 
