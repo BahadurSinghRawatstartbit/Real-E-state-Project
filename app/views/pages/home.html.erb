@@ -247,7 +247,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
                 <!-- /.feature title -->
-                <% if @testimonials.title%>
+                <% if @testimonials.title.present? %>
                     <h2><%= @testimonials.title %></h2>
                 <%else%>
                     <h2>Our Customers Said  </h2>
@@ -330,7 +330,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
                 <!-- /.feature title -->
-                <% if @cta.title%>
+                <% if @cta.title.present?%>
                     <h2><%= @cta.title %></h2>
                 <%else%>
                     <h2>You can trust Us </h2>
