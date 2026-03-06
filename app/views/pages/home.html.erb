@@ -179,7 +179,7 @@
                 <div class="col-md-5 col-sm-6 col-xs-12">
                     <div  class="welcome_services wow fadeInRight" data-wow-delay="0.3s" data-wow-offset="100">
                         <div class="row">
-                                <% services = (@welcome?.content || {})["services"] || {} %> 
+                                <% services = (@welcome&.content || {})["services"] || {} %> 
                                <%if @welcome.content %> 
 
                                 
