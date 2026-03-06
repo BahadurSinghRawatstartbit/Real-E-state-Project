@@ -13,7 +13,7 @@ class PagesController < ApplicationController
     @welcome= Managesection.find_by(section_type: 'wellcome_banner')
     @cta = Managesection.find_by(section_type: 'count_area')
     @bs = Managesection.find_by(section_type: 'boy-sale-area')
-    
+    # byebug
     # @featured_properties=Managesection.find_by(section_type: 'featured')
     # 
     @featured_section = Managesection.find_by(section_type: 'featured')

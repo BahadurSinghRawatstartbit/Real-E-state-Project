@@ -1,6 +1,6 @@
 
 Rails.application.routes.draw do
-  
+  root "pages#home"
 mount ActionCable.server => '/cable'
  
   resource :payments, only: [:new, :create,:cancel,:index] do
@@ -34,7 +34,7 @@ patch "/change-password", to: "users#update_password"
 
   post "/webhooks/stripe", to: "webhooks#stripe"
 
-  root "pages#home"
+  
   get  "/chat", to: "pages#msgpage"
   post "/chat",to: "messages#create"
   get  "/customers_chats" ,to:"pages#chat_query_list"
