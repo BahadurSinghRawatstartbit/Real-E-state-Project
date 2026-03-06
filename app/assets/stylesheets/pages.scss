@@ -6,6 +6,9 @@
 a{
     text-decoration: none;
 }
+#quick-properties{
+margin-top: 50px;
+}
 .lb{
   padding-left: 0px !important;
 }
@@ -42,6 +45,18 @@ body{
 .indprop{
     margin-bottom: 20px !important;
 
+  }
+
+  .cart-count{
+    position: absolute;
+    bottom: 50%;
+    background: red;
+    border-radius: 50%;
+    color: white;
+    height: 20px;
+    width: 15px;
+    /* display: flex; */
+    text-align: center;
   }
   
   

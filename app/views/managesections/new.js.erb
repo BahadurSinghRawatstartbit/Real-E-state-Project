@@ -1,0 +1,44 @@
+
+// app/views/managesections/new.js.erb
+console.log("AJAX request successful for type: <%= @section.section_type %>");
+$("#dynamic-fields").html("<%= j render('/managesections/sections/' + @section.section_type, f: ActionView::Helpers::FormBuilder.new(:managesection, @section, self, {})) %>");
+
+
+
+$(document).on("input", "#testimonial-count", function(){
+
+let count = parseInt($(this).val()) || 0;
+
+let container = $("#testimonial-fields");
+container.html("");
+
+for(let i=0;i<count;i++){
+
+container.append(`
+
+<div class="well">
+
+<h4>Testimonial ${i+1}</h4>
+
+<div class="form-group">
+<label>Client Text</label>
+<textarea name="managesection[content][testimonials][${i}][text]" class="form-control"></textarea>
+</div>
+
+<div class="form-group">
+<label>Client Name</label>
+<input type="text" name="managesection[content][testimonials][${i}][name]" class="form-control">
+</div>
+
+<div class="form-group">
+<label>Designation</label>
+<input type="text" name="managesection[content][testimonials][${i}][designation]" class="form-control">
+</div>
+
+</div>
+
+`);
+
+}
+
+});

@@ -1,6 +1,15 @@
-// Removed the changes made to dynamically render the `property_list` partial.
+<%# // Removed the changes made to dynamically render the `property_list` partial. %>
 
-$("#list-type").html("<%= j(render partial: 'properties_list', locals: { properties: @properties }) %>");
-<%# $("#sidebar").html("<%= j(render partial: 'sidebar', locals: { keyword: @q }) %>
-<%# document.getElementById("pagination").innerHTML =
+<%# $("#list-type").html("<%= j(render 'properties_list', locals: { properties: @properties }) %>
+$("#list-type").html("<%= j(render 'properties_list', properties: @properties) %>");
+<%# $("#sidebar").html("<%= j(render 'sidebar', locals: { f: f }) %>
+
+
+
+              <%# <%= render partial: "sidebar", locals: { f: f } %> 
+
+
+ <%# document.getElementById("pagination").innerHTML =
   "<%= j will_paginate(@properties) %>
+
+  <%# <%= render partial: "properties_list", locals: { properties: @properties } %> 

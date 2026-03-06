@@ -1,0 +1,55 @@
+<div class="container" style="margin-top:40px;">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+
+      <div class="panel panel-primary" style="box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+        
+        <div class="panel-heading"  >
+          <h3 class="panel-title">
+            <i class="fa fa-plus-circle"></i> Create Website Section
+          </h3>
+        </div>
+
+        <div class="panel-body">
+
+          <%= form_with model: @section, 
+                        id: "section-form", 
+                        remote: true do |f| %>
+
+            <!-- Section Type Dropdown -->
+            <div class="form-group">
+              <%= f.label :section_type, class: "control-label" %>
+              
+              <%= f.select :section_type, 
+                    ["home_banner", "about", "testimonials","boy-sale-area","count_area", "featured","wellcome_banner","contact"], 
+                    { prompt: "Select Section" }, 
+                    { class: "form-control",
+                      onchange: "$.get('#{new_managesection_path}.js?section_type=' + this.value);" } %>
+            </div>
+
+            <!-- Debug Output (optional remove later) -->
+            <%# <p><%= @section.section_type %>
+
+            <!-- Dynamic Fields -->
+            <div id="dynamic-fields" style="margin-top:20px;">
+              <% if @section.section_type.present? %>
+                <div class="well">
+                  <%= render "/managesections/sections/#{@section.section_type}", f: f %>
+                </div>
+              <% end %>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center" style="margin-top:20px;">
+              <%= f.submit "Create Section", 
+                          class: "btn  btn-lg" %>
+            </div>
+
+          <% end %>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

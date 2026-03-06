@@ -97,21 +97,28 @@
               Lorem ipsum dolor sit amet, nulla suscipit similique quisquam
               molestias.
             </p>
+            <form>
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="E-mail ... ">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary subscribe" type="button"><i class="pe-7s-paper-plane pe-2x"></i></button>
+                    </span>
+                </div>
+                <!-- /input-group -->
+            </form> 
 
-            <%= form_with url: subscribe_path, method: :post, local: true do %>
-              <div class="input-group">
-                <%= email_field_tag :email,
-                                    nil,
-                                    class: "form-control",
-                                    placeholder: "E-mail ..." %>
+            <%# <%= form_with url: subscribe_path, method: :post, local: true do %> 
+              <%# <div class="input-group"> %>
+                
+                <%# <%= email_field_tag :email,nil,class: "form-control",placeholder: "E-mail ..." %> 
 
-                <span class="input-group-btn">
+                <%# <span class="input-group-btn">
                   <button class="btn btn-primary subscribe" type="submit">
                     <i class="pe-7s-paper-plane pe-2x"></i>
                   </button>
                 </span>
-              </div>
-            <% end %>
+              </div> %>
+            <%# <% end %> 
 
             <div class="social pull-right">
               <ul>

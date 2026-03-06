@@ -1,0 +1,27 @@
+<%# <div class="form-group"> %>
+  <%# <%= f.label :section_type, "Hero Banner" %> 
+  <%# <%= f.hidden_field :section_type ,value:"home_banner" %> 
+<%# </div> %>
+
+<div class="form-group">
+  <%= f.label :title, "Heading" %>
+  <%= f.text_field :title, class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :subtitle, " Subheading" %>
+  <%= f.text_field :subtitle, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= f.label :subtitle, "Images" %>
+  <%= f.file_field :images,
+                    multiple: true,
+                    id: "wizard-picture",
+                    class: "form-control",
+                    direct_upload: true 
+                    %>
+
+</div>
+
+
+  

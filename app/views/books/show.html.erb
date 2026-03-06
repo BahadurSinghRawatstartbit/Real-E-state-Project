@@ -55,7 +55,7 @@
                     <span class="pull-left" style="color:red; padding-top:20px;">
                       <b>Booking Price :</b> <%= book_price %>
                     </span>
-                    <p><%= item.property.description %></p>
+                    <p class="desc" style="display:none !important;"><%= item.property.description %></p>
                     <div class="property-icon">
                       <img src="<%= asset_path('icon/bed.png') %>"> (<%= item.property.bedroom %>) |
                       <img src="<%= asset_path('icon/shawer.png') %>"> (<%= item.property.bathroom %>) |

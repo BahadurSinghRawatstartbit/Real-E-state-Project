@@ -18,7 +18,18 @@
                 <div class="logoutbtn">
                     <%= button_to "Logout", logout_path, method: :delete, data: { confirm: "Are you sure?", class: "nav-link navbar-btn nav-button wow bounceInRight login " } %>
                     </div>
-                    <%= link_to "Submit", new_property_path, class: "navbar-btn nav-button wow fadeInRight","data-wow-delay": "0.48s" %>
+                    <%# <%= link_to root_path do %> 
+                        <%# <%= image_tag "carts.png" ,class:"productcart  wow fadeInRight"%> 
+                        
+                    <%# <% end %> 
+                    <% if current_cart.present? %>
+                        <%= link_to book_path(current_cart), class: "cart-link" do %>
+                            <%= image_tag "carts.png", class: "productcart wow fadeInRight" %>
+                            <span class="cart-count">
+                            <%= current_cart.booking_items.count %>
+                            </span>
+                        <% end %>
+                    <% end %>
                     <%# <button class="navbar-btn nav-button wow fadeInRight" onclick=" javascript:window.print()" data-wow-delay="0.48s">Submit</button> %>
 
                 <% else %>
@@ -35,7 +46,7 @@
             </li>
                         
             <li class="wow fadeInDown myli <%= 'active' if current_page?(agent_dashboard_property_list_path) %>            " data-wow-delay="0.3s">
-                <%= link_to "MY Properties ", agent_dashboard_property_list_path, class: "nav-link" %>
+                <%= link_to "My Properties ", agent_dashboard_property_list_path, class: "nav-link" %>
             </li>
             <li class="wow fadeInDown myli <%= 'active' if current_page?(agent_dashboard_customer_list_path) %>            " data-wow-delay="0.3s">
                 <%= link_to "My Customers ", agent_dashboard_customer_list_path, class: "nav-link" %>

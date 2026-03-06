@@ -1,0 +1,42 @@
+
+
+<div class="panel-heading">
+<h3>Testimonials Section</h3>
+</div>
+
+
+
+<div class="form-group">
+  <%= f.label :title, "Title" %>
+  <%= f.text_field :title, class: "form-control" %>
+</div>
+
+<hr>
+<div class="form-group">
+            <%= f.label :subtitle, "Image" %>
+            <%= f.file_field :images,
+                                id: "wizard-picture",
+                                class: "form-control",
+                                direct_upload: true 
+                                %>
+
+        </div>
+        <hr>
+
+<div class="form-group">
+<label>Number of Testimonials</label>
+<input type="number" id="testimonial-count" class="form-control" placeholder="Enter number">
+</div>
+
+<hr>
+
+<h4>Testimonials</h4>
+
+<div id="testimonial-fields"></div>
+
+<br>
+
+
+
+
+

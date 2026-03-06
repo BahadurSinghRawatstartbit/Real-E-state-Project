@@ -3,6 +3,9 @@ class User < ApplicationRecord
   after_create :assign_default_role
   before_save { self.email = email.downcase }
   has_secure_password
+  attr_accessor :current_password
+  has_many :conversations, dependent: :destroy
+  has_many :contacts , dependent: :destroy
   has_many :properties, foreign_key: :user_id, dependent: :destroy
   has_many :books, foreign_key: :user_id, dependent: :destroy
   has_many :wishlists, dependent: :destroy

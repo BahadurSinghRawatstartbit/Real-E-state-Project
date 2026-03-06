@@ -1,0 +1,221 @@
+
+<button class="btn  toggle-btn barhome" type="button"><i class="fa fa-bars"></i></button>
+
+<div class="form-group">              
+    
+        <%# <%= f.text_field :name_or_description_cont, class: "form-control",id:"property_search", placeholder: "Key word" %>   
+        <%= f.text_field :name_or_description_cont, class: "form-control",id: "property_search", placeholder: "Key word" %>
+
+
+</div>
+<div class="form-group">
+   <%# <%= f.select :city_eq, Property.distinct.pluck(:city).compact, { include_blank: "City" }, class: "selectpicker",id:"lunchBegins",data: {live_search: "true",live_search_style: "begins"}   %>
+  <%= f.select :city_eq,
+                        Property.distinct.pluck(:city).compact,
+                        { include_blank: "Select Your City" },
+                        class: "selectpicker",
+                        id:"lunchBegins",
+                        data: {
+                        live_search: "true",
+                        live_search_style: "begins"
+                        } %> 
+
+
+</div>
+<div class="form-group">
+    
+    <%# <%= f.select :status_eq, Property.distinct.pluck(:status).compact, { include_blank: "Status" }, class: "selectpicker show-tick form-control",id:'basic' %> 
+  <%= f.select :status_eq,
+                        Property.distinct.pluck(:status).compact,
+                        { include_blank: "-Status-" },
+                        class: "selectpicker show-tick form-control",
+                        id:"basic"
+                         %> 
+
+
+</div>
+<%# <button class="btn search-btn" type="submit">
+  <i class="fa fa-search"></i>
+</button> %>
+<%= f.submit "🔎", class: "btn search-btn" %>
+<%# <%= f.submit '🔎', class: 'btn search-btn' %> 
+
+<div style="display: none;" class="search-toggle">
+
+    <div class="search-row">
+
+        <div class="form-group mar-r-20">
+            <label for="price-range">Price range ($):</label>
+            <%= f.text_field :price_gteq, id: "price-range",class: "span2",value: "",
+            data: {
+            slider_min: "10000",
+            slider_max: "1000000",
+            slider_step: "5",
+            slider_value: "[0,450]"
+            } %> <br />
+            <b class="pull-left color">2000$</b>
+            <b class="pull-right color">100000$</b>
+        </div>
+        <!-- End of  -->
+        
+
+        <div class="form-group mar-l-20">
+            <label for="property-geo">Property geo (m2) :</label>
+            <%= f.text_field :area_gteq,
+            class: "span2",
+            value: "",
+            data: {
+            slider_min: "100",
+            slider_max: "60000",
+            slider_step: "5",
+            slider_value: "[50,450]"
+            },
+            id: "property-geo" %><br />
+            <b class="pull-left color">40m</b>
+            <b class="pull-right color">12000m</b>
+        </div>
+        <!-- End of  -->
+    </div>
+
+    <div class="search-row">
+
+        <div class="form-group mar-r-20">
+            <label for="price-range">Min baths :</label>
+            <%= f.number_field :bedroom_gteq,
+            class: "span2",
+            value: "",
+            data: {
+            slider_min: "0",
+            slider_max: "600",
+            slider_step: "5",
+            slider_value: "[250,450]"
+            },
+            id: "min-baths" %><br />
+            <b class="pull-left color">1</b>
+            <b class="pull-right color">120</b>
+        </div>
+        <!-- End of  -->
+
+        <div class="form-group mar-l-20">
+            <label for="property-geo">Min bed :</label>
+            <%= f.number_field :bedroom_gteq,
+            class: "span2",
+            value: "",
+            data: {
+            slider_min: "0",
+            slider_max: "600",
+            slider_step: "5",
+            slider_value: "[250,450]"
+            },
+            id: "min-bed" %><br />
+            <b class="pull-left color">1</b>
+            <b class="pull-right color">120</b>
+        </div>
+        <!-- End of  -->
+
+    </div>
+    <br>
+    <div class="search-row">
+
+        <div class="form-group">
+            <div class="checkbox">
+                <label class="lb">
+            <%= f.check_box :fireplace_true, { include_hidden: false }, checked: true %>
+              Fire Place
+          </label>
+            </div>
+        </div>
+        <!-- End of  -->
+
+        <div class="form-group">
+            <div class="checkbox">
+                <label class="lb">
+            <%= f.check_box :dualsinks_true, { include_hidden: false } %>
+              Dual Sinks
+          </label>
+            </div>
+        </div>
+        <!-- End of  -->
+
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> Hurricane Shutters(99)
+                </label>
+            </div>
+        </div>
+        <!-- End of  -->
+    </div>
+
+    <div class="search-row">
+
+        <div class="form-group">
+            <div class="checkbox">
+                <label class="lb">
+            <%= f.check_box :swimmingpool_true, { include_hidden: false }, checked: true %>
+              Swimming Pool
+          </label>
+            </div>
+        </div>
+        <!-- End of  -->
+
+        <div class="form-group">
+            <div class="checkbox">
+                <label class="lb">
+            <%= f.check_box :twostories_true, { include_hidden: false }, checked: true %>
+              2 Stories
+          </label>
+            </div>
+        </div>
+        <!-- End of  -->
+
+        <div class="form-group">
+            <div class="checkbox">
+                <label class="lb">
+            <%= f.check_box :emergencyexit_true, { include_hidden: false } %>
+              Emergency Exit
+          </label>
+            </div>
+        </div>
+        <!-- End of  -->
+    </div>
+
+    <div class="search-row">
+
+        <div class="form-group">
+            <div class="checkbox">
+                <label class="lb">
+            <%= f.check_box :laundryroom_true, { include_hidden: false } %>
+              Laundry Room
+          </label>
+            </div>
+        </div>
+        <!-- End of  -->
+
+        <div class="form-group">
+            <div class="checkbox">
+                <label class="lb">
+            <%= f.check_box :jogpath_true, { include_hidden: false }, checked: true %>
+              Jog Path
+          </label>
+            </div>
+        </div>
+        <!-- End of  -->
+
+        <div class="form-group">
+            <div class="checkbox">
+                <label class="lb">
+            <%= f.check_box :ceilings_true, { include_hidden: false } %>
+              26' Ceilings
+          </label>
+            </div>
+        </div>
+        <!-- End of  -->
+        <br>
+        <hr>
+</div>
+<%= f.submit "🔎", class: "btn search-btn" %>
+<%# <button class="btn search-btn" type="submit">
+  <i class="fa fa-search"></i>
+</button> %>
+</div>

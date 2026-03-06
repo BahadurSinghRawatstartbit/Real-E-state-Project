@@ -95,3 +95,11 @@ end
 
 
 end
+# def require_login
+#   return if logged_in?
+
+#   respond_to do |format|
+#     format.json { render json: { error: "Unauthorized" }, status: :unauthorized }
+#     format.html { redirect_to login_path, alert: "You have to login first" }
+#   end
+# end

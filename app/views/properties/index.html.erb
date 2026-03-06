@@ -21,9 +21,10 @@
             <%# <%= form_with url: properties_path, method: :get, html: { class: "form-inline" }, remote: true do |f| %> 
               <%# <%= render partial: "sidebar", locals: { f: f } %> 
             <%# <% end %> 
-            <%= search_form_for @q, url: properties_path, method: :get, remote: true do |f| %>
-              <%= render partial: "sidebar", locals: { f: f } %>
+            <%= search_form_for @q, url: properties_path, method: :get, remote: true,html: { data: { turbo: false,type: :script } } do |f| %>
+              <%= render "sidebar",  f: f  %>
             <% end %>
+       
           </div>
         </div>
 
@@ -69,7 +70,7 @@
       <div class="col-md-9 padding-top-40 properties-page">
         <div class="row mobilerow" id="list-type">
 
-          <%= render partial: "properties/properties_list", locals: { properties: @properties } %>
+          <%= render partial: "properties_list", locals: { properties: @properties } %>
 
         </div>
 

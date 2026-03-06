@@ -21,7 +21,7 @@
 
                 <div class="box-for overflow">
                     <div class="col-md-12 col-xs-12 register-blocks">
-                        <h2>New account : </h2>
+                        <h2>Your Profile : </h2>
                         <%= form_with(model: @user, local: true) do |f| %>
                             <div class="form-group">
                                 <label for="name">Name</label>
@@ -35,6 +35,10 @@
                             <div class="form-group">
                                 <label for="email">Mobile Number</label>
                                 <%= f.text_field :mobilenumber, class: "form-control", id: "email", required: true %>
+                            </div>
+                            <div class="form-group">
+                                <%# <label for="password">Reset Password</label> %>
+                                <li><%= link_to "Reset your Password", change_password_path %></li>
                             </div>
                             
                             <div class="text-center">

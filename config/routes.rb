@@ -1,5 +1,6 @@
 
 Rails.application.routes.draw do
+  
 mount ActionCable.server => '/cable'
  
   resource :payments, only: [:new, :create,:cancel,:index] do
@@ -17,6 +18,19 @@ mount ActionCable.server => '/cable'
       get "callback"
     end
   end
+ resources :contacts, only: [:new, :create]
+  
+  # post "admin/setting" , to: "banners#create"
+  
+  # namespace :users do
+  #   resources :faqs, only: [:index,:new,:create,:destroy,:update]
+  # end
+  resources :faqs
+resources :managesections
+# config/routes.rb
+get   "/change-password", to: "users#change_password"
+patch "/change-password", to: "users#update_password"
+
 
   post "/webhooks/stripe", to: "webhooks#stripe"
 
@@ -25,7 +39,7 @@ mount ActionCable.server => '/cable'
   post "/chat",to: "messages#create"
   get  "/customers_chats" ,to:"pages#chat_query_list"
   get  "pages/contact", to: "pages#contact", as: "pages_contact"
-  post 'pages/contact', to: 'pages#contact_submit'
+  post 'pages/contact', to: 'contacts#create'
   post 'subscribe', to: 'pages#subscribe'
 
   get '/order' ,to: 'pages#user_booked_property'
@@ -74,6 +88,8 @@ mount ActionCable.server => '/cable'
     resource :wishlist, only: [:create, :destroy]
   end
   
+
+
 
 
   # Booking cart (Book)

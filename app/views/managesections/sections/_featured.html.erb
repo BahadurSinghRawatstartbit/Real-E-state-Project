@@ -1,0 +1,30 @@
+<div class="form-group">
+ 
+  <%= label_tag "Section Heading" %>
+  <%= text_field_tag "managesection[content][heading]", @section.content["heading"], class: "form-control" %>
+  
+</div>
+
+<div class="form-group">
+  <%= f.label :title, "Heading" %>
+  <%= f.text_field :title, class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :subtitle, " Subheading" %>
+  <%= f.text_field :subtitle, class: "form-control" %>
+
+
+
+
+
+<div class="form-group">
+  <%= f.label :featured_properties, "Select Featured Properties" %>
+  
+  <%= select_tag "managesection[content][featured_property_ids][]",
+      options_from_collection_for_select(@properties, "id", "name", @section.content["featured_property_ids"]),
+      multiple: true,
+      class: "form-control" %>
+  
+  <small class="text-muted">Hold Ctrl (Windows) or Cmd (Mac) to select multiple</small>
+</div>

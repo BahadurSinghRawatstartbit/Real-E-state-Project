@@ -1,278 +1,145 @@
 <div class="slider-area">
-    <div class="slider">
-        <div id="bg-slider" class="owl-carousel owl-theme">
-            <div class="item">
-                <%= image_tag("slide1/slider-image-1.jpg") %>
-            </div>
-
-            <div class="item">
-                <%= image_tag("slide1/slider-image-2.jpg") %>
-            </div>
-
-            <div class="item">
-                <%= image_tag("slide1/slider-image-4.jpg") %>
-            </div>
-
-        </div>
-    </div>
-    <div class="slider-content">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
-                <h2>property Searching Just Got So Easy</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi deserunt deleniti, ullam commodi sit ipsam laboriosam velit adipisci quibusdam aliquam teneturo!</p>
-                <div class="search-form wow pulse" data-wow-delay="0.8s">
-
-                    <form action="" class=" form-inline">
-                        <button class="btn  toggle-btn barhome" type="button"><i class="fa fa-bars"></i></button>
-
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Key word">
-                        </div>
-                        <div class="form-group">
-                            <select id="lunchBegins" class="selectpicker slpick" data-live-search="true" data-live-search-style="begins" title="Select your city">
-
-                                <option>New york, CA</option>
-                                <option>Paris</option>
-                                <option>Casablanca</option>
-                                <option>Tokyo</option>
-                                <option>Marraekch</option>
-                                <option>kyoto , shibua</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <select id="basic" class="selectpicker show-tick form-control">
-                                <option> -Status- </option>
-                                <option>Rent </option>
-                                <option>Boy</option>
-                                <option>used</option>
-
-                            </select>
-                        </div>
-                        <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
-
-                        <div style="display: none;" class="search-toggle">
-
-                            <div class="search-row">
-
-                                <div class="form-group mar-r-20">
-                                    <label for="price-range">Price range ($):</label>
-                                    <input type="text" class="span2" value="" data-slider-min="0"
-                                      data-slider-max="600" data-slider-step="5"
-                                      data-slider-value="[0,450]" id="price-range" ><br />
-                                    <b class="pull-left color">2000$</b>
-                                    <b class="pull-right color">100000$</b>
-                                </div>
-                                <!-- End of  -->
-
-                                <div class="form-group mar-l-20">
-                                    <label for="property-geo">Property geo (m2) :</label>
-                                    <input type="text" class="span2" value="" data-slider-min="0"
-                                      data-slider-max="600" data-slider-step="5"
-                                      data-slider-value="[50,450]" id="property-geo" ><br />
-                                    <b class="pull-left color">40m</b>
-                                    <b class="pull-right color">12000m</b>
-                                </div>
-                                <!-- End of  -->
+    <% if @banner.present? %>
+        <div class="slider">
+            <div id="bg-slider" class="owl-carousel owl-theme">
+                
+        
+                    <% if @banner&.images&.attached? %>
+                        <% @banner.images.each do |img| %>
+                            <div class="item">
+                            <%= image_tag img %>
                             </div>
-
-                            <div class="search-row">
-
-                                <div class="form-group mar-r-20">
-                                    <label for="price-range">Min baths :</label>
-                                    <input type="text" class="span2" value="" data-slider-min="0"
-                                      data-slider-max="600" data-slider-step="5"
-                                      data-slider-value="[250,450]" id="min-baths" ><br />
-                                    <b class="pull-left color">1</b>
-                                    <b class="pull-right color">120</b>
-                                </div>
-                                <!-- End of  -->
-
-                                <div class="form-group mar-l-20">
-                                    <label for="property-geo">Min bed :</label>
-                                    <input type="text" class="span2" value="" data-slider-min="0"
-                                      data-slider-max="600" data-slider-step="5"
-                                      data-slider-value="[250,450]" id="min-bed" ><br />
-                                    <b class="pull-left color">1</b>
-                                    <b class="pull-right color">120</b>
-                                </div>
-                                <!-- End of  -->
-
-                            </div>
-                            <br>
-                            <div class="search-row">
-
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Fire Place(3100)
-                                        </label>
-                                    </div>
-                                </div>
-                                <!-- End of  -->
-
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Dual Sinks(500)
-                                        </label>
-                                    </div>
-                                </div>
-                                <!-- End of  -->
-
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Hurricane Shutters(99)
-                                        </label>
-                                    </div>
-                                </div>
-                                <!-- End of  -->
-                            </div>
-
-                            <div class="search-row">
-
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Swimming Pool(1190)
-                                        </label>
-                                    </div>
-                                </div>
-                                <!-- End of  -->
-
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> 2 Stories(4600)
-                                        </label>
-                                    </div>
-                                </div>
-                                <!-- End of  -->
-
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Emergency Exit(200)
-                                        </label>
-                                    </div>
-                                </div>
-                                <!-- End of  -->
-                            </div>
-
-                            <div class="search-row">
-
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Laundry Room(10073)
-                                        </label>
-                                    </div>
-                                </div>
-                                <!-- End of  -->
-
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Jog Path(1503)
-                                        </label>
-                                    </div>
-                                </div>
-                                <!-- End of  -->
-
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> 26' Ceilings(1200)
-                                        </label>
-                                    </div>
-                                </div>
-                                <!-- End of  -->
-                                <br>
-                                <hr>
-                            </div>
-                            <button class="btn search-btn prop-btm-sheaerch" type="submit"><i class="fa fa-search"></i></button>
+                        <% end %>
+                    <%else%>
+                        <div class="item">
+                            <%= image_tag("slide1/slider-image-1.jpg") %>
                         </div>
 
-                    </form>
-                </div>
+                        <div class="item">
+                            <%= image_tag("slide1/slider-image-2.jpg") %>
+                        </div>
+
+                        <div class="item">
+                            <%= image_tag("slide1/slider-image-4.jpg") %>
+                        </div>
+                            
+                    <%end%>
+                
+
             </div>
         </div>
-    </div>
-</div>
-
-<!-- property area -->
-<div class="content-area home-area-1 recent-property" style="background-color: #FCFCFC; padding-bottom: 55px;">
-    <div class="container">
-
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
-                <h2>Top submitted property</h2>
-                <p>Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium.</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="proerty-th">
-
-                <% if @featured_properties.present? %>
-                    <% @featured_properties.each do |property| %>
-                        <div class="col-sm-6 col-md-3 p0">
-                            <div class="box-two proerty-item indprop">
-
-                                <div class="item-thumb">
-                                    <%= link_to property_path(property) do %>
-
-                                        <% if property.images.attached? %>
-                                            <%= image_tag property.images.first.variant(resize_to_fill: [260, 180]),
-                                                class: "img-responsive",
-                                                alt: property.name %>
-                                        <% else %>
-                                            <%= image_tag "demo/property-1.jpg",
-                                                class: "img-responsive",
-                                                alt: "No Image" %>
-                                        <% end %>
-
-                                    <% end %>
-                                </div>
-
-                                <div class="item-entry overflow">
-                                    <h5>
-                                        <%= link_to property.name, property_path(property) %>
-                                    </h5>
-
-                                    <div class="dot-hr"></div>
-
-                                    <span class="pull-left">                                        
-                                        <b>Area :</b><%= property.area %></span>                                    <span class="proerty-price pull-right">
-                                        $<%= property.price %>
-                                    </span>
-                                </div>
-
-                            </div>
-                        </div>
+        <div class="slider-content">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
+                    <h2><%=@banner.title%></h2>
+                    
+                    <p><%=@banner.subtitle%></p>
+                    <div class="search-form wow pulse" data-wow-delay="0.8s">
+                        <%= search_form_for @q, url: root_path, method: :get, remote: true,html: { data: { turbo: false,type: :script },class: "form-inline" } do |f|  %>
+                
+                    <%# <%= form_with url: root_path, method: :get, html: { class: "form-inline" }, remote: true do |f| %> 
+                    <%= render "homebanersearch", f: f  %>
                     <% end %>
-                <% else %>                    <div class="col-md-12 text-center">                        <p>No featured properties yet. <strong><%= link_to "View all properties", properties_path %></strong></p>                    </div>                <% end %>
-
-                <!-- Show all properties -->
-                <div class="col-sm-6 col-md-3 p0">
-                    <div class="box-tree more-proerty text-center">
-                        <div class="item-tree-icon">
-                            <i class="fa fa-th"></i>
-                        </div>                        <div class="more-entry overflow">                            <h5><%= link_to "CAN'T DECIDE ?", properties_path %></h5>                            <h5 class="tree-sub-ttl">Show all properties</h5>                        <%= link_to "All properties",
-                            properties_path,
-                            class: "btn border-btn more-black" %>
                     </div>
                 </div>
             </div>
+        </div>
+
+        
+    <%end%>
+</div>
+
+<div id="quick-properties">
+
+  <%= render 'properties_list', properties: @properties %>
+</div>
+
+
+<!-- property area -->
+<div class="content-area home-area-1 recent-property" style="background-color: #FCFCFC; padding-bottom: 55px;">
+     <% if @featured_properties.present? %>
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+                        <% if @featured_section&.title.present? %>
+                        <h2><%= @featured_section.title %></h2>
+                        <% else %>
+                        <h2>Top submitted property</h2>
+                        <% end %>
+
+                        <% if @featured_section&.subtitle.present? %>
+                        <p><%= @featured_section.subtitle %></p>
+                        <% else %>
+                        <p>Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium.</p>
+                        <% end %>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="proerty-th">
+
+                        <% if @featured_properties.present? %>
+                            <% @featured_properties.each do |property| %>
+                                <div class="col-sm-6 col-md-3 p0">
+                                    <div class="box-two proerty-item indprop">
+
+                                        <div class="item-thumb">
+                                            <%= link_to property_path(property) do %>
+
+                                                <% if property.images.attached? %>
+                                                    <%= image_tag property.images.first.variant(resize_to_fill: [260, 180]),
+                                                        class: "img-responsive",
+                                                        alt: property.name %>
+                                                <% else %>
+                                                    <%= image_tag "demo/property-1.jpg",
+                                                        class: "img-responsive",
+                                                        alt: "No Image" %>
+                                                <% end %>
+
+                                            <% end %>
+                                        </div>
+
+                                        <div class="item-entry overflow">
+                                            <h5>
+                                                <%= link_to property.name, property_path(property) %>
+                                            </h5>
+
+                                            <div class="dot-hr"></div>
+
+                                            <span class="pull-left">                                        
+                                                <b>Area :</b><%= property.area %></span>                                    <span class="proerty-price pull-right">
+                                                $<%= property.price %>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            <% end %>
+                        <% else %>                    <div class="col-md-12 text-center">                        <p>No featured properties yet. <strong><%= link_to "View all properties", properties_path %></strong></p>                    </div>                <% end %>
+
+                        <!-- Show all properties -->
+                        <div class="col-sm-6 col-md-3 p0">
+                            <div class="box-tree more-proerty text-center">
+                                <div class="item-tree-icon">
+                                    <i class="fa fa-th"></i>
+                                </div>                        <div class="more-entry overflow">                            <h5><%= link_to "CAN'T DECIDE ?", properties_path %></h5>                            <h5 class="tree-sub-ttl">Show all properties</h5>                        <%= link_to "All properties",
+                                    properties_path,
+                                    class: "btn border-btn more-black" %>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
         </div>
-    </div>
-
-</div>
+    <%end%>
 </div>
 
 <!--Welcome area -->
-<div class="Welcome-area">
+<div class="Welcome-area" style="background:#F3F3F3 url('<%= @welcome.images.attached? ? url_for(@welcome.images.first) : 'welcome-bg.png' %>') no-repeat left top;">
+    <% if @welcome.present? %>
     <div class="container">
         <div class="row">
             <div class="col-md-12 Welcome-entry  col-sm-12">
@@ -281,7 +148,7 @@
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
                                 <!-- /.feature title -->
-                                <h2>GARO ESTATE </h2>
+                                <h2><%=@welcome.title%> </h2>
                             </div>
                         </div>
                     </div>
@@ -289,72 +156,140 @@
                 <div class="col-md-5 col-sm-6 col-xs-12">
                     <div  class="welcome_services wow fadeInRight" data-wow-delay="0.3s" data-wow-offset="100">
                         <div class="row">
-                            <div class="col-xs-6 m-padding">
-                                <div class="welcome-estate">
-                                    <div class="welcome-icon">
-                                        <i class="pe-7s-home pe-4x"></i>
-                                    </div>
-                                    <h3>Any property</h3>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 m-padding">
-                                <div class="welcome-estate">
-                                    <div class="welcome-icon">
-                                        <i class="pe-7s-users pe-4x"></i>
-                                    </div>
-                                    <h3>More Clients</h3>
-                                </div>
-                            </div>
+                                <% services = (@welcome.content || {})["services"] || {} %> 
+                               <%if @welcome.content %> 
 
-                            <div class="col-xs-12 text-center">
-                                <i class="welcome-circle"></i>
-                            </div>
+                                
 
-                            <div class="col-xs-6 m-padding">
-                                <div class="welcome-estate">
-                                    <div class="welcome-icon">
-                                        <i class="pe-7s-notebook pe-4x"></i>
-                                    </div>
-                                    <h3>Easy to use</h3>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 m-padding">
-                                <div class="welcome-estate">
-                                    <div class="welcome-icon">
-                                        <i class="pe-7s-help2 pe-4x"></i>
-                                    </div>
-                                    <h3>Any help </h3>
-                                </div>
-                            </div>
+                            <% services.each_value.with_index do |service, index| %>
 
+                                    <div class="col-xs-6 m-padding">
+
+                                        <% if service['icon'] %>
+                                        <div class="welcome-estate">
+                                            <div class="welcome-icon">
+                                            <i class="<%= service['icon'] %> pe-4x"></i>
+                                            </div>
+                                            <h3><%= service["title"] %></h3>
+                                        </div>
+                                        <% end %>
+
+                                    </div>
+
+                                    <% if index == 1 %>
+                                        <div class="col-xs-12 text-center">
+                                        <i class="welcome-circle"></i>
+                                        </div>
+                                    <% end %>
+
+                                    <% end %>
+                                <%else%>
+                                    <div class="col-xs-6 m-padding">
+                                        <div class="welcome-estate">
+                                            <div class="welcome-icon">
+                                                <i class="pe-7s-home pe-4x"></i>
+                                            </div>
+                                            <h3>Any property</h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 m-padding">
+                                        <div class="welcome-estate">
+                                            <div class="welcome-icon">
+                                                <i class="pe-7s-users pe-4x"></i>
+                                            </div>
+                                            <h3>More Clients</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 text-center">
+                                        <i class="welcome-circle"></i>
+                                    </div>
+
+                                    <div class="col-xs-6 m-padding">
+                                        <div class="welcome-estate">
+                                            <div class="welcome-icon">
+                                                <i class="pe-7s-notebook pe-4x"></i>
+                                            </div>
+                                            <h3>Easy to use</h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 m-padding">
+                                        <div class="welcome-estate">
+                                            <div class="welcome-icon">
+                                                <i class="pe-7s-help2 pe-4x"></i>
+                                            </div>
+                                            <h3>Any help </h3>
+                                        </div>
+                                    </div>
+                                <%end%>
+                            
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <%end%>
 </div>
 
-<!--TESTIMONIALS -->
+<!--TESTIMONIALS testimonials -->
 <div class="testimonial-area recent-property" style="background-color: #FCFCFC; padding-bottom: 15px;">
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
                 <!-- /.feature title -->
-                <h2>Our Customers Said  </h2>
+                <% if @testimonials.title%>
+                    <h2><%= @testimonials.title %></h2>
+                <%else%>
+                    <h2>Our Customers Said  </h2>
+                <%end%>
             </div>
         </div>
 
         <div class="row">
             <div class="row testimonial">
                 <div class="col-md-12">
+                   
+
+
                     <div id="testimonial-slider">
-                        <div class="item">
+                        
+                        <% testimonialss = (@testimonials.content || {})["testimonials"] || [] %>
+                        <% testimonialss.each_with_index do |(key, t), i| %>
+                                <%if @testimonials.content %>
+                                <div class="item">
+                                
+                                <div class="client-text">
+                                    <p><%= t["text"] %></p>
+                                    <h4><strong><%= t["name"] %>, </strong><i><%= t["designation"] %></i></h4>
+                                </div>
+                                <div class="client-face wow fadeInRight" data-wow-delay=".9s">
+                                    <% if @testimonials.images.attached? && @testimonials.images[i] %>
+                                        <%= image_tag @testimonials.images[i] %>
+                                            
+                                        <%else%>
+                                            <%= image_tag "client-face2.png" %>
+                                        
+                                        <%end%>
+
+                                </div>
+                            </div>
+                                <%else%>
+                                <div class="client-text">
+                                    <p>Nulla quis dapibus nisl. Suspendisse llam sed arcu ultried arcu ultricies !</p>
+                                    <h4><strong>Ohidul Islam, </strong><i>Web Designer</i></h4>
+                                </div>
+                                <div class="client-face wow fadeInRight" data-wow-delay=".9s">
+                                    <%= image_tag("client-face1.png") %>
+
+                                </div>
+                                 <div class="item">
                             <div class="client-text">
                                 <p>Nulla quis dapibus nisl. Suspendisse llam sed arcu ultried arcu ultricies !</p>
                                 <h4><strong>Ohidul Islam, </strong><i>Web Designer</i></h4>
                             </div>
-                            <div class="client-face wow fadeInRight" data-wow-delay=".9s">
+                            <div class="client-face">
                                 <%= image_tag("client-face1.png") %>
 
                             </div>
@@ -369,26 +304,10 @@
 
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="client-text">
-                                <p>Nulla quis dapibus nisl. Suspendisse llam sed arcu ultried arcu ultricies !</p>
-                                <h4><strong>Ohidul Islam, </strong><i>Web Designer</i></h4>
-                            </div>
-                            <div class="client-face">
-                                <%= image_tag("client-face1.png") %>
-
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="client-text">
-                                <p>Nulla quis dapibus nisl. Suspendisse llam sed arcu ultried arcu ultricies !</p>
-                                <h4><strong>Ohidul Islam, </strong><i>Web Designer</i></h4>
-                            </div>
-                            <div class="client-face">
-                                <%= image_tag("client-face2.png") %>
-
-                            </div>
-                        </div>
+                                <%end%>
+                            
+                        <%end%>
+                        
                     </div>
                 </div>
             </div>
@@ -403,58 +322,95 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
                 <!-- /.feature title -->
-                <h2>You can trust Us </h2>
+                <% if @cta.title%>
+                    <h2><%= @cta.title %></h2>
+                <%else%>
+                    <h2>You can trust Us </h2>
+                <%end%>
+                
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 col-xs-12 percent-blocks m-main" data-waypoint-scroll="true">
+                <% countarea = (@cta.content || {})["counters"] || {} %> 
+                
                 <div class="row">
-                    <div class="col-sm-3 col-xs-6">
-                        <div class="count-item">
-                            <div class="count-item-circle">
-                                <span class="pe-7s-users"></span>
-                            </div>
-                            <div class="chart" data-percent="5000">
-                                <h2 class="percent" id="counter">0</h2>
-                                <h5>HAPPY CUSTOMER </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-xs-6">
-                        <div class="count-item">
-                            <div class="count-item-circle">
-                                <span class="pe-7s-home"></span>
-                            </div>
-                            <div class="chart" data-percent="12000">
-                                <h2 class="percent" id="counter1">0</h2>
-                                <h5>Properties in stock</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-xs-6">
-                        <div class="count-item">
-                            <div class="count-item-circle">
-                                <span class="pe-7s-flag"></span>
-                            </div>
-                            <div class="chart" data-percent="120">
-                                <h2 class="percent" id="counter2">0</h2>
-                                <h5>City registered </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-xs-6">
-                        <div class="count-item">
-                            <div class="count-item-circle">
-                                <span class="pe-7s-graph2"></span>
-                            </div>
-                            <div class="chart" data-percent="5000">
-                                <h2 class="percent"  id="counter3">5000</h2>
-                                <h5>DEALER BRANCHES</h5>
-                            </div>
-                        </div>
+                    <%if countarea.present? %>
+                        <% countarea.each_value.with_index do |count, index| %>
+                            <div class="col-sm-3 col-xs-6">
+                                <div class="count-item">
+                                    <div class="count-item-circle">
+                                        <span class="<%=count['icon']%>"></span>
+                                    </div>
+                                    <div class="chart" data-percent="5000">
+                                        
 
-                    </div>
+                                        <% if count['icon'] == 'pe-7s-graph2' %>
+                                        <h2 class="percent" id="counter"><%=count['number']%></h2>
+
+                                        <% elsif count['icon'] == 'pe-7s-home' %>
+                                        <h2 class="percent" id="counter1"><%=count['number']%></h2>
+
+                                        <% elsif count['icon'] == 'pe-7s-flag' %>
+                                        <h2 class="percent" id="counter2"><%=count['number']%></h2>
+
+                                        <% else %>
+                                        <h2 class="percent" id="counter3"><%=count['number']%></h2>
+                                        <% end %>
+                                        <h5><%=count['label']%></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        <%end%>
+                    <%else%>
+                        <div class="col-sm-3 col-xs-6">
+                            <div class="count-item">
+                                <div class="count-item-circle">
+                                    <span class="pe-7s-users"></span>
+                                </div>
+                                <div class="chart" data-percent="5000">
+                                    <h2 class="percent" id="counter">0</h2>
+                                    <h5>HAPPY CUSTOMER </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-6">
+                            <div class="count-item">
+                                <div class="count-item-circle">
+                                    <span class="pe-7s-home"></span>
+                                </div>
+                                <div class="chart" data-percent="12000">
+                                    <h2 class="percent" id="counter1">0</h2>
+                                    <h5>Properties in stock</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-6">
+                            <div class="count-item">
+                                <div class="count-item-circle">
+                                    <span class="pe-7s-flag"></span>
+                                </div>
+                                <div class="chart" data-percent="120">
+                                    <h2 class="percent" id="counter2">0</h2>
+                                    <h5>City registered </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-6">
+                            <div class="count-item">
+                                <div class="count-item-circle">
+                                    <span class="pe-7s-graph2"></span>
+                                </div>
+                                <div class="chart" data-percent="5000">
+                                    <h2 class="percent"  id="counter3">5000</h2>
+                                    <h5>DEALER BRANCHES</h5>
+                                </div>
+                            </div>
+
+                        </div>
+                    <%end%>
                 </div>
+                
             </div>
         </div>
     </div>
@@ -464,7 +420,41 @@
 <div class="boy-sale-area">
     <div class="container">
         <div class="row">
+            <% sales = (@bs.content || {})["blocks"] || {} %>
+            <%if sales.present? %>
+                <% sales.each_value.with_index do |sale, index| %>
+                <div class="col-md-6 col-sm-10 col-sm-offset-1 col-md-offset-0 col-xs-12">
+                    <div class="asks-first">
+                        <div class="asks-first-circle">
+                            <span class="<%=sale['icon1']%>"></span>
+                        </div>
+                        <div class="asks-first-info">
+                            <h2><%=sale['title']%>..</h2>
+                            <p> <%=sale['description']%></p>
+                        </div>
+                        <div class="asks-first-arrow">
+                            <a href="<%=sale['link']%>"><span class="<%=sale['icon2']%>"></span></a>
+                        </div>
+                    </div>
+                </div>
+               
+                <%end%>
+                 <%# <div class="col-xs-12">
+                    <p class="asks-call"> %>
+                        <%# <%= (@bs.content || {})["query"] %> 
+                        <%# <span class="strong"><%= (@bs.content || {})["phone"] %>
+                    <%# </p>
+                    </div> %>
+                    <div class="col-xs-12">
+                    <p class="asks-call">
+                        <%= @bs.content&.dig("query") || "QUESTIONS? CALL US :" %>
+                        <span class="strong">
+                        <%= @bs.content&.dig("phone") || "+3-123-424-5700" %>
+                        </span>
+                    </p>
+                    </div>
 
+            <%else%>
             <div class="col-md-6 col-sm-10 col-sm-offset-1 col-md-offset-0 col-xs-12">
                 <div class="asks-first">
                     <div class="asks-first-circle">
@@ -492,10 +482,14 @@
                         <a href="properties.html"><span class="fa fa-angle-right"></span></a>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-12">
+                <div class="col-xs-12">
                 <p  class="asks-call">QUESTIONS? CALL US  : <span class="strong"> + 3-123- 424-5700</span></p>
             </div>
+            </div>
+            
+            <%end%>
+            
+            
         </div>
     </div>
 </div>

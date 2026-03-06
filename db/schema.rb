@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2026_02_05_123431) do
+ActiveRecord::Schema.define(version: 2026_03_06_085229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(version: 2026_02_05_123431) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "banners", force: :cascade do |t|
+    t.string "title"
+    t.string "subtitle"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "booking_items", force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "property_id", null: false
@@ -66,6 +73,18 @@ ActiveRecord::Schema.define(version: 2026_02_05_123431) do
     t.index ["user_id"], name: "index_books_on_user_id"
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.string "email"
+    t.string "subject"
+    t.text "message"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_contacts_on_user_id"
+  end
+
   create_table "conversations", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "admin_id", null: false
@@ -73,6 +92,27 @@ ActiveRecord::Schema.define(version: 2026_02_05_123431) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["admin_id"], name: "index_conversations_on_admin_id"
     t.index ["user_id"], name: "index_conversations_on_user_id"
+  end
+
+  create_table "faqs", force: :cascade do |t|
+    t.string "question"
+    t.text "answer"
+    t.string "category"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "managesections", force: :cascade do |t|
+    t.string "section_type", null: false
+    t.string "title"
+    t.string "subtitle"
+    t.jsonb "content", default: {}
+    t.jsonb "contact_info", default: {}
+    t.boolean "active", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["active"], name: "index_managesections_on_active"
+    t.index ["section_type"], name: "index_managesections_on_section_type"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -190,6 +230,7 @@ ActiveRecord::Schema.define(version: 2026_02_05_123431) do
   add_foreign_key "booking_items", "properties"
   add_foreign_key "booking_items", "variants"
   add_foreign_key "books", "users"
+  add_foreign_key "contacts", "users"
   add_foreign_key "conversations", "users"
   add_foreign_key "conversations", "users", column: "admin_id"
   add_foreign_key "messages", "conversations"

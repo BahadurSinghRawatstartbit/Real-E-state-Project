@@ -1,120 +1,140 @@
 
+<% content = (@contactpages.content || {}) %>
+<% contact = content["contact_form"] || {} %>
+<% address = content["address"] || {} %>
+<% call_center = content["call_center"] || {} %>
+<% electronic = content["electronic_support"] || {} %>
 <div class="page-head">
   <div class="container">
     <div class="row">
       <div class="page-head-content">
-        <h1 class="page-title">Contact page</h1>
+        <h1 class="page-title"><%= @contactpages.title %></h1>
       </div>
     </div>
   </div>
 </div>
-<!-- End page header -->
 
-<!-- property area -->
-<div class="content-area recent-property padding-top-40" style="background-color: #FFF;">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <div id="contact1">
-          <div class="row">
+<div class="content-area recent-property padding-top-40" style="background-color:#FFF;">
+<div class="container">
 
-            <div class="col-sm-4">
-              <h3><i class="fa fa-map-marker"></i> Address</h3>
-              <p>
-                13/25 shibuia <br>
-                Tokyo <br>
-                45Y 73J <br>
-                <strong>Japan</strong>
-              </p>
-            </div>
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
 
-            <div class="col-sm-4">
-              <h3><i class="fa fa-phone"></i> Call center</h3>
-              <p class="text-muted">
-                This number is toll free if calling from Great Britain otherwise
-                we advise you to use the electronic form of communication.
-              </p>
-              <p><strong>+33 555 444 333</strong></p>
-            </div>
+<div id="contact1">
+<div class="row">
 
-            <div class="col-sm-4">
-              <h3><i class="fa fa-envelope"></i> Electronic support</h3>
-              <p class="text-muted">
-                Please feel free to write an email to us or to use our electronic
-                ticketing system.
-              </p>
-              <ul>
-                <li>
-                  <strong>
-                    <%= mail_to "info@company.com" %>
-                  </strong>
-                </li>
-                <li>
-                  <strong><%= link_to "Ticketio", "#" %></strong>
-                  - our ticketing support platform
-                </li>
-              </ul>
-            </div>
+<!-- Address -->
+<div class="col-sm-4">
+<h3>
+<i class="fa fa-map-marker"></i>
+<%= address["label"] %>
+</h3>
 
-          </div>
-          <!-- /.row -->
+<p>
+<%= simple_format(address["value"]) %>
+</p>
+</div>
 
-          <hr>
-          
-          <hr>
 
-          <h2>Contact form</h2>
+<!-- Call Center -->
+<div class="col-sm-4">
 
-          <%= form_with url: pages_contact_path, method: :post, local: true do |f| %>
-            <div class="row">
+<h3>
+<i class="fa fa-phone"></i>
+<%= call_center["label"] %>
+</h3>
 
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <%= f.label :firstname, "Firstname" %>
-                  <%= f.text_field :firstname, class: "form-control" %>
-                </div>
-              </div>
+<p class="text-muted">
+<%= call_center["description"] %>
+</p>
 
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <%= f.label :lastname, "Lastname" %>
-                  <%= f.text_field :lastname, class: "form-control" %>
-                </div>
-              </div>
+<p>
+<strong><%= call_center["number"] %></strong>
+</p>
 
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <%= f.label :email, "Email" %>
-                  <%= f.text_field :email, class: "form-control" %>
-                </div>
-              </div>
+</div>
 
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <%= f.label :subject, "Subject" %>
-                  <%= f.text_field :subject, class: "form-control" %>
-                </div>
-              </div>
 
-              <div class="col-sm-12">
-                <div class="form-group">
-                  <%= f.label :message, "Message" %>
-                  <%= f.text_area :message, class: "form-control" %>
-                </div>
-              </div>
+<!-- Electronic Support -->
+<div class="col-sm-4">
 
-              <div class="col-sm-12 text-center">
-                <button type="submit" class="btn btn-primary">
-                  <i class="fa fa-envelope-o"></i> Send message
-                </button>
-              </div>
+<h3>
+<i class="fa fa-envelope"></i>
+<%= electronic["label"] %>
+</h3>
 
-            </div>
-            <!-- /.row -->
-          <% end %>
+<p class="text-muted">
+<%= electronic["description"] %>
+</p>
 
-        </div>
-      </div>
-    </div>
-  </div>
+<ul>
+<li>
+<strong>
+<%= mail_to electronic["email"] %>
+</strong>
+</li>
+</ul>
+
+</div>
+
+</div>
+
+<hr>
+
+<h2><%= contact["title"] %></h2>
+<%= form_with model: Contact.new, url: pages_contact_path, local: true do |f| %>
+<%# <%= form_with url: pages_contact_path, method: :post, local: true do |f| %> 
+
+<div class="row">
+
+<div class="col-sm-6">
+<div class="form-group">
+<%= f.label :firstname, contact["firstname"] %>
+<%= f.text_field :firstname, class:"form-control" %>
+</div>
+</div>
+
+<div class="col-sm-6">
+<div class="form-group">
+<%= f.label :lastname, contact["lastname"] %>
+<%= f.text_field :lastname, class:"form-control" %>
+</div>
+</div>
+
+<div class="col-sm-6">
+<div class="form-group">
+<%= f.label :email, contact["email"] %>
+<%= f.text_field :email, class:"form-control" %>
+</div>
+</div>
+
+<div class="col-sm-6">
+<div class="form-group">
+<%= f.label :subject, contact["subject"] %>
+<%= f.text_field :subject, class:"form-control" %>
+</div>
+</div>
+
+<div class="col-sm-12">
+<div class="form-group">
+<%= f.label :message, contact["message"] %>
+<%= f.text_area :message, class:"form-control" %>
+</div>
+</div>
+
+<div class="col-sm-12 text-center">
+<button class="btn btn-primary">
+<i class="fa fa-envelope-o"></i>
+<%= contact["button"] %>
+</button>
+</div>
+
+</div>
+
+<% end %>
+
+</div>
+</div>
+</div>
+</div>
 </div>

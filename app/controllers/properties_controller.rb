@@ -28,10 +28,9 @@ class PropertiesController < ApplicationController
     end
 
   
-    @properties = @properties.paginate(page: params[:page], per_page: params[:per_page] || 3)
+    @properties = @properties.paginate(page: params[:page], per_page: params[:per_page] || 9)
     
     @recommended_properties = Property.where(is_featured_product: true).limit(4)
-
     respond_to do |format|
       format.html
       format.js
@@ -101,7 +100,9 @@ end
   end
 
   def show
-    
+    @faqs=Faq.all
+    @agent = @property.user
+    # byebug
   end
 
   def destroy
@@ -116,35 +117,9 @@ end
   def set_property
     @property=Property.find(params[:id])
     @properties = Property.all
+    
   
   
-  # Add search filtering logic here based on params
-  if params[:keyword].present?
-    @properties = @properties.where("name LIKE ? OR description LIKE ?", 
-                                   "%#{params[:keyword]}%", 
-                                   "%#{params[:keyword]}%")
-  end
-  
-  if params[:status].present?
-    @properties = @properties.where(status: params[:status])
-  end
-  
-  # Filter by address/city
-  if params[:city].present?
-    @properties = @properties.where("address LIKE ?", "%#{params[:city]}%")
-  end
-  if params[:state].present?
-    @properties = @properties.where("address LIKE ?", "%#{params[:state]}%")
-  end
-  
-  # Filter by boolean attributes
-  if params[:fireplace] == "1"
-    @properties = @properties.where(fireplace: true)
-  end
-  
-  if params[:swimmingpool] == "1"
-    @properties = @properties.where(swimmingpool: true)
-  end
     @recommended_properties = Property.where(is_featured_product: true).limit(4)
 
   end

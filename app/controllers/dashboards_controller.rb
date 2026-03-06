@@ -18,6 +18,10 @@ class DashboardsController < ApplicationController
   
   end
 
+  def setting
+    @banner=Banner.new
+  end
+
   def booked_property_lst
     # @booked_properties = Property.where(status: "sold").distinct
     @sold_items = BookingItem
@@ -31,6 +35,11 @@ class DashboardsController < ApplicationController
   end
 
   def agentcustomerlst
+     @agent_customer_list = BookingItem
+    .joins(book: :user)
+    .joins(:property)
+    .where(properties: { user_id: @agent.id })
+    .includes(:property, book: :user)
   
   end
 
@@ -53,6 +62,10 @@ class DashboardsController < ApplicationController
     @customers = User.joins(books: { booking_items: :property })
       .where(properties: { user_id: @agent.id })
       .distinct
+    # @customers = User.joins(books: { booking_items: :property })
+    #   .where(properties: { user_id: @agent.id })
+    #   .includes(books: { booking_items: :property })
+    #   .distinct
 
     @total_customers = @customers.count
     @agent_properties=@agent.properties

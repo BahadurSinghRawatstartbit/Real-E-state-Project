@@ -1,0 +1,10 @@
+
+
+<div class="container">
+  
+
+  <div id="section-content">
+    <%# Dynamically render a partial for the specific section_type %>
+    <%= render "managesections/section_show/#{@section.section_type}", section: @section %>
+  </div>
+</div>

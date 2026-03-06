@@ -1,7 +1,9 @@
 class Property < ApplicationRecord
 
   has_many_attached :images
-  validates :name, :status, :address, presence: true
+  validates :name, :price, :phonenumber, :description, :address,
+            :state, :city, :status, :completiondate,
+            :bedroom, :bathroom, :area, presence: true
   has_many :wishlists, dependent: :destroy
   has_many :wishlisted_by_users, through: :wishlists, source: :user , dependent: :destroy
 

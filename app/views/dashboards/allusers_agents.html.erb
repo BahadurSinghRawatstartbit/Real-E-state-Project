@@ -15,7 +15,7 @@
 
       <tbody>
         <% @users.each do |user| %>
-            <tr>
+            <tr id="agents_<%= user.id %>">
               <td data-label="Agent Name"><%= user.name %></td>
 
               <td class="email-cell" data-label="Email">
@@ -28,7 +28,8 @@
                   <div class="adminaction">
                     <%= link_to "Edit" ,edit_user_path(user.id)%>
                     <%= button_to "Remove",
-                      users_path(user),
+                      user_path(user),
+                      remote:true,
                       method: :delete,
                       data: { confirm: "Are you sure?" },
                       class: "btn btn-danger btn-sm"

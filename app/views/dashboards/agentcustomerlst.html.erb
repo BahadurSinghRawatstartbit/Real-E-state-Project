@@ -19,15 +19,13 @@
     <tr>
       <th>CustomerName</th><th>Email</th><th>Property</th>
     </tr>
-    <% @customers.each do |prop| %>
-      <tr>
-        <td><%= prop.name %></td>
-        <td>₹ <%= prop.email %></td>
-        <td><%= prop.property.name %></td>
-        
-        
-      </tr>
-    <% end %>
+    <% @agent_customer_list.each do |item| %>
+  <tr>
+    <td><%= item.book.user.name %></td>
+    <td><%= item.book.user.email %></td>
+    <td><%= item.property.name %></td>
+  </tr>
+<% end %>
   </table>
 
 </div>

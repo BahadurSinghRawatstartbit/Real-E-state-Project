@@ -45,7 +45,7 @@ class PaymentsController < ApplicationController
       line_items: line_items,
       mode: 'payment',
       success_url: success_payments_url + "?session_id={CHECKOUT_SESSION_ID}",
-      cancel_url: new_payments_url,
+      cancel_url: book_url(@book),
       customer_email: current_user.email
     )
 
@@ -79,6 +79,13 @@ def success
   @properties_sold = @book.booking_items.includes(:property).map(&:property)
 
   @book.update!(status: 'sold')
+
+  @book.booking_items.destroy_all
+
+  # Optional: clear session cart reference
+  session[:book_id] = nil
+
+  flash[:notice] = "Payment successful! Your booking is confirmed."
  
   # UserMailer.payment_receipt(@email,@book,@payment_intent_id).deliver_now
 end

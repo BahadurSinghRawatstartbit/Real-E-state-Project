@@ -1,0 +1,12 @@
+
+<div class="container">
+  
+
+  <div id="section-content">
+    <%# Dynamically render a partial for the specific section_type %>
+    <%= form_with model: @section, remote: true do |f| %>
+    <%= render "managesections/section_edit/#{@section.section_type}", f: f %>
+    <%end%>
+    <%# <%= render "/managesections/sections/#{@section.section_type}", f: f %> 
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<hr>
+
+<%# <div class="form-group"> %>
+  <%# <%= f.label :section_type, "About" %> 
+  <%# <%= f.hidden_field :section_type ,value:"about" %> 
+<%# </div> %>
+
+
+<div class="form-group">
+  <%= f.label :title, "About Title" %>
+  <%= f.text_field :title, class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= label_tag "Description" %>
+  <%= text_area_tag "managesection[content][description]", @section.content["description"], class: "form-control" %>
+</div>

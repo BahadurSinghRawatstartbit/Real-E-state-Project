@@ -55,16 +55,16 @@ class UserMailer < ApplicationMailer
     )
   end
 
-  def contact_form_submission(name, email, subject, message)
-    @name = name
-    @message = message
-    @subject = subject
-    @from_email = email
+  # def contact_form_submission(name, email, subject, message)
+  #   @name = name
+  #   @message = message
+  #   @subject = subject
+  #   @from_email = email
 
-    mail(
-      to: ENV['GMAIL_USERNAME'],
-      subject: "Your Query For: #{@subject}",
-      from: email
-    )
-  end
+  #   mail(
+  #     to: ENV['GMAIL_USERNAME'],
+  #     subject: "Your Query For: #{@subject}",
+  #     from: email
+  #   )
+  # end
 end

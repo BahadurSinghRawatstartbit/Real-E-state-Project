@@ -1,0 +1,51 @@
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="page-header">
+        <h2>
+          FAQs
+          <%= link_to "Add FAQ", new_faq_path, class: "btn btn-primary pull-right" %>
+        </h2>
+      </div>
+
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr class="active">
+            <th>#</th>
+            <th>Category</th>
+            <th>Question</th>
+            <th>Answer</th>
+            <th width="180">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @faqs.each_with_index do |faq, index| %>
+            <tr id="faq_<%= faq.id %>">
+              <td><%= index + 1 %></td>
+              <td><%= faq.category %></td>
+              <td><%= truncate(faq.question, length: 80) %></td>
+              <td><%= truncate(faq.answer, length: 80) %></td>
+              <td>
+                <%= link_to "Edit", edit_faq_path(faq), class: "btn btn-xs btn-warning" %>
+                <%= link_to "Delete",
+                      faq_path(faq),
+                      method: :delete,
+                      remote: true,
+                      data: { confirm: "Are you sure?" },
+                      class: "btn btn-xs btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+
+        
+      </table>
+
+    </div>
+  </div>
+</div>

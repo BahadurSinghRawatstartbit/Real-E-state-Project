@@ -75,6 +75,32 @@ class UsersController < ApplicationController
     end
   end
 
+  def change_password
+    @user = current_user
+  end
+
+
+def update_password
+  @user = current_user
+  
+  current_pwd = params[:user][:current_password]
+
+  if @user.authenticate(current_pwd)
+    if @user.update(password: params[:user][:password], password_confirmation: params[:user][:password_confirmation])
+      reset_session
+      redirect_to login_path, notice: "Password updated successfully. Please log in again."
+   byebug
+     else
+      
+      render :change_password, status: :unprocessable_entity
+    end
+  else
+byebug
+    @user.errors.add(:current_password, "is incorrect")
+    render :change_password, status: :unprocessable_entity
+  end
+end
+
   
   def edit
     
@@ -103,6 +129,11 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email,:mobilenumber, :password,:password_confirmation)
+  end
+
+
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation)
   end
 
   def set_user

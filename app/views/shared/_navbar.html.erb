@@ -36,9 +36,23 @@
                   onclick="window.print()"
                   data-wow-delay="0.48s"> Submit
           </button> %>
-          <%= link_to "Submit",
-                      login_agent_path,
-                      class: "navbar-btn nav-button wow fadeInRight" %>
+          
+
+          <%# <%= link_to root_path do %> 
+                <%# <%= image_tag "carts.png" ,class:"productcart  wow fadeInRight"%> 
+                
+            <%# <% end %> 
+            <% if current_cart.present? %>
+                <%= link_to book_path(current_cart), class: "cart-link" do %>
+                    <%= image_tag "carts.png", class: "productcart wow fadeInRight" %>
+                    <span class="cart-count wow fadeInRight">
+                    <%= current_cart.booking_items.count %>
+                    </span>
+                <% end %>
+            <% end %>
+        
+
+
             
         <% else %>
           <%= link_to "Log in",
@@ -72,65 +86,30 @@
              class="dropdown-toggle"
              data-toggle="dropdown"
              data-hover="dropdown">
-            Template <b class="caret"></b>
+            Explore More <b class="caret"></b>
           </a>
 
           <ul class="dropdown-menu">
             <li>
               <div class="yamm-content">
-                <div class="row">
-
-                  <div class="col-sm-3">
-                    <h5>Home pages</h5>
-                    <ul>
-                      <li><%= link_to "Home Style 1", root_path %></li>
-                      <li><%= link_to "Home Style 2", root_path %></li>
-                      <li><%= link_to "Home Style 3", root_path %></li>
-                      <li><%= link_to "Home Style 4", root_path %></li>
-                      <li><%= link_to "Home Style 5", root_path %></li>
-                    </ul>
-                  </div>
-
-                  <div class="col-sm-3">
-                    <h5>Pages & Blog</h5>
-                    <ul>
-                      <li><%= link_to "Blog listing", root_path %></li>
-                      <li><%= link_to "Blog Post (full)", root_path %></li>
-                      <li><%= link_to "Contact", pages_contact_path %></li>
-                      <li><%= link_to "FAQ", root_path %></li>
-                      <li><%= link_to "404 page", root_path %></li>
-                    </ul>
-                  </div>
-
-                  <div class="col-sm-3">
-                    <h5>Property</h5>
-                    <ul>
-                      <li><%= link_to "Property Style 1", root_path %></li>
-                      <li><%= link_to "Property Style 2", root_path %></li>
-                      <li><%= link_to "Property Style 3", root_path %></li>
-                    </ul>
-
-                    <h5>Wishlist</h5>
-                    <ul>
-                      <li><%= link_to "My Wishlist", your_property_index_path %></li>
-                    </ul>
-                  </div>
-
-                  <div class="col-sm-3">
+                
+                  <div class="col-sm-3 mydata">
                     <h5>User account</h5>
                     <ul>
-                      <li><%= link_to "Register / Login", login_path %></li>
+                      
                       <% if current_user %>
                       <li><%= link_to "Your profile", edit_user_path(current_user.id) %></li>
                       <li><%= link_to "Your order", order_path %></li>
-                      
+                      <li><%= link_to "Reset your Password", change_password_path %></li>
+                      <% else %>
+                      <li><%= link_to "Register / Login", login_path %></li>
                       <% end %>
                       
-                      <li><%= link_to "Submit property", root_path %></li>
+                      
                     </ul>
                   </div>
 
-                </div>
+                
               </div>
             </li>
           </ul>

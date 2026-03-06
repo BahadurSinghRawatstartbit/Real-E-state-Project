@@ -1,0 +1,64 @@
+<div class="container" style="margin-top:30px;">
+
+  <div class="panel panel-primary">
+
+    <div class="panel-heading" style="display: flex;align-items: center;justify-content: space-between;">
+      <h3 class="panel-title ">
+        <i class="fa fa-edit"></i> Edit Count Section
+      </h3>
+      <span class="pull-right"><%= link_to "Back", managesections_path, class: " btn btn-default btn-xs" %></span>
+    </div>
+
+    <div class="panel-body">
+
+<div class="form-group">
+            
+    <%= f.label :title, "Title" %>
+    <%= f.text_field :title, class: "form-control" %>
+
+</div>
+
+<hr>
+
+<h4>Counters</h4>
+
+<div id="counter-fields">
+    
+  <% 4.times do |i| %>
+
+    <div class="border p-3 mb-3">
+      <div class="col-md-4">
+        <div class="form-group">
+        
+            <%= label_tag "Icon #{i+1}" %>
+            <%= text_field_tag "managesection[content][counters][#{i}][icon]",
+                @section.content.dig("counters", i.to_s, "icon"),
+                class: "form-control",
+                placeholder: "pe-7s-users" %>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="form-group">
+            <label>Number</label>
+            <%= text_field_tag "managesection[content][counters][#{i}][number]",
+                @section.content.dig("counters", i.to_s, "number"),
+                class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+            <label>Label</label>
+            <%= text_field_tag "managesection[content][counters][#{i}][label]",
+                @section.content.dig("counters", i.to_s, "label"),
+                class: "form-control" %>
+        </div>
+       </div>
+
+    </div>
+
+  <% end %>
+</div>
+
+</div>
+</div>

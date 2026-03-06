@@ -1,0 +1,45 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  title: MyString
+  subtitle: MyString
+  txt1: MyString
+  txt2: MyString
+  txt3: MyString
+  txt4: MyString
+  txt5: MyString
+  txt6: MyString
+  address: MyString
+  email: MyString
+  altemail: MyString
+  phone: MyString
+  altphone: MyString
+  sociallink1: MyString
+  sociallink2: MyString
+  sociallink3: MyString
+  sociallink4: MyString
+  sociallink5: MyString
+  socaillink6: MyString
+
+two:
+  type: 
+  title: MyString
+  subtitle: MyString
+  txt1: MyString
+  txt2: MyString
+  txt3: MyString
+  txt4: MyString
+  txt5: MyString
+  txt6: MyString
+  address: MyString
+  email: MyString
+  altemail: MyString
+  phone: MyString
+  altphone: MyString
+  sociallink1: MyString
+  sociallink2: MyString
+  sociallink3: MyString
+  sociallink4: MyString
+  sociallink5: MyString
+  socaillink6: MyString

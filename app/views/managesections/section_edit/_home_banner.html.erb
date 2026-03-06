@@ -1,0 +1,55 @@
+<%# <%= form_with model: @section, id: "section-form", remote: true, html: { class: "form-horizontal" } do |f| %> 
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+
+        <div class="panel panel-default" style="margin-top:30px;">
+          <div class="panel-heading" style="display: flex;align-items: center;justify-content: space-between;">
+      <h3 class="panel-title ">
+        <i class="fa fa-edit"></i> Edit Home Banner Section
+      </h3>
+      <span class="pull-right"><%= link_to "Back", managesections_path, class: " btn btn-default btn-xs" %></span>
+    </div>
+          
+
+          <div class="panel-body">
+
+            <!-- Title -->
+            <div class="form-group">
+              <%= f.label :title, "Hero Heading", class: "control-label" %>
+              <%= f.text_field :title, class: "form-control", placeholder: "Enter main heading" %>
+            </div>
+
+            <!-- Subtitle -->
+            <div class="form-group">
+              <%= f.label :subtitle, "Hero Subheading", class: "control-label" %>
+              <%= f.text_field :subtitle, class: "form-control", placeholder: "Enter subheading text" %>
+            </div>
+
+            <!-- Images -->
+            <div class="form-group">
+              <%= f.label :images, "Slider Images", class: "control-label" %>
+              <%= f.file_field :images,
+                    multiple: true,
+                    class: "form-control",
+                    direct_upload: true %>
+
+              <p class="help-block">
+                Upload 3 images for the homepage slider (JPG / PNG).
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Footer -->
+          <div class="panel-footer text-right">
+            <%= f.submit "Save Banner", class: "btn btn-primary" %>
+            <%= link_to "Cancel", managesections_path, class: "btn btn-default" %>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>

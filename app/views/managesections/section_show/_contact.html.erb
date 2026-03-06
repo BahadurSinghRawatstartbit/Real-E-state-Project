@@ -1,0 +1,106 @@
+<% if @section.present? %>
+<div class="container" style="margin-top:40px;">
+  
+    
+
+      <div class="panel panel-default">
+
+        <!-- Panel Heading -->
+        <div class="panel-heading clearfix">
+          <h3 class="panel-title pull-left">
+            <strong>Section:</strong> <%= @section.section_type.humanize %>
+          </h3>
+
+          <% if logged_in? && current_user.admin? %>
+            <div class="pull-right">
+              <%= link_to edit_managesection_path(@section), class: "btn btn-warning btn-xs" do %>
+                <i class="fa fa-edit"></i> Edit
+              <% end %>
+
+              <%= link_to "Back", managesections_path, class: "btn btn-default btn-xs" %>
+            </div>
+          <% end %>
+        </div>
+
+        <!-- Panel Body -->
+        <div class="panel-body">
+<div class="contact-area">
+<div class="row">
+
+<% content = (@section.content || {}) %>
+<% contact = content["contact_form"] || {} %>
+<% address = content["address"] || {} %>
+<% call_center = content["call_center"] || {} %>
+<% electronic = content["electronic_support"] || {} %>
+
+<div class="row">
+
+<!-- Contact Form -->
+<div class="col-md-8">
+
+<h2><%= contact["title"] %></h2>
+
+<form>
+
+<div class="form-group">
+<label><%= contact["firstname"] %></label>
+<input type="text" class="form-control">
+</div>
+
+<div class="form-group">
+<label><%= contact["lastname"] %></label>
+<input type="text" class="form-control">
+</div>
+
+<div class="form-group">
+<label><%= contact["email"] %></label>
+<input type="email" class="form-control">
+</div>
+
+<div class="form-group">
+<label><%= contact["subject"] %></label>
+<input type="text" class="form-control">
+</div>
+
+<div class="form-group">
+<label><%= contact["message"] %></label>
+<textarea class="form-control"></textarea>
+</div>
+
+<button class="btn btn-primary" disabled>
+<%= contact["button"] %>
+</button>
+
+</form>
+
+</div>
+
+
+<!-- Contact Info -->
+<div class="col-md-4">
+
+<h4><%= address["label"] %></h4>
+<p><%= address["value"] %></p>
+
+<hr>
+
+<h4><%= call_center["label"] %></h4>
+<p><%= call_center["description"] %></p>
+<p><strong><%= call_center["number"] %></strong></p>
+
+<hr>
+
+<h4><%= electronic["label"] %></h4>
+<p><%= electronic["description"] %></p>
+<p><strong><%= electronic["email"] %></strong></p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+<%end%>

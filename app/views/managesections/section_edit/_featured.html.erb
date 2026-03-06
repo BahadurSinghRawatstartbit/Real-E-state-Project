@@ -1,0 +1,53 @@
+<div class="container" style="margin-top:40px;">
+  <div class="panel panel-primary">
+
+    <div class="panel-heading" style="display: flex;align-items: center;justify-content: space-between;">
+      <h3 class="panel-title ">
+        <i class="fa fa-edit"></i> Edit Featured Section
+      </h3>
+      <span class="pull-right"><%= link_to "Back", managesections_path, class: " btn btn-default btn-xs" %></span>
+    </div>
+
+    <div class="panel-body">
+
+    
+
+        <div class="form-group">
+          <%= label_tag "Section Heading" %>
+          <%= text_field_tag "managesection[content][heading]",
+                @section.content["heading"],
+                class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :title, "Heading" %>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :subtitle, "Subheading" %>
+          <%= f.text_field :subtitle, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= label_tag "Select Featured Properties" %>
+ 
+            <%= select_tag "managesection[content][featured_property_ids][]",
+                options_from_collection_for_select(@properties, "id", "name", @section.content["featured_property_ids"]),
+                multiple: true,
+                class: "form-control" %>
+          <small class="text-muted">
+            Hold Ctrl (Windows) or Cmd (Mac) to select multiple
+          </small>
+        </div>
+
+        <hr>
+
+        <%= f.submit "Update Section", class: "btn btn-success" %>
+        <%= link_to "Cancel", managesections_path, class: "btn btn-default" %>
+
+      
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<% if @section.present? %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 panel-default">
+        
+        <div class="panel-heading clearfix">
+          <h3 class="panel-title pull-left">
+            <strong>Section:</strong> <%= @section.section_type.humanize %>
+          </h3>
+
+          <% if logged_in? && current_user.admin? %>
+            <div class="pull-right">
+              <%= link_to edit_managesection_path(@section), class: "btn btn-warning btn-xs" do %>
+                <i class="fa fa-edit"></i> Edit
+              <% end %>
+
+              <%= link_to "Back", managesections_path, class: "btn btn-default btn-xs" %>
+            </div>
+          <% end %>
+        </div>
+          <div class="panel-body">
+
+            <!-- Admin Edit Button -->
+            
+
+            <!-- Title -->
+            <h2 class="text-center" style="margin-bottom:15px;">
+              <%= @section.title %>
+            </h2>
+
+            <!-- Subtitle -->
+            <p class="text-center text-muted" style="font-size:16px;margin-bottom:30px;">
+              <%= @section.subtitle %>
+            </p>
+
+            <!-- Images Grid -->
+            <% if @section.images.attached? %>
+              <div class="row">
+                <% @section.images.each do |img| %>
+                  <div class="col-sm-4">
+                    <div class="thumbnail">
+                      <%= image_tag img, class: "img-responsive", style: "height:200px;object-fit:cover;width:100%;" %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<% end %>

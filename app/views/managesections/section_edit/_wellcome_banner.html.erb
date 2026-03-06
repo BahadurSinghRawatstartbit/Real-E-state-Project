@@ -1,0 +1,101 @@
+<div class="container" style="margin-top:30px;">
+
+  <div class="panel panel-primary">
+
+    <div class="panel-heading" style="display: flex;align-items: center;justify-content: space-between;">
+      <h3 class="panel-title ">
+        <i class="fa fa-edit"></i> Edit Welcome Section
+      </h3>
+      <span class="pull-right"><%= link_to "Back", managesections_path, class: " btn btn-default btn-xs" %></span>
+    </div>
+
+    <div class="panel-body">
+
+      <%# <%= form_with model: @section, remote: true do |f| %> 
+
+        <!-- Heading -->
+        <div class="form-group">
+          <%= f.label :title, "Heading" %>
+          <%= f.text_field :title, class: "form-control", placeholder: "Enter section heading" %>
+        </div>
+
+        <!-- Image Upload -->
+        <div class="form-group">
+          <%= f.label :images, "Upload Image" %>
+          <%= f.file_field :images,
+                multiple:true,
+                class: "form-control",
+                direct_upload: true %>
+        </div>
+
+        <!-- Existing Image Preview -->
+        <% if @section.images.attached? %>
+          <div class="form-group">
+            <label>Current Image</label><br>
+
+            <% @section.images.each do |img| %>
+              <%= image_tag img, style: "height:120px;margin-right:10px;border-radius:5px;" %>
+            <% end %>
+
+          </div>
+        <% end %>
+
+        <hr>
+
+        <h4><i class="fa fa-cogs"></i> Services</h4>
+
+        <% 4.times do |i| %>
+
+          <div class="row" style="margin-bottom:15px;">
+
+            <!-- Icon -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= label_tag "Icon #{i+1}" %>
+
+                <%= text_field_tag "managesection[content][services][#{i}][icon]",
+                (@section.content["services"] || [])[i]&.dig("icon"),
+                class: "form-control",
+                placeholder: "Example: pe-7s-home" %>
+
+              </div>
+            </div>
+
+            <!-- Title -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= label_tag "Service Title #{i+1}" %>
+
+                <%= text_field_tag "managesection[content][services][#{i}][title]",
+                (@section.content["services"] || [])[i]&.dig("title"),
+                class: "form-control",
+                placeholder: "Example: Any Property" %>
+
+              </div>
+            </div>
+
+          </div>
+
+        <% end %>
+
+        <hr>
+
+        <!-- Buttons -->
+        <div class="text-right">
+
+          <%= link_to "Cancel",
+              managesections_path,
+              class: "btn btn-default" %>
+
+          <%= f.submit "Update Section",
+              class: "btn btn-success" %>
+
+        </div>
+
+      
+
+    </div>
+
+  </div>
+
+</div>

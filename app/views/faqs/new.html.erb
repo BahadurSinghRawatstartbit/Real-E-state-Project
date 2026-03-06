@@ -1,0 +1,56 @@
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+
+      <div class="panel panel-primary">
+        <div class="panel-heading text-center" style="background:#FDC600">
+          <h4>Create FAQ</h4>
+        </div>
+
+        <div class="panel-body">
+          
+          <%= form_with model: @faq, local: false do |f| %>
+
+            <div class="form-group">
+              <%= f.label :category, "Select an Option" %>
+              <%= f.select :category,
+              
+                    options_for_select([
+                      ["For Villa", "villa"],
+                      ["For Flats", "flats"],
+                      ["For 2 Stories", "2_stories"],
+                      ["For more than 2 Stories", "more_than_2"]
+                    ]),
+                    { prompt: "Please select..." },
+                    { class: "form-control" } %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :question %>
+              <%= f.text_field :question,
+                    class: "form-control",required: true,
+                    placeholder: "Enter your question" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :answer %>
+              <%= f.text_area :answer,
+                    class: "form-control",
+                    rows: 5,required: true,
+                    placeholder: "Enter the answer" %>
+            </div>
+
+            <div class="text-center">
+              <%= f.submit "Save FAQ", class: "btn btn-success btn-lg" %>
+            </div>
+
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

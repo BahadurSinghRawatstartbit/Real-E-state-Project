@@ -1,0 +1,52 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="form-group">
+            
+            <%= f.label :title, "Heading" %>
+            <%= f.text_field :title, class: "form-control" %>
+
+        </div>
+        <div class="form-group">
+            <%= f.label :subtitle, "Image" %>
+            <%= f.file_field :images,
+                                id: "wizard-picture",
+                                class: "form-control",
+                                direct_upload: true 
+                                %>
+
+        </div>
+
+        <hr>
+
+        <h4>Services</h4>
+
+        <% 4.times do |i| %>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <%= label_tag "Icon #{i+1}" %>
+                        <%= text_field_tag "managesection[content][services][#{i}][icon]",
+                        (@section.content["services"] || [])[i]&.dig("icon"),
+                        class:"form-control",
+                        placeholder:"pe-7s-home" %>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <%= label_tag "Title #{i+1}" %>
+                        <%= text_field_tag "managesection[content][services][#{i}][title]",
+                        (@section.content["services"] || [])[i]&.dig("title"),
+                        class:"form-control" %>
+                    </div>
+                </div>
+
+            </div>
+
+        <% end %>
+
+    </div>
+</div>

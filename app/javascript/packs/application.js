@@ -1,7 +1,7 @@
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
-
+window.Rails = Rails
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
@@ -46,77 +46,183 @@ import "./jsfolder/wizard"
 import "./jsfolder/bootstrap-hover-dropdown"
 import "./jsfolder/bootstrap-select.min"
 import "./jsfolder/icheck.min"
-document.addEventListener("turbolinks:load", function() {
+import "./tabswitching.js"
+// import "./basic_validation_propsubmit.js"
+// document.addEventListener("turbolinks:load", function() {
+  
 
 
- 
-  $("#image-gallery").lightSlider({
-    gallery: true,
-    item: 1,
-    thumbItem: 9,
-    slideMargin: 0,
-    speed: 500,
-    auto: true,
-    loop: true,
-    onSliderLoad: function () {
-      $("#image-gallery").removeClass("cS-hidden");
-    }
-  });
+//   const form = document.querySelector("#property_search");
+//   if (!form) return;
 
+//   let timer;
+
+//   form.querySelectorAll("input, select").forEach((el) => {
+//     el.addEventListener("input", () => {
+//       clearTimeout(timer);
+//       timer = setTimeout(() => {
+//         Rails.fire(form, "submit"); // ✅ Rails UJS submit
+//       }, 400); // debounce
+//     });
+//   });
+
+// $('a[data-toggle="tab"]').on('click', function (e) {
+//     e.preventDefault();
+//     $(this).tab('show');
+//   });
+
+//   // $("#image-gallery").lightSlider({
+//   //   gallery: true,
+//   //   item: 1,
+//   //   thumbItem: 9,
+//   //   slideMargin: 0,
+//   //   speed: 500,
+//   //   auto: true,
+//   //   loop: true,
+//   //   onSliderLoad: function () {
+//   //     $("#image-gallery").removeClass("cS-hidden");
+//   //   }
+//   // });
+  
+// const gallery = $("#image-gallery")
+
+// if (gallery.length) {
+//   gallery.lightSlider({
+//     gallery: true,
+//     item: 1,
+//     thumbItem: 9,
+//     slideMargin: 0,
+//     speed: 500,
+//     auto: true,
+//     loop: true,
+//     onSliderLoad: function () {
+//       gallery.removeClass("cS-hidden")
+//     }
+//   })
+// }
     
 
-  // Initialize jQuery plugins
+//   // Initialize jQuery plugins
+//   $(".slider").slider({
+//     min: 0,
+//     max: 100,
+//     step: 1,
+//     value: [20, 80],
+//     tooltip: 'show',
+//     handle: 'round',
+//     formater: function(value) {
+//       return value;
+//     }
+//   });
+
+//   $(".owl-carousel").owlCarousel({
+//     items: 3,
+//     loop: true,
+//     autoplay: true,
+//     autoplayTimeout: 5000,
+//     nav: true,
+//   });
+
+//   new WOW().init();
+
+//   // Add other plugin initializations here if needed
+
+//   //  document.querySelectorAll(".chart").forEach((el) => {
+//   //   if (el._easyPieChart) return
+
+//   //   const chart = new EasyPieChart(el, {
+//   //     barColor: "#ef1e25",
+//   //     trackColor: "#f9f9f9",
+//   //     scaleColor: "#dfe0e0",
+//   //     scaleLength: 5,
+//   //     lineCap: "round",
+//   //     lineWidth: 3,
+//   //     size: 110,
+//   //     animate: { duration: 1000, enabled: true }
+//   //   })
+
+//   //   chart.update(el.dataset.percent || 0)
+//   //   el._easyPieChart = chart
+//   // })
+// });
+// document.addEventListener("turbolinks:load", () => {
+//   const form  = document.getElementById("message-form")
+//   const input = document.getElementById("message-input")
+
+//   if (!form || !input) return
+
+//   form.addEventListener("ajax:success", () => {
+//     input.value = ""
+//     input.focus()
+//   })
+// })
+
+document.addEventListener("turbolinks:load", function () {
+
+  const form = document.querySelector("#property_search")
+
+  if (form) {
+    let timer
+
+    form.querySelectorAll("input, select").forEach((el) => {
+      el.addEventListener("input", () => {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+          Rails.fire(form, "submit")
+        }, 400)
+      })
+    })
+  }
+
+  $('a[data-toggle="tab"]').on('click', function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })
+
+  const gallery = $("#image-gallery")
+
+  if (gallery.length) {
+    gallery.lightSlider({
+      gallery: true,
+      item: 1,
+      thumbItem: 9,
+      slideMargin: 0,
+      speed: 500,
+      auto: true,
+      loop: true,
+      onSliderLoad: function () {
+        gallery.removeClass("cS-hidden")
+      }
+    })
+  }
+
   $(".slider").slider({
     min: 0,
     max: 100,
     step: 1,
     value: [20, 80],
-    tooltip: 'show',
-    handle: 'round',
-    formater: function(value) {
-      return value;
-    }
-  });
+    tooltip: "show",
+    handle: "round"
+  })
 
   $(".owl-carousel").owlCarousel({
     items: 3,
     loop: true,
     autoplay: true,
     autoplayTimeout: 5000,
-    nav: true,
-  });
-
-  new WOW().init();
-
-  // Add other plugin initializations here if needed
-
-  //  document.querySelectorAll(".chart").forEach((el) => {
-  //   if (el._easyPieChart) return
-
-  //   const chart = new EasyPieChart(el, {
-  //     barColor: "#ef1e25",
-  //     trackColor: "#f9f9f9",
-  //     scaleColor: "#dfe0e0",
-  //     scaleLength: 5,
-  //     lineCap: "round",
-  //     lineWidth: 3,
-  //     size: 110,
-  //     animate: { duration: 1000, enabled: true }
-  //   })
-
-  //   chart.update(el.dataset.percent || 0)
-  //   el._easyPieChart = chart
-  // })
-});
-document.addEventListener("turbolinks:load", () => {
-  const form  = document.getElementById("message-form")
-  const input = document.getElementById("message-input")
-
-  if (!form || !input) return
-
-  form.addEventListener("ajax:success", () => {
-    input.value = ""
-    input.focus()
+    nav: true
   })
-})
 
+  new WOW().init()
+
+  const messageForm = document.getElementById("message-form")
+  const messageInput = document.getElementById("message-input")
+
+  if (messageForm && messageInput) {
+    messageForm.addEventListener("ajax:success", () => {
+      messageInput.value = ""
+      messageInput.focus()
+    })
+  }
+
+})

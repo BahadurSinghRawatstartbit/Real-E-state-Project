@@ -1,0 +1,62 @@
+
+
+<% if @section.present? %>
+<div class="container" style="margin-top:40px;">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+
+      <div class="panel panel-default">
+
+        <!-- Panel Heading -->
+        <div class="panel-heading clearfix">
+          <h3 class="panel-title pull-left">
+            <strong>Section:</strong> <%= @section.section_type.humanize %>
+          </h3>
+
+          <% if logged_in? && current_user.admin? %>
+            <div class="pull-right">
+              <%= link_to edit_managesection_path(@section), class: "btn btn-warning btn-xs" do %>
+                <i class="fa fa-edit"></i> Edit
+              <% end %>
+
+              <%= link_to "Back", managesections_path, class: "btn btn-default btn-xs" %>
+            </div>
+          <% end %>
+        </div>
+
+        <!-- Panel Body -->
+        <div class="panel-body">
+<div id="testimonial-slider">
+
+<% testimonials = (@section.content || {})["testimonials"] || [] %>
+
+<% testimonials.each_with_index do |(key, t), i| %>
+<div class="item">
+    <div class="client-text" style="margin-bottom:0px;">                                
+        <p><%= t["text"] %></p>        
+        <strong><%= t["name"] %>, </strong><i><%= t["designation"] %></i></h4>
+    </div>
+    <div class="client-face" style="display: flex;align-content: center;justify-content: center;">
+        <% if @section.images.attached? && @section.images[i] %>
+           <%= image_tag @section.images[i] %>
+            
+        <%else%>
+            <%= image_tag "client-face2.png" %>
+         
+        <%end%>
+        
+    </div>
+</div>
+
+<% end %>
+
+</div>
+          
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<% end %>

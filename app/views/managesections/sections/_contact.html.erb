@@ -1,0 +1,124 @@
+<div class="form-group">
+            
+            <%= f.label :title, "Title" %>
+            <%= f.text_field :title, class: "form-control" %>
+
+        </div>
+
+<h4>Contact Form Labels</h4>
+
+<div class="form-group">
+<%= label_tag "Form Title" %>
+<%= text_field_tag "managesection[content][contact_form][title]",
+@section.content.dig("contact_form","title"),
+class:"form-control" %>
+</div>
+
+<div class="form-group">
+<%= label_tag "Firstname Label" %>
+<%= text_field_tag "managesection[content][contact_form][firstname]",
+@section.content.dig("contact_form","firstname"),
+class:"form-control" %>
+</div>
+
+<div class="form-group">
+<%= label_tag "Lastname Label" %>
+<%= text_field_tag "managesection[content][contact_form][lastname]",
+@section.content.dig("contact_form","lastname"),
+class:"form-control" %>
+</div>
+
+<div class="form-group">
+<%= label_tag "Email Label" %>
+<%= text_field_tag "managesection[content][contact_form][email]",
+@section.content.dig("contact_form","email"),
+class:"form-control" %>
+</div>
+
+<div class="form-group">
+<%= label_tag "Subject Label" %>
+<%= text_field_tag "managesection[content][contact_form][subject]",
+@section.content.dig("contact_form","subject"),
+class:"form-control" %>
+</div>
+
+<div class="form-group">
+<%= label_tag "Message Label" %>
+<%= text_field_tag "managesection[content][contact_form][message]",
+@section.content.dig("contact_form","message"),
+class:"form-control" %>
+</div>
+
+<div class="form-group">
+<%= label_tag "Button Text" %>
+<%= text_field_tag "managesection[content][contact_form][button]",
+@section.content.dig("contact_form","button"),
+class:"form-control" %>
+</div>
+
+
+<h4>Address</h4>
+
+<div class="form-group">
+<%= label_tag "Address Label" %>
+<%= text_field_tag "managesection[content][address][label]",
+@section.content.dig("address","label"),
+class:"form-control" %>
+</div>
+
+<div class="form-group">
+<%= label_tag "Address" %>
+<%= text_area_tag "managesection[content][address][value]",
+@section.content.dig("address","value"),
+class:"form-control" %>
+</div>
+
+<hr>
+
+<h4>Call Center</h4>
+
+<div class="form-group">
+<%= label_tag "Call Center Label" %>
+<%= text_field_tag "managesection[content][call_center][label]",
+@section.content.dig("call_center","label"),
+class:"form-control" %>
+</div>
+
+<div class="form-group">
+<%= label_tag "Description" %>
+<%= text_area_tag "managesection[content][call_center][description]",
+@section.content.dig("call_center","description"),
+class:"form-control" %>
+</div>
+
+<div class="form-group">
+<%= label_tag "Phone Number" %>
+<%= text_field_tag "managesection[content][call_center][number]",
+@section.content.dig("call_center","number"),
+class:"form-control" %>
+</div>
+
+<hr>
+
+<h4>Electronic Support</h4>
+
+<div class="form-group">
+<%= label_tag "Label" %>
+<%= text_field_tag "managesection[content][electronic_support][label]",
+@section.content.dig("electronic_support","label"),
+class:"form-control" %>
+</div>
+
+<div class="form-group">
+<%= label_tag "Description" %>
+<%= text_area_tag "managesection[content][electronic_support][description]",
+@section.content.dig("electronic_support","description"),
+class:"form-control" %>
+</div>
+
+<div class="form-group">
+<%= label_tag "Email" %>
+<%= text_field_tag "managesection[content][electronic_support][email]",
+@section.content.dig("electronic_support","email"),
+class:"form-control" %>
+</div>

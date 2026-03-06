@@ -1,0 +1,33 @@
+// Place all the styles related to the Faqs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+/* FAQ Section */
+.faq-section {
+  padding: 50px 0;
+  background: #f9f9f9;
+}
+
+.faq-section h2 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.faq-section .panel-title a {
+  display: block;
+  text-decoration: none;
+  font-weight: 600;
+  color: #333;
+}
+
+.faq-section .panel-title a:hover {
+  color: #f0ad4e;
+}
+
+.faq-section .panel-heading {
+  background: #fff;
+}
+
+.faq-section .panel-body {
+  font-size: 15px;
+  line-height: 1.6;
+}

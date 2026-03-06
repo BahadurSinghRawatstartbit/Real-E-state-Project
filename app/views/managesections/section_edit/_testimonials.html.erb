@@ -1,0 +1,95 @@
+<div class="container">
+
+<div class="panel panel-primary">
+
+
+
+<div class="panel-heading" style="display: flex;align-items: center;justify-content: space-between;">
+      <h3 class="panel-title ">
+        <i class="fa fa-edit"></i> Edit Testimonials Section
+      </h3>
+      <span class="pull-right"><%= link_to "Back", managesections_path, class: " btn btn-default btn-xs" %></span>
+    </div>
+
+<div class="panel-body">
+
+
+
+<div class="form-group">
+  <%= f.label :title, "Title" %>
+  <%= f.text_field :title, class: "form-control" %>
+</div>
+
+<%# <div class="form-group">
+<label>
+<input type="checkbox" id="more-testimonials">
+Add more testimonials
+</label>
+</div>
+
+<div class="form-group" id="testimonial-count-box" style="display:none;">
+<label>Number of Testimonials</label>
+<input type="number" id="testimonial-count" class="form-control" min="1">
+</div> %>
+
+<hr>
+
+<h4>Testimonials</h4>
+
+<div id="testimonials-container">
+
+<% testimonials = (@section.content["testimonials"] || {}) %>
+
+<% testimonials.each do |index, testimonial| %>
+
+<div class="well testimonial-block">
+
+<div class="form-group">
+<label>Client Text</label>
+<textarea name="managesection[content][testimonials][<%= index %>][text]" class="form-control"><%= testimonial["text"] %></textarea>
+</div>
+
+<div class="form-group">
+<label>Client Name</label>
+<input type="text"
+name="managesection[content][testimonials][<%= index %>][name]"
+value="<%= testimonial["name"] %>"
+class="form-control">
+</div>
+<div class="form-group">
+            <%= f.label :subtitle, "Image" %>
+            <%= f.file_field :images,
+                                multiple:true,
+                                id: "wizard-picture",
+                                class: "form-control",
+                                direct_upload: true 
+                                %>
+
+        </div>
+
+<div class="form-group">
+<label>Designation</label>
+<input type="text"
+name="managesection[content][testimonials][<%= index %>][designation]"
+value="<%= testimonial["designation"] %>"
+class="form-control">
+</div>
+
+</div>
+
+<% end %>
+<div id="add_testimonials"></div>
+
+</div>
+
+<br>
+
+<%= f.submit "Update Section", class:"btn btn-success" %>
+
+
+
+</div>
+</div>
+
+</div>
+
